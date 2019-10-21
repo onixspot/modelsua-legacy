@@ -1,0 +1,121 @@
+div.adminka_menu {
+        padding: 5px;
+        background: #b95383;
+        border-radius: 4px;
+}
+div.adminka_menu ul {
+        padding: 0px;
+        margin: 0px;
+}
+div.adminka_menu ul li {
+}
+div.adminka_menu ul li a {
+        color: #fff;
+}
+div.adminka_menu ul li:first-child a {
+}
+div.adminka_menu ul li:last-child a {
+}
+div.adminka_menu ul li a.selected {
+}
+div.adminka_menu ul li a:hover {
+}
+
+
+div.adminka {
+	position: absolute;
+	background: linear-gradient(top, #eee 0%, #ccc 100%);
+	background: -o-linear-gradient(top, #eee 0%, #ccc 100%);
+	background: -moz-linear-gradient(top, #eee 0%, #ccc 100%);
+	background: -webkit-linear-gradient(top, #eee 0%, #ccc 100%);
+	background: -ms-linear-gradient(top, #eee 0%, #ccc 100%);
+	background: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #eee),
+		color-stop(1, #ccc)
+	);
+	box-shadow: 0px 0px 5px black;
+	border-radius: 2px;
+	font-family: Arial;
+	font-size: 12px;
+	color: #5d5d5d;
+	text-shadow: 0px 1px 0px #fff;
+}
+
+div.adminka a {
+	color: #4289e1;
+	text-shadow: 0px 1px 0px #fff;
+	text-decoration: none;
+}
+
+div.adminka table tr th, div.adminka table tr td {
+	font-size: 12px;
+	background: #fff;
+}
+
+div.adminka div.head {
+	padding: 5px;
+	border-bottom: 1px solid #ccc;
+	cursor: pointer;
+}
+
+div.adminka div.head div.title {
+	float: left;
+}
+
+div.adminka div.head div.closeButton {
+	float: right;
+}
+
+div.adminka div.body {
+	padding: 5px;
+	border-top: 1px solid #fff;
+}
+
+div.adminka div.body div.uiTabBar {
+	background: linear-gradient(top, #eee 0%, #ddd 100%);
+	background: -o-linear-gradient(top, #eee 0%, #ddd 100%);
+	background: -moz-linear-gradient(top, #eee 0%, #ddd 100%);
+	background: -webkit-linear-gradient(top, #eee 0%, #ddd 100%);
+	background: -ms-linear-gradient(top, #eee 0%, #ddd 100%);
+	background: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop(0, #eee),
+		color-stop(1, #ddd)
+	);
+	border-radius: 2px;
+	box-shadow: inset 0px 0px 1px black;
+	width: 100%;
+	height: 24px;
+	overflow-x: auto;
+	overflow-y: hidden;
+}
+
+div.adminka div.body div.uiTabBar ul {
+	padding: 0px;
+	margin: 0px;
+}
+
+div.adminka div.body div.uiTabBar ul li {
+	float: left;
+	padding: 5px;
+	margin: 0px;
+	background: none;
+	box-shadow: none;
+	height: 14px;
+	cursor: pointer;
+	border-radius: 2px;
+}
+
+div.adminka div.body div.uiTabBar ul li.selected {
+	background: #fff;
+	box-shadow: inset 0px 0px 4px black;
+}
+
+div.adminka div.body div.frames {
+	
+}

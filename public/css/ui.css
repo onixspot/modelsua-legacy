@@ -1,0 +1,18 @@
+div.UiDropDown {
+	width: 200px;
+	height: 24px;
+	background: #fff;
+	box-shadow: 0px 0px 1px #444;
+	border-radius: 2px;
+}
+
+div.UiDropDown input.UiField, div.UiDropDown input.UiField:hover, div.UiDropDown input.UiField:active {
+	background: none;
+	border: none;
+	box-shadow: none;
+	width: 180px;
+	height: 24px;
+	padding: 2px;
+	color: #5C7FC7;
+	text-shadow: 0px 1px 1px #fff;
+}
