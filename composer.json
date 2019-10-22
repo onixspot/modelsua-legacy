@@ -1,0 +1,16 @@
+{
+  "name": "shevchenko/modelsua",
+  "type": "project",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Артем Морозов",
+      "email": "artem.morozov@icloud.com"
+    }
+  ],
+  "minimum-stability": "dev",
+  "prefer-stable": true,
+  "require": {
+    "php": "^5.6.*"
+  }
+}

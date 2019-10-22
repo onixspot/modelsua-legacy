@@ -1,8 +1,5 @@
 <?php
 
-error_reporting(0);
-@ini_set('display_errors', 0);
-
 define('APP_START_TS', microtime(true));
 
 require_once getenv('FRAMEWORK_PATH').'/library/kernel/load.php';

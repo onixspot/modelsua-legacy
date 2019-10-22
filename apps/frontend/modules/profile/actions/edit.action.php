@@ -9,14 +9,14 @@ class profile_edit_action extends profile_controller
     {
         parent::execute();
 
-
         load::model('user/user_photos');
 
         $this->card_user    = (session::has_credential('admin') && request::get_int('id')) ? request::get_int('id') : session::get_user_id();
         $this->card_profile = profile_peer::instance()->get_item($this->card_user);
-        $this->preview      = db::get_row('SELECT * FROM user_photos WHERE user_id=:uid AND type=:type AND name=:name', ['uid'  => $this->card_user,
-                                                                                                                         'type' => user_photos_peer::TYPE_CARD_PREVIEW,
-                                                                                                                         'name' => 'ru',
+        $this->preview      = db::get_row('SELECT * FROM user_photos WHERE user_id=:uid AND type=:type AND name=:name', [
+            'uid'  => $this->card_user,
+            'type' => user_photos_peer::TYPE_CARD_PREVIEW,
+            'name' => 'ru',
         ]);
 
         if (session::get_user_id() != $this->user_id && !session::has_credential('admin')) {
@@ -353,5 +353,3 @@ class profile_edit_action extends profile_controller
     }
 
 }
-
-?>
