@@ -102,7 +102,7 @@
 		form.onSuccess = function(data){
 			if( ! data.success && data.error == 'password'){
 				$("#old_password")
-					.animate({"boxShadow": "0px 0px 8px #b95383"}, 200, function(){
+					.animate({"boxShadow": "0px 0px 8px #000000"}, 200, function(){
 						setTimeout(function(){
 							$("#old_password").animate({"boxShadow": "0px 0px 5px #fff"}, 1000);
 						}, 1000);
@@ -111,13 +111,13 @@
 			}
 			if( ! data.success && data.error == 'confirmation'){
 				$("#new_password")
-					.animate({"boxShadow": "0px 0px 8px #b95383"}, 200, function(){
+					.animate({"boxShadow": "0px 0px 8px #000000"}, 200, function(){
 						setTimeout(function(){
 							$("#new_password").animate({"boxShadow": "0px 0px 5px #fff"}, 1000);
 						}, 1000);
 					});
 				$("#new_password_confirmation")
-					.animate({"boxShadow": "0px 0px 8px #b95383"}, 200, function(){
+					.animate({"boxShadow": "0px 0px 8px #000000"}, 200, function(){
 						setTimeout(function(){
 							$("#new_password_confirmation").animate({"boxShadow": "0px 0px 5px #fff"}, 1000);
 						}, 1000);

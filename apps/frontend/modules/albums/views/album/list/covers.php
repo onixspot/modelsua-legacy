@@ -48,7 +48,7 @@
 							<div id="photos-list-item-photo-<?=$pid?>" style="height: 355px; background: url('/imgserve?pid=<?=$pid?>&h=420') no-repeat center; cursor: pointer;"></div>
 						</div>
 						<div class="left aleft" style="width: 189px">
-							<div class="mb5 fs18 bold" style="color: #B95383">
+							<div class="mb5 fs18 bold" style="color: #000000">
 								<a href='javascript:;' onclick="$('#photos-list-item-photo-<?=$pid?>').click()"><?=$photo['name']?></a>
 							</div>
 							<div>

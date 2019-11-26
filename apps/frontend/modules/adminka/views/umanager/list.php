@@ -68,7 +68,7 @@
 						<div>
 							<div style="width: 100px;">
 								<a id="list-item-move-<?=$id?>" href="javascript:;">Переместить</a>
-								<div id="block-list-item-move-<?=$id?>" class="pt5 pb5 hide" style="position: absolute; background: white; border: 1px solid #B95383; box-shadow: 0px 1px 3px black; width: 98px;">
+								<div id="block-list-item-move-<?=$id?>" class="pt5 pb5 hide" style="position: absolute; background: white; border: 1px solid #000000; box-shadow: 0px 1px 3px black; width: 98px;">
 									<div><a id="list-item-movetoarchive-<?=$id?>" href="javascript:;">В архив</a></div>
 									<div><a id="list-item-movetoreserv-<?=$id?>" href="javascript:;">В резерв</a></div>
 								</div>
@@ -257,7 +257,7 @@
 				.css('color', 'white')
 				.parent()
 					.css({
-						'background': '#B95383',
+						'background': '#000000',
 						'box-shadow': '0px 1px 3px black'
 					});
 			
@@ -276,7 +276,7 @@
 			$('#block-list-item-'+key).hide();
 			$("#list-item-"+key)
 				.attr('rel', '')
-				.css('color', '#B95383')
+				.css('color', '#000000')
 				.parent()
 					.css({
 						'background': '',

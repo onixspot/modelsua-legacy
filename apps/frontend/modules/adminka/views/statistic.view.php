@@ -3,7 +3,7 @@
 </div>
 
 <div class="left mt5 fs12" style="width: 700px">
-	<div class="p10 mb10 bold cwhite" style="background: #b95383; border-radius: 4px;">Статистика</div>
+	<div class="p10 mb10 bold cwhite" style="background: #000000; border-radius: 4px;">Статистика</div>
 	<div class="p10">
 		<div>
 			<div class="left" style="width: 200px;">Facebook:</div>

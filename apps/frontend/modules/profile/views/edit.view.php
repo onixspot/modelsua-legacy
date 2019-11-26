@@ -1,12 +1,12 @@
 <div class="fs12 mb10 mt10">
 	
-	<div class="p5 bold fs12 cwhite" style="background: #b95383;">
+	<div class="p5 bold fs12 cwhite" style="background: #000000;">
 		<?=t('Редактирование')?> :: <a class="cwhite underline" href="/profile?id=<?= $profile['user_id']?>"><?=profile_peer::get_name($profile, '&fn &ln')?></a>
 	</div>
 	
-	<div class="p10" style="border: 1px solid #b95383;">
+	<div class="p10" style="border: 1px solid #000000;">
 		
-		<div id="profile-edit-tabbar" class="mb10 pt5 pl5 pr5" style="border-radius: 5px; background: #b95383;">
+		<div id="profile-edit-tabbar" class="mb10 pt5 pl5 pr5" style="border-radius: 5px; background: #000000;">
 			<div id="profile-edit-tab-general" class="left p5">
 				<?=t('Общая информация')?>
 			</div>

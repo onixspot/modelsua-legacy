@@ -31,7 +31,7 @@
 	</div>
 	
 	<? if($category_key && $category_key != 'portfolio'){ ?>
-		<div class="mb10 fs20" style="color: #B95383">
+		<div class="mb10 fs20" style="color: #000000">
 			<?=user_albums_peer::get_category($category_key)?>
 		</div>
 	<? } ?>

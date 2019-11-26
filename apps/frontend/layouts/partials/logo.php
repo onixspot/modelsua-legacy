@@ -5,9 +5,9 @@
 	<!--<div class="left mt5" style="margin-top: -10px;">
 		<a href="/people"><img src="/banners/<?=session::get('language','ru')?>/banner.gif" /></a>
 	</div>-->
-	<div class="left mt5" style="margin-top: 3px; color: #B95383; width: 520px; text-align: center; font-size: 21px; font-style: italic;">
-		<?=t('Все об украинских моделях')?><br /><?=t('и модельном бизнесе')?>
-	</div>
+	<!--<div class="left mt5" style="margin-top: 3px; color: #000000; width: 520px; text-align: center; font-size: 21px; font-style: italic;">-->
+	<!--	--><?//=t('Все об украинских моделях')?><!--<br />--><?//=t('и модельном бизнесе')?>
+	<!--</div>-->
 	<div class="right" style="width: 172px;<?=(session::is_authenticated()) ? ' padding-right: 25px;margin-top: 10px;' : 'margin-top: -22px;'?>">
 	    <? $style =  (!session::is_authenticated()) ? 'margin-top: 5px;' : ''?>
 	    <div class="languages_box bold aright mb5 fs11" style="<?=$style?>">
@@ -32,7 +32,7 @@
 					</div>
 					<div class="right pt5">
 						<input type="submit" id="submit" name="submit" value="Войти" class="hide" />
-						<a href="javascript:;" id="submit-1" class="ucase bold" style="color: #b95383">Войти</a>
+						<a href="javascript:;" id="submit-1" class="ucase bold" style="color: #000000">Войти</a>
 					</div>
 					<div class="clear"></div>
 				</div>
@@ -45,13 +45,13 @@
 					form.onSuccess = function(data){
 						if( ! data.success){
 							$("#login")
-								.animate({"boxShadow": "0px 0px 8px #b95383"}, 200, function(){
+								.animate({"boxShadow": "0px 0px 8px #000000"}, 200, function(){
 									setTimeout(function(){
 										$("#login").animate({"boxShadow": "0px 0px 5px #fff"}, 1000);
 									}, 1000);
 								});
 							$("#password")
-								.animate({"boxShadow": "0px 0px 8px #b95383"}, 200, function(){
+								.animate({"boxShadow": "0px 0px 8px #000000"}, 200, function(){
 									setTimeout(function(){
 										$("#password").animate({"boxShadow": "0px 0px 5px #fff"}, 1000);
 									}, 1000);
@@ -111,7 +111,7 @@
 			<? $user_data = profile_peer::instance()->get_item(session::get_user_id()); ?>
 			<div class="fs12 login_form" style="text-align: right; width: 172px;">
 				<div class="mb5">
-					<a id="user-link" href="/profile?id=<?=$user_data["user_id"]?>" class="fs14" style="border-bottom: 1px dotted #B95383;"><?=profile_peer::get_name($user_data);?></a>
+					<a id="user-link" href="/profile?id=<?=$user_data["user_id"]?>" class="fs14" style="border-bottom: 1px dotted #000000;"><?=profile_peer::get_name($user_data);?></a>
 				</div>
 				<? 
 				    $new_users = db::get_scalar("SELECT COUNT(a.id) FROM user_auth a JOIN user_data d ON a.id=d.user_id  WHERE a.approve=0 AND a.del=0 AND a.registrator=0 AND a.reserv=0");
@@ -213,7 +213,7 @@
 		    </div>
 		    <div class="right pt5">
 			    <input type="submit" id="restore" name="restore" value="Войти" class="hide" />
-			    <a href="javascript:;" id="restore-1" class="ucase bold" style="color: #b95383">Отправить</a>
+			    <a href="javascript:;" id="restore-1" class="ucase bold" style="color: #000000">Отправить</a>
 		    </div>
 		</form>
 		<script>

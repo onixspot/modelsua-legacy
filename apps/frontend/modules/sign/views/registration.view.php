@@ -4,11 +4,11 @@
 	    <a href="/page?link=membership" class="fs14 underline bold">
 		<?= t('Кто может стать Членом или Кандидатом в члены Ассоциации моделей Украины') ?> >></a>
 	</div>-->
-    <div class="p5 bold fs12 cwhite" style="background: #b95383;">
+    <div class="p5 bold fs12 cwhite" style="background: #000000;">
         <?= t('Регистрация') ?> (только для моделей и девушек, которые хотят стать моделями)
     </div>
 
-    <div id="registration-collection" class="p10" style="border: 1px solid #b95383;">
+    <div id="registration-collection" class="p10" style="border: 1px solid #000000;">
         <form id="registration" action="/sign/registration" method="post">
 
             <div class="mb10 p5 bold hide" style="background: #eee;">

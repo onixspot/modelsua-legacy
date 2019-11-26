@@ -16,24 +16,6 @@ class ui_helper
         return $formated_date;
     }
 
-    public function get_mounth($id = null)
-    {
-        $months[1]  = t('января');
-        $months[2]  = t('февраля');
-        $months[3]  = t('марта');
-        $months[4]  = t('апреля');
-        $months[5]  = t('мая');
-        $months[6]  = t('июня');
-        $months[7]  = t('июля');
-        $months[8]  = t('августа');
-        $months[9]  = t('сентября');
-        $months[10] = t('октября');
-        $months[11] = t('ноября');
-        $months[12] = t('декабря');
-
-        return ($id) ? (isset($months[$id]) ? $months[$id] : false) : $months;
-    }
-
     public static function get_mounth_list($id = null)
     {
         $months[0]  = '&mdash;';
@@ -53,62 +35,29 @@ class ui_helper
         return $id ? (isset($months[$id]) ? $months[$id] : false) : $months;
     }
 
-    public function photo($user_data, $options = [])
-    {
-        $html = '<img src="%src%" %options%/>';
-
-        $replace = [self::set_options($options)];
-        if ($user_data['pid']) {
-            if ($user_data['ph_crop']) {
-                $crop = unserialize($user_data['ph_crop']);
-                array_push($replace, '/imgserve?pid='.$user_data['pid'].'&w='.$crop['w'].'&h='.$crop['h'].'&x='.$crop['x'].'&y='.$crop['y']
-                    .'&z=crop');
-            } else {
-                array_push($replace, '/imgserve?pid='.$user_data['pid']);
-            }
-        } else {
-            array_push($replace, '/no_image.png');
-        }
-
-        return preg_replace(["/%options%/", "/%src%/"], $replace, $html);
-    }
-
-    public function set_options($options)
-    {
-        $html = '';
-        if (!empty($options)) {
-            foreach ($options as $key => $value) {
-                $html .= $key.'="'.$value.'" ';
-            }
-        }
-
-        return $html;
-
-    }
-
     public static function datefields($name = '', $date = 0, $multiple = false, $options = [], $empty = false, $yearstart = 1930)
     {
         if ($empty) {
-            $days[0]   = "&mdash;";
-            $months[0] = "&mdash;";
-            $years[0]  = "&mdash;";
+            $days[0]   = '&mdash;';
+            $months[0] = '&mdash;';
+            $years[0]  = '&mdash;';
         } else {
             if (!$date) {
                 $date = time();
             }
         }
 
-        $curday   = ($date) ? date("j", $date) : 0;
-        $curmonth = ($date) ? date("n", $date) : 0;
-        $curyear  = ($date) ? date("Y", $date) : 0;
+        $curday   = ($date) ? date('j', $date) : 0;
+        $curmonth = ($date) ? date('n', $date) : 0;
+        $curyear  = ($date) ? date('Y', $date) : 0;
 
-        for ($d = 1, $dMax = date("t", $date); $d <= $dMax; $d++) {
+        for ($d = 1, $dMax = date('t', $date); $d <= $dMax; $d++) {
             $days[$d] = $d;
         }
 
         $months = self::get_mounth();
         ///////////////
-        for ($y = date("Y"); $y >= $yearstart; $y--) {
+        for ($y = date('Y'); $y >= $yearstart; $y--) {
             $years[$y] = $y;
         }
         if ($multiple) {
@@ -158,6 +107,56 @@ class ui_helper
                 return 0;
             }
         }
+    }
+
+    public static function photo($user_data, $options = [])
+    {
+        $html = '<img src="%src%" %options%/>';
+
+        $replace = [self::set_options($options)];
+        if ($user_data['pid']) {
+            if ($user_data['ph_crop']) {
+                $crop      = unserialize($user_data['ph_crop']);
+                $replace[] = sprintf('/imgserve?pid=%s&w=%s&h=%s&x=%s&y=%s&z=crop', $user_data['pid'], $crop['w'], $crop['h'], $crop['x'], $crop['y']);
+            } else {
+                $replace[] = sprintf('/imgserve?pid=%s', $user_data['pid']);
+            }
+        } else {
+            $replace[] = '/no_image.png';
+        }
+
+        return preg_replace(['/%options%/', '/%src%/'], $replace, $html);
+    }
+
+    public static function set_options($options)
+    {
+        $html = '';
+        if (!empty($options)) {
+            foreach ($options as $key => $value) {
+                $html .= $key.'="'.$value.'" ';
+            }
+        }
+
+        return $html;
+
+    }
+
+    public function get_mounth($id = null)
+    {
+        $months[1]  = t('января');
+        $months[2]  = t('февраля');
+        $months[3]  = t('марта');
+        $months[4]  = t('апреля');
+        $months[5]  = t('мая');
+        $months[6]  = t('июня');
+        $months[7]  = t('июля');
+        $months[8]  = t('августа');
+        $months[9]  = t('сентября');
+        $months[10] = t('октября');
+        $months[11] = t('ноября');
+        $months[12] = t('декабря');
+
+        return ($id) ? (isset($months[$id]) ? $months[$id] : false) : $months;
     }
 
 

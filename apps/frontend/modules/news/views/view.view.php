@@ -3,7 +3,7 @@
 		<!-- <img class="left mr10 mb5" style="width: 295px;" src="http://img.<?=conf::get('server')?>/np/<?=$news['salt']?>.jpg" /> -->
 		<div>
 			<div class="left" style="width: 604px;">
-				<a href="/news/view?id=<?=$news['id']?>" class="fs20 bold cpurple" style="color: #B95383;">
+				<a href="/news/view?id=<?=$news['id']?>" class="fs20 bold cpurple" style="color: #000000;">
 					<?=$news['title']?>
 				</a>
 			</div>

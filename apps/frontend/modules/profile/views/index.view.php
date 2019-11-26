@@ -2,7 +2,7 @@
 	<div>
 		<div class="left" style="width: 400px;">
 			<!-- START NAME AND SURNAME -->
-			<div class="mb10 fs30" style="color: #b95383">
+			<div class="mb10 fs30" style="color: #000000">
 				<div class="left">
 					<span><?=(profile_peer::get_name($profile, '&fn ')!=' ') ? profile_peer::get_name($profile, '&fn ') : profile_peer::get_name($profile, '&fn ', 'ru')?></span> 
 					<span class="ucase"><?=(profile_peer::get_name($profile, '&ln ')!=' ') ? profile_peer::get_name($profile, '&ln ') : profile_peer::get_name($profile, '&ln ', 'ru')?></span><br/>

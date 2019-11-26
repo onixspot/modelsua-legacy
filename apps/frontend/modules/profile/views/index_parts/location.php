@@ -45,7 +45,7 @@
 
 <div class="fs12 mt20<? if($loc == '' && ( ! session::has_credential('admin') && session::get_user_id() != $user_id)){ ?> hide<? } ?>" style="width: 289px">
 	<div>
-		<span style="color: #B95383"><?=t('Сейчас в')?>:</span>
+		<span style="color: #000000"><?=t('Сейчас в')?>:</span>
 		<span id="span-where_are_you"><?=$loc?></span>
 		<a href="javascript:;" id="where_are_you" class="italic cgray <? if( ! session::has_credential('admin') && session::get_user_id() != $user_id){ ?>hide<? } ?>"><? if($loc = ''){ ?><?=t('Где ты сейчас')?>?<? } else { ?><?=t('Изменить')?><? } ?></a>
 	</div>

@@ -18,7 +18,7 @@
 var ddsmoothmenu = {
 
 //Specify full URL to down and right arrow images (23 is padding-right added to top level LIs with drop downs):
-    arrowimages: {down: ['downarrowclass', '/ui/down_arrow_p.png'], right: ['rightarrowclass', '/ui/right_p.png']},
+    arrowimages: {down: ['downarrowclass', '/ui/down_arrow.png'], right: ['rightarrowclass', '/ui/right.png']},
     arrowimages_selected: {down: ['downarrowclass', '/ui/down_arrow.png'], right: ['rightarrowclass', '/ui/right.png']},
     transition: {overtime: 300, outtime: 300}, //duration of slide in/ out animation, in milliseconds
     shadow: {enable: true, offsetx: 5, offsety: 5}, //enable shadow?

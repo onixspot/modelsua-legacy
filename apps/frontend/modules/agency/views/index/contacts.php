@@ -1,3 +1,10 @@
+<?php
+/**
+ * @var array $managers_list
+ * @var bool $access
+ */
+?>
+
 <div class="square_p pl15">
 	<div class="left ucase bold"><a href="javascript:;" class="cblack"><?=t("Контакты")?></a></div>
 	<? if($access){ ?>
@@ -6,16 +13,16 @@
 	<div class="clear"></div>
 </div>
 <div id="block-agency-contacts" class="mt10">
-	<div id="agency-link" class="pt5 pl25<? if($agency['link'] == ''){ ?> hide<? } ?>" style="background: url('/icon_m.png') no-repeat; height: 19px;">
+	<div id="agency-link" class="pt5 pl25<?// if(null === $agency['link']){ ?> hide<?// } ?>" style="background: url('/icon_m.png') no-repeat; height: 19px;">
 		<a href="http://<?=$agency['link']?>.<?=conf::get('server')?>"><?=$agency['link']?>.<?=conf::get('server')?></a>
 	</div>
-	<div id="agency-contacts-person" class="pt5 pl25<? if($agency['contacts']['_person'] == ''){ ?> hide<? } ?>" style="background: url('/contacts_man.png') no-repeat; height: 19px;">
+	<div id="agency-contacts-person" class="pt5 pl25<? if($agency['contacts']['_person'] === '0'){ ?> hide<? } ?>" style="background: url('/contacts_man.png') no-repeat; height: 19px;">
 		<?=$agency['contacts']['_person']?>
 	</div>
 	<div id="agency-contacts-website" class="pt5 pl25<? if($agency['contacts']['website'] == ''){ ?> hide<? } ?>" style="background: url('/contacts_site.png') no-repeat; height: 19px;">
 		<a href="<? if(strpos($agency['contacts']['website'], 'http://') !== true){ ?>http://<? } ?><?=$agency['contacts']['website']?>" target="_blank"><?=$agency['contacts']['website']?></a>
 	</div>
-	<div class="pt5 pl25<? if($agency['contacts']['phone'] == '' && $agency['contacts']['phone'] == ''){ ?> hide<? } ?>" style="background: url('/contacts_tel.png') no-repeat; height: 19px;">
+	<div class="pt5 pl25<? if($agency['contacts']['phone'] === ''){ ?> hide<? } ?>" style="background: url('/contacts_tel.png') no-repeat; height: 19px;">
 		<span id="agency-contacts-phone" class="cblack"><?=$agency['contacts']['phone']?></span> <span id="agency-contacts-phone2" class="cgray"><?=$agency['contacts']['phone2']?></span>
 	</div>
 	<div id="agency-contacts-email" class="pt5 pl25<? if($agency['contacts']['email'] == ''){ ?> hide<? } ?>" style="background: url('/contacts_mail.png') no-repeat; height: 19px;">
@@ -35,7 +42,7 @@
 	</div>
 </div>
 <div id="block-agency-contacts-edit" class="mt10 hide">
-	<div class="pl25" style="background: url('/icon_m.png') no-repeat;">
+	<div class="pl25 hide" style="background: url('/icon_m.png') no-repeat;">
 		<div class="cgray mb5"><?=t('Домен')?>:</div>
 		<input type="text" id="agency-text-link" value="<?=$agency['link']?>" style="width: 345px;" />
 		<div id="agency-text-error-link-exists" class="hide" style="color: red">Домен недоступен. Пожалуйста выберете другой</div>
@@ -45,7 +52,7 @@
 		<input type="text" id="agency-contacts-text-another_person" value="<?=$agency['contacts']['another_person']?>" class="hide" style="position: absolute; width: 327px;" />
 		<select id="agency-contacts-text-person" style="width: 345px;">
 			<option value="0">&mdash;</option>
-			<? foreach($managers_list as $id){ ?>
+            <?php foreach($managers_list as $id){ ?>
 				<? $item = profile_peer::instance()->get_item($id); ?>
 				<option value="<?=$id?>"><?=profile_peer::get_name($item)?></option>
 			<? } ?>
@@ -85,7 +92,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function(){
-		
+
 		$('#agency-contacts-text-person').change(function(){
 			var val = $(this).val();
 			if(val == -1)
@@ -101,7 +108,7 @@
 					.hide();
 			}
 		});
-		
+
 		$('#agency-contacts-text-another_person').blur(function(){
 			if($(this).val() == '')
 			{
@@ -111,18 +118,18 @@
 					.hide();
 			}
 		});
-		
+
 		<? if($agency['contacts']['person'] > 0 || $agency['contacts']['person'] < 0){ ?>
 			$('#agency-contacts-text-person')
 				.val(<?=$agency['contacts']['person']?>)
 				.change();
 		<? } ?>
-		
+
 		$('#agency-contacts-button-edit').click(function(){
 			$('#block-agency-contacts').hide();
 			$('#block-agency-contacts-edit').show();
 		});
-		
+
 		if($('#block-agency-contacts > div:visible').length < 1)
 		{
 			$('#agency-contacts-empty').show();
@@ -133,7 +140,7 @@
 					.hide();
 			<? } ?>
 		}
-		
+
 		$('#agency-contacts-button-save').click(function(){
 			var data = new Object({
 				'link': $('#agency-text-link').val(),
@@ -147,7 +154,7 @@
 				'icq': $('#agency-contacts-text-icq').val(),
 				'address': $('#agency-contacts-textarea-address').val()
 			});
-			
+
 			$.post('/agency', {
 				'act': 'save_contacts',
 				'id': '<?=$agency['id']?>',
@@ -156,29 +163,29 @@
 				$("div[id^='agency-text-error-']").hide();
 				if(response.success)
 				{
-					if(response.link != '')
+					if(typeof response.link !== 'undefined')
 					{
 						$('#agency-link')
 							.empty()
 							.show();
-						
+
 						var link = 'http://'+response.link+'.<?=conf::get('server')?>';
 						var a = $('<a />')
 							.attr('href', link)
 							.html(response.link+'.<?=conf::get('server')?>');
-						
+
 						$('#agency-link').append($(a));
 					}
 					else
 						$('#agency-link').hide();
-					
+
 					if(response.person != '')
 					{
-						
+
 						$('#agency-contacts-person')
 							.show()
 							.empty();
-						
+
 						if(typeof response.person_link != 'undefined')
 						{
 							var a = $('<a />')
@@ -275,7 +282,7 @@
 				}
 			}, 'json');
 		});
-		
+
 		$('#agency-contacts-button-cancel').click(function(){
 			$('#block-agency-contacts').show();
 			$('#block-agency-contacts-edit').hide();
@@ -283,6 +290,6 @@
 			if($('#block-agency-contacts > div:visible').length < 1)
 				$('#agency-contacts-empty').show();
 		});
-		
+
 	});
 </script>

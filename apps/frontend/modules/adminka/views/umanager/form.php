@@ -143,7 +143,7 @@
 		form.onSuccess = function(response)
 		{
 			if(response.success)
-				window.location = '/adminka/umanager';
+				window.location = '/adminka/user_manager?filter=all';
 			else
 			{
 				$("div[id^='msgid']").hide();

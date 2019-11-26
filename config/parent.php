@@ -10,7 +10,7 @@ if (isset($_GET['phpinfo'])) {
     die;
 }
 
-conf::set_from_array([
+$config = [
     /*
      * Set root path of project
      */
@@ -79,7 +79,7 @@ conf::set_from_array([
     'databases'                   => [
         'master' => [
             'driver'   => 'pgsql',
-            'host'     => 'pgsql',
+            'host'     => 'modelsua.db',
             // 'user'     => 'modelsua',
             'user'     => 'postgres',
             // 'password' => 'eLHHb19TQlDhXvBHo2AiPo9Cmujv8xar',
@@ -92,7 +92,7 @@ conf::set_from_array([
      * Memcached
      */
     'mamcached'                   => [
-        'host'       => 'memcached',
+        'host'       => 'mem.modelsua',
         'port'       => 11211,
         'expiration' => 60 * 30,
         'hash'       => 'modelsua',
@@ -102,7 +102,7 @@ conf::set_from_array([
      * Redis
      */
     'redis'                       => [
-        'host'  => 'redis',
+        'host'  => 'redis.modelsua',
         'port'  => 6379,
         'space' => 'modelsua',
     ],
@@ -130,4 +130,10 @@ conf::set_from_array([
      */
     'project_name'                => 'ModelsUA',
     'default_module'              => 'home',
-]);
+];
+
+if (defined('APP_CONSOLE') && APP_CONSOLE === true) {
+    return $config;
+}
+
+conf::set_from_array($config);

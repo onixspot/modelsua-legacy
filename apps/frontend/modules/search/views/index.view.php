@@ -36,12 +36,12 @@
     .pager a {
         font-weight: bold;
         padding: 3px 7px;
-        color: #B95383;
+        color: #000000;
     }
     .pager a:hover, .selected {
         font-weight: bold;
         padding: 3px 7px;
-        background: #B95383;
+        background: #000000;
         color: white !important;
     }
 </style>

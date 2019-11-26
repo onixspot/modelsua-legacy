@@ -27,6 +27,9 @@
                         const formData = new FormData();
 
                         request.open('POST', '/imgserve', true);
+                        request.upload.onprogress = function (event) {
+                            console.log(`Отправлено ${event.loaded} из ${event.total} байт`);
+                        };
                         request.onreadystatechange = function () {
                             if (request.readyState === 4 && request.status === 200) {
                                 const formData = new FormData();

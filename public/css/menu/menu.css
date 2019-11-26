@@ -1,6 +1,6 @@
 .ddsmoothmenu{
 font: bold 12px Arial;
-background: #b95383;; /*background of menu bar (default state)*/
+background: #000000;; /*background of menu bar (default state)*/
 width: 100%;
 }
 
@@ -22,10 +22,10 @@ float: left;
 .ddsmoothmenu ul li a{
 text-transform: uppercase;
 display: block;
-background: #b95383; /*background of menu items (default state)*/
+background: #000000; /*background of menu items (default state)*/
 color: white;
 padding: 8px 15px;
-color: #FFC7E1;
+color: #e9e9e9;
 text-decoration: none;
 }
 
@@ -34,18 +34,18 @@ display: inline-block;
 }
 
 .ddsmoothmenu ul li a:link, .ddsmoothmenu ul li a:visited{
-color: #FFC7E1;
+color: #e9e9e9;
 }
 
 .ddsmoothmenu ul li a.selected{ /*CSS class that's dynamically added to the currently active menu items' LI A element*/
 text-decoration: underline;
-background: #b95383 !important;
+background: #000000 !important;
 color: white;
 }
 
 .ddsmoothmenu ul li a:hover{
 color: white;
-background: #b95383 !important;
+background: #000000 !important;
 text-decoration: underline;
 }
 	
@@ -60,7 +60,7 @@ visibility: hidden;
 .ddsmoothmenu ul li ul li{
 display: list-item;
 float: none;
-border-top: 1px solid #D26498;
+border-top: 1px solid #000000;
 }
 
 /*All subsequent sub menu levels vertical offset after 1st level sub menu */
@@ -76,7 +76,7 @@ width: 160px; /*width of sub menus*/
 padding: 5px 5px 5px 20px;
 margin: 0;
 text-transform: none !important;
-border-top: 1px solid #993564;
+border-top: 1px solid #000000;
 }
 
 /* Holly Hack for IE \*/

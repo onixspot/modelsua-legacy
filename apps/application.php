@@ -11,5 +11,3 @@ class project_application extends application
 		parent::init();
 	}
 }
-
-?>

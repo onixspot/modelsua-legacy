@@ -88,7 +88,7 @@ function build_url($exclude = [])
 <? if ((!in_array(request::get('filter'), ['del', 'reserv']) && request::get('filter')) && !$catalog_filter) { ?>
     <div
             class="mb10 p5 submenu"
-            style="border-radius: 4px; background: #b95383;"
+            style="border-radius: 4px; background: #000000;"
     >
         <? if (in_array($filter[0], ['all', 'byadmin'])) { ?>
             <div class="left mr10">

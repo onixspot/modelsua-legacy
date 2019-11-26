@@ -37,14 +37,14 @@ function display_recursive($subtree, $from_db = true)
 	}
 	
 	div.invite_button {
-		background: url('/buttons/invite/bg1.png') repeat-x;
+		background: #000000;
 		height: 31px;
 		line-height: 28px;
 		font-weight: bold;
 		font-size: 14px;
 		color: white;
 		text-align: center;
-		border-left: 1px solid #83395A;
+		border-left: 1px solid #000000;
 		box-shadow: -1px 0 0px #E797BA;
     }
 	
@@ -54,7 +54,7 @@ function display_recursive($subtree, $from_db = true)
 </style>
 
 <div style="width: 1000px; margin-top: -5px">
-	<div class="mb5 ddsmoothmenu left" id="smoothmenu" style="background: #B95383; width: <? if(session::is_authenticated()){ ?>827<? } else { ?>827<? } ?>px; height: 31px">
+	<div class="mb5 ddsmoothmenu left" id="smoothmenu" style="background: #000000; width: <? if(session::is_authenticated()){ ?>827<? } else { ?>827<? } ?>px; height: 31px">
 		<ul>
 			<? foreach($menu_items as $menu_item){ ?>
 				<? if($menu_item["hidden"]){ continue; } ?>

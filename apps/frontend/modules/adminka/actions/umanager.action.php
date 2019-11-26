@@ -77,16 +77,17 @@ class adminka_umanager_action extends adminka_controller
 
         $user_data_fields = [
             'first_name' => request::get_string('first_name'),
-            'last_name'  => request::get_string('last_name'),
             'status'     => request::get_int('status'),
         ];
 
         $msgid = [];
         foreach ($user_data_fields as $key => $val) {
-            if ($user_data_fields[$key] == '') {
+            if ($user_data_fields[$key] === '') {
                 $msgid[] = $key;
             }
         }
+
+        $user_data_fields['last_name'] = request::get_string('last_name');
 
         if ($user_auth_fields['email'] != '' && count(user_auth_peer::instance()->get_list(['email' => $user_auth_fields['email']])) > 0) {
             $msgid[] = 'email';

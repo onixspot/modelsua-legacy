@@ -6,8 +6,8 @@
       $dircounter++; // счетчик "двигателя" по позициям ?>
             <? /*  <div id="s_<?=$dir_id?>" class="pointer folder left"> </div> */ ?>
             
-            <div id="<?=$dir_id?>" class="pointer folder_title left mt5 cbrown bold " style="width:<?=(708-$step)?>px; margin-left: <?=$step?>px; <?=(!$step) ? 'background-color:#B95383;' : ''?>  line-height: 24px;">
-                <div class="left ml10 dir_title" style="<?=($step) ? 'color:#B95383;' : 'color: #FFD8EA;'?>">
+            <div id="<?=$dir_id?>" class="pointer folder_title left mt5 cbrown bold " style="width:<?=(708-$step)?>px; margin-left: <?=$step?>px; <?=(!$step) ? 'background-color:#000000;' : ''?>  line-height: 24px;">
+                <div class="left ml10 dir_title" style="<?=($step) ? 'color:#000000;' : 'color: #FFD8EA;'?>">
                 <?=stripslashes(htmlspecialchars($dir['title']))?></div>
                 <div style="margin-top: 1px;" class="right aright mr5">
                     <span style="line-height: 24px; color: #FFD8EA;"><?=count($files[$dir_id])?></span>

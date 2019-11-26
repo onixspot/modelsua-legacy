@@ -1,13 +1,15 @@
-<html>
+<html lang="ru">
 <head>
     <?= client_helper::get_meta() ?>
     <?= client_helper::get_title() ?>
+    <!--<meta http-equiv="content-security-policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'">-->
     <script type="text/javascript" src="http://js.<?= conf::get('server') ?>/jquery-latest.min.js"></script>
     <script type="text/javascript" src="http://js.<?= conf::get('server') ?>/main.js"></script>
     <script type="text/javascript" src="http://js.<?= conf::get('server') ?>/erlte.js"></script>
+    <link href="http://f.<?= conf::get('server') ?>/public/css/flag-icon.min.css" rel="stylesheet"/>
     <link href="http://css.<?= conf::get('server') ?>/main.css" rel="stylesheet"/>
     <link href="http://css.<?= conf::get('server') ?>/erlte.css" rel="stylesheet"/>
-    <? include __DIR__.'/_js_static.php' ?>
+    <?php include __DIR__.'/_js_static.php' ?>
     <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
         {lang: 'uk'}
     </script>
@@ -50,9 +52,9 @@
             var offset = (ww - dw) / 2;
 
             // if ($.browser.msie || $.browser.safari) {
-                // $('.canvas, .footer_box').css('margin-left', (offset+'px'));
-                //$(window).scrollLeft(ww/2);
-                $('.footer').css('width', $(document).width() + 'px');
+            // $('.canvas, .footer_box').css('margin-left', (offset+'px'));
+            //$(window).scrollLeft(ww/2);
+            $('.footer').css('width', $(document).width() + 'px');
             // }
         });
 
@@ -78,22 +80,22 @@
     </script>
 
     <!-- START HEAD -->
-    <? include 'partials/logo.php' ?>
+    <?php include 'partials/logo.php' ?>
     <!-- END HEAD -->
 
     <!-- START MENU -->
-    <? include 'partials/menu.php' ?>
+    <?php include 'partials/menu.php' ?>
     <!-- END MENU -->
 
     <div>
         <div class="content">
-            <? include $controller->get_template_path(); ?>
+            <?php include $controller->get_template_path(); ?>
         </div>
     </div>
 
 </div>
 <div class="footer tahoma">
-    <? include 'partials/footer.php' ?>
+    <?php include 'partials/footer.php' ?>
 </div>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <style>
     div.main_user_menu .selected {
         border-radius: 4px 4px 0 0;
-        background: #B95383;
+        background: #000000;
         padding: 5px;
     }
 

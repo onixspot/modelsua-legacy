@@ -7,10 +7,8 @@ class compressor extends compressor_controller
     public function execute()
     {
         $this->initialize();
-
         $this->set_cache_time(1);
-
-        $files = [
+        $this->add_files([
             'main.js'   => [
                 './jquery/jquery-ui-1.8.13.custom.min.js',
                 './jquery/jquery.animate-shadow-min.js',
@@ -58,15 +56,10 @@ class compressor extends compressor_controller
                 './menu/menu-v.css',
                 './multiselect.css',
                 './imgareaselect-default.css',
+                './grid.css',
             ],
-        ];
-        $this->add_files($files);
+        ]);
 
         $this->display();
-    }
-
-    public function display()
-    {
-        parent::display();
     }
 }

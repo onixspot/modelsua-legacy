@@ -55,7 +55,7 @@
 	</div>
 	
 	<div class="mb10">
-		<div class="fs20" style="color: #B95383"><?=$information[$category_key]['label']?></div>
+		<div class="fs20" style="color: #000000"><?=$information[$category_key]['label']?></div>
 		<div class="fs12 mt5"><?=$information[$category_key]['text']?></div>
 		<div class="fs12 mt5"><?=$information[$category_key]['link']?></div>
 	</div>

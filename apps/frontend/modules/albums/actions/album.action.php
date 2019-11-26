@@ -176,7 +176,7 @@ class albums_album_action extends albums_controller
 			if($this->album['category'] == 'covers')
 			{
 				$this->json['additional'][$pid]['html'] = '
-					<div class="mb5 fs18 bold" style="color: #B95383">
+					<div class="mb5 fs18 bold" style="color: #000000">
 						'.$photo['name'].'
 					</div>
 					<div>'

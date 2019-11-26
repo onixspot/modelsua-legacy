@@ -1,26 +1,55 @@
 <div class="mb10 fs12">
 
     <!--<div class="left mr10">
-		<? foreach ($list as $user_id) { ?>
-			<? $ud = user_data_peer::instance()->get_item($user_id); ?>
+		<?php foreach ($list as $user_id) { ?>
+			<?php $ud = user_data_peer::instance()->get_item($user_id); ?>
 			<div class="pt5 pb5">
 				<a id="member-link-<?= $user_id ?>" href='javascript:;'>
-					<? $name = explode(' ', profile_peer::get_name($ud)); ?>
-					<?= $name[0].' '.mb_strtoupper($name[1] != '' ? $name[1] : $name[2]) ?>
+					<?php $name = explode(' ', profile_peer::get_name($ud)); ?>
+					<?= $name[0].' '.mb_strtoupper($name[1] !== '' ? $name[1] : $name[2]) ?>
 				</a>
 			</div>
-		<? } ?>
+		<?php } ?>
 	</div>-->
 
     <div class="square_p pl15 mt20 mb20 ucase bold left">
-        <?= t("Каталог моделей Украины") ?>
+        <?= t('Каталог моделей Украины') ?>
     </div>
-    <div class="register-link right mt20 mb20 mr25 <?= (session::get('language') == 'en') ? ' hide' : '' ?>">
+    <div class="register-link right mt20 mb20 mr25 <?= (session::get('language') === 'en') ? ' hide' : '' ?>">
         <a href="/sign/registration" class="cpurple"><?= t('Зарегистрироваться в каталоге') ?></a>
     </div>
     <div class="clear"></div>
-    <div class="">
 
+    <div class="mb15">
+        <?php if (session::has_credential('admin')) { ?>
+            <?php
+            $anchor_style          = implode('; ', [
+                'font-size: 12px',
+                'font-weight: normal',
+                // 'text-decoration: underline',
+                'text-transform: uppercase',
+            ]);
+            $selected_anchor_style = implode('; ', [
+                'background-color: #000000',
+                'border-radius: 5px',
+                'padding: 5px 10px',
+                'color: white',
+            ])
+            ?>
+            <a href="/people"
+               style="<?= $anchor_style ?>;<?= !$status ? $selected_anchor_style : '' ?>"><?= t('Все') ?></a> |
+            <a href="/people?status=legendary"
+               style="<?= $anchor_style ?>;<?= $status === 'legendary' ? $selected_anchor_style : '' ?>"><?= t('Самые успешные') ?></a> |
+            <a href="/people?status=successful"
+               style="<?= $anchor_style ?>;<?= $status === 'successful' ? $selected_anchor_style : '' ?>"><?= t('Успешные') ?></a> |
+            <a href="/people?status=perspective"
+               style="<?= $anchor_style ?>;<?= $status === 'perspective' ? $selected_anchor_style : '' ?>"><?= t('Перспективные') ?></a> |
+            <a href="/people?status=new-face"
+               style="<?= $anchor_style ?>;<?= $status === 'new-face' ? $selected_anchor_style : '' ?>"><?= t('Новые лица') ?></a>
+        <?php } ?>
+    </div>
+
+    <div>
         <style type="text/css">
             #sortable, sortable2 {
                 list-style-type: none;
@@ -41,13 +70,13 @@
 
         <div class="mb10" style="width: 1024px; height: 668px; overflow: hidden;">
             <ul id="sortable" class="connectedSortable" style="height: 675px">
-                <? foreach ($list as $user_id) { ?>
-                    <? $profile = profile_peer::instance()->get_item($user_id); ?>
-                    <? $crop = unserialize($profile["ph_crop"]) ?>
+                <?php foreach ($list as $user_id) { ?>
+                    <?php $profile = profile_peer::instance()->get_item($user_id); ?>
+                    <?php $crop = unserialize($profile['ph_crop']) ?>
                     <li class="ui-state-highlight" id="member-blind-<?= $profile['user_id'] ?>" rel="<?= $profile['rank'] ?>">
                         <img
-                                src="<? if ($profile["pid"]) { ?>/imgserve?pid=<?= $profile["pid"] ?>&x=<?= $crop['x'] ?>&y=<?= $crop['y'] ?>&w=<?= !$crop['w']
-                                    ? '165' : $crop['w'] ?>&h=<?= !$crop['h'] ? '165' : $crop['h'] ?>&z=crop<? } else { ?>/no_image.png<? } ?>"
+                                src="<?php if ($profile['pid']) { ?>/imgserve?pid=<?= $profile['pid'] ?>&x=<?= $crop['x'] ?>&y=<?= $crop['y'] ?>&w=<?= !$crop['w']
+                                    ? '165' : $crop['w'] ?>&h=<?= !$crop['h'] ? '165' : $crop['h'] ?>&z=crop<?php } else { ?>/no_image.png<?php } ?>"
                                 style="width: 165px; height: 165px;"
                         />
                         <div id="member-tooltip-<?= $user_id ?>"
@@ -55,13 +84,13 @@
                              style="position: absolute; background: black; color: white; border-radius: 5px;">
                             <?= profile_peer::get_name($profile) ?><br/>
                             <!--<span class="fs10"><?= profile_peer::get_location($profile) ?></span>
-							<? if (intval(profile_peer::get_age($profile["birthday"])) > 1) { ?>
+							<?php if (intval(profile_peer::get_age($profile['birthday'])) > 1) { ?>
 								<br />
 								<span class="fs10"><?= profile_peer::get_age($profile['birthday']) ?></span>
-							<? } ?>-->
+							<?php } ?>-->
                         </div>
                     </li>
-                <? } ?>
+                <?php } ?>
             </ul>
             <div class="clear"></div>
         </div>
@@ -97,7 +126,7 @@
                         }
                     });
 
-                <? if(session::has_credential('admin')){ ?>
+                <?php if(session::has_credential('admin')){ ?>
                 $('#sortable, #sortable2')
                     .sortable({
                         connectWith: '.connectedSortable',
@@ -142,22 +171,22 @@
                         }
                     })
                     .disableSelection();
-                <? } ?>
+                <?php } ?>
             });
         </script>
 
-        <? if (session::has_credential('admin')) { ?>
+        <?php if (session::has_credential('admin')) { ?>
             <div style="width: 1000px; height: 197px; border: 1px solid #ccc; overflow: auto">
                 <div class="pt5 pl5" style="width: 10000px;">
                     <ul id="sortable2" class="connectedSortable" style="height: 177px;">
-                        <? foreach ($hold_people as $user_id) { ?>
-                            <? $profile = profile_peer::instance()->get_item($user_id); ?>
-                            <? $crop = unserialize($profile["ph_crop"]) ?>
+                        <?php foreach ($hold_people as $user_id) { ?>
+                            <?php $profile = profile_peer::instance()->get_item($user_id); ?>
+                            <?php $crop = unserialize($profile['ph_crop']) ?>
                             <li class="ui-state-highlight" id="member-blind-<?= $profile['user_id'] ?>" rel="<?= $profile['rank'] ?>">
                                 <img
-                                        src="<? if ($profile["pid"]) { ?>/imgserve?pid=<?= $profile["pid"] ?>&x=<?= $crop['x'] ?>&y=<?= $crop['y'] ?>&w=<?= !$crop['w']
+                                        src="<?php if ($profile['pid']) { ?>/imgserve?pid=<?= $profile['pid'] ?>&x=<?= $crop['x'] ?>&y=<?= $crop['y'] ?>&w=<?= !$crop['w']
                                             ? '165' : $crop['w'] ?>&h=<?= !$crop['h'] ? '165'
-                                            : $crop['h'] ?>&z=crop<? } else { ?>/no_image.png<? } ?>"
+                                            : $crop['h'] ?>&z=crop<?php } else { ?>/no_image.png<?php } ?>"
                                         style="width: 165px; height: 165px;"
                                 />
                                 <div id="member-tooltip-<?= $user_id ?>"
@@ -165,34 +194,21 @@
                                      style="position: absolute; background: black; color: white; border-radius: 5px;">
                                     <?= profile_peer::get_name($profile) ?><br/>
                                     <!--<span class="fs10"><?= profile_peer::get_location($profile) ?></span>
-									<? if (intval(profile_peer::get_age($profile["birthday"])) > 1) { ?>
+									<?php if (intval(profile_peer::get_age($profile['birthday'])) > 1) { ?>
 										<br />
 										<span class="fs10"><?= profile_peer::get_age($profile['birthday']) ?></span>
-									<? } ?>-->
+									<?php } ?>-->
                                 </div>
                             </li>
-                        <? } ?>
+                        <?php } ?>
                     </ul>
                     <div class="clear"></div>
                 </div>
             </div>
-        <? } ?>
+        <?php } ?>
 
         <table width="100%">
             <tr>
-                <td>
-                    <? if (session::has_credential('admin')) { ?>
-                        <a href="/people?status=successful"
-                           style="font-size: 14px;font-weight: normal;text-decoration: underline;text-transform: none;"><?= t("Успешные") ?></a>
-                        <a href="/people?status=perspective"
-                           style="font-size: 14px;font-weight: normal;text-decoration: underline;text-transform: none;"><?= t("Перспективные") ?></a>
-                        <a href="/people?status=new-face"
-                           style="font-size: 14px;font-weight: normal;text-decoration: underline;text-transform: none;"><?= t("Новые лица") ?></a>
-                        <a href="/search"
-                           style="font-size: 14px;font-weight: normal;text-decoration: underline;text-transform: none;"><?= t("Поиск") ?></a>
-                        <? //=$count_members?>
-                    <? } ?>
-                </td>
                 <td align="right">
                     <div class="paginator">
                         <?= pager_helper::get_full($pager) ?>

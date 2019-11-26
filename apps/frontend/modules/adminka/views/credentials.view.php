@@ -1,5 +1,5 @@
 
-<div class="mt5 mb5 fs12 p10" style="border: 1px solid #b95383;">
+<div class="mt5 mb5 fs12 p10" style="border: 1px solid #000000;">
 	
 	<?include 'admin_menu.php'?>
 	<?

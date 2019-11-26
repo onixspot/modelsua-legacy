@@ -7,7 +7,7 @@
 <? }elseif(!$access) {?>
 <div class="polling_content_box mt20" style="width: 708px;">
     <div class="left">
-        <div class="big-title fs20 cgray re">
+        <div class="big-title fs20 cgray re_ru">
             <span style="margin-top: 10px;"><?=t('ейтинг')?></span>
         </div>
         <div class="clear"></div>
@@ -31,7 +31,7 @@
                         </tr>
                         <tr>
                             <td colspan="2" class="acenter pt10">
-                                <center><div class="pointer vote_button" style="background: #B95383; width: 200px; color: white;">
+                                <center><div class="pointer vote_button" style="background: #000000; width: 200px; color: white;">
                                     <img src="/rating_white.png" onclick="">
                                     <span class="ml5 fs18" style="line-height: 33px;">
                                         <?=t('Голосовать')?>
@@ -52,7 +52,7 @@
                         <tr>
                             <td colspan="2" class="acenter pt10">
                             <center>
-                                <div class="pointer vote_button" style="background: #B95383; width: 200px; color: white;">
+                                <div class="pointer vote_button" style="background: #000000; width: 200px; color: white;">
                                     <img src="/rating_white.png" onclick="" class="pointer">
                                     <span class="ml5 fs18" style="line-height: 33px;">
                                         <?=t('Голосовать')?>

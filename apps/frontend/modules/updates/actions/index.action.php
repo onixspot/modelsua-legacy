@@ -115,7 +115,7 @@ class updates_index_action extends updates_controller
 		{
 			$item = user_photos_peer::instance()->get_item($id);
 			$html = '
-				<div class="mb5 fs18 bold" style="color: #B95383">
+				<div class="mb5 fs18 bold" style="color: #000000">
 					'.$item['name'].'
 				</div>
 				<div>'
@@ -132,7 +132,7 @@ class updates_index_action extends updates_controller
 			$list = user_albums_peer::instance()->get_list($cond);
 			$item = user_albums_peer::instance()->get_item($list[0]);
 			$html = '
-				<div class="mb5 fs18 bold" style="color: #B95383">
+				<div class="mb5 fs18 bold" style="color: #000000">
 					'.$item['name'].'
 				</div>
 				<div>'
