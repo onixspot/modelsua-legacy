@@ -7,7 +7,7 @@
 </div>
 <div id="block-journal-contacts" class="mt10">
 	<div id="journal-contacts-website" class="pt5 pl25<? if($journal['contacts']['website'] == ''){ ?> hide<? } ?>" style="background: url('/contacts_site.png') no-repeat; height: 19px;">
-		<a href="<? if(strpos($journal['contacts']['website'], 'http://') !== true){ ?>http://<? } ?><?=$journal['contacts']['website']?>" target="_blank"><?=$journal['contacts']['website']?></a>
+		<a href="<? if(strpos($journal['contacts']['website'], 'https://') !== true){ ?>https://<? } ?><?=$journal['contacts']['website']?>" target="_blank"><?=$journal['contacts']['website']?></a>
 	</div>
 	<div class="pt5 pl25<? if($journal['contacts']['phone'] == '' && $journal['contacts']['phone'] == ''){ ?> hide<? } ?>" style="background: url('/contacts_tel.png') no-repeat; height: 19px;">
 		<span id="journal-contacts-phone" class="cblack"><?=$journal['contacts']['phone']?></span> <span id="journal-contacts-phone2" class="cgray"><?=$journal['contacts']['phone2']?></span>
@@ -101,8 +101,8 @@
 					if(data.website != '')
 					{
 						var http = '';
-						if(data.website.indexOf('http://') < 0)
-							http = 'http://';
+						if(data.website.indexOf('https://') < 0)
+							http = 'https://';
 						$('#journal-contacts-website')
 							.show()
 							.find('a')

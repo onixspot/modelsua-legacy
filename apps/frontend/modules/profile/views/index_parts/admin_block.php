@@ -51,8 +51,8 @@
                     <td>
                         <div class="fs12">
                             <br/><b><?= t('Ccылка для приглашения') ?>:</b><br/>
-                            <a href="http://<?= conf::get('server') ?>/profile?code=<?= $profile['security'] ?>">
-                                http://<?= conf::get('server') ?>/profile?code=<?= $profile['security'] ?>
+                            <a href="https://<?= conf::get('server') ?>/profile?code=<?= $profile['security'] ?>">
+                                https://<?= conf::get('server') ?>/profile?code=<?= $profile['security'] ?>
                             </a>
                         </div>
                     </td>

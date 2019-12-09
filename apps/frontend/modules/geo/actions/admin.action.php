@@ -48,5 +48,3 @@ class geo_admin_action extends geo_controller
 		$this->json[$field] = $list;
 	}
 }
-
-?>

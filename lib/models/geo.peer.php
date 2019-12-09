@@ -5,22 +5,40 @@
  */
 class geo_peer extends db_peer_postgre
 {
-    const UKRAINE     = 9908;
-    const ITALIA      = 1786;
-    const FRANCE      = 10668;
-    const USA         = 5681;
-    const CHINA       = 2374;
-    const JAPAN       = 11060;
-    const SINGAPORE   = 277565;
-    const GERMANY     = 1012;
-    const INDONESIA   = 277559;
-    const MALAYSIA    = 277563;
-    const TURKEY      = 9705;
-    const LEBANON     = 582060;
-    const SPAIN       = 1707;
-    const TAIWAN      = 277567;
-    const UK          = 616;
+    const UKRAINE = 9908;
+    const ITALIA = 1786;
+    const FRANCE = 10668;
+    const USA = 5681;
+    const CHINA = 2374;
+    const JAPAN = 11060;
+    const SINGAPORE = 277565;
+    const GERMANY = 1012;
+    const INDONESIA = 277559;
+    const MALAYSIA = 277563;
+    const TURKEY = 9705;
+    const LEBANON = 582060;
+    const SPAIN = 1707;
+    const TAIWAN = 277567;
+    const UK = 616;
     const SOUTH_KOREA = 11014;
+
+    const COUNTRY_IDS = [
+        geo_peer::USA,
+        geo_peer::UK,
+        geo_peer::FRANCE,
+        geo_peer::ITALIA,
+        geo_peer::CHINA,
+        geo_peer::JAPAN,
+        geo_peer::SINGAPORE,
+        geo_peer::GERMANY,
+        geo_peer::INDONESIA,
+        geo_peer::MALAYSIA,
+        geo_peer::TURKEY,
+        geo_peer::LEBANON,
+        geo_peer::SPAIN,
+        geo_peer::TAIWAN,
+        geo_peer::SOUTH_KOREA,
+    ];
 
     protected $table_name = '';
 
@@ -54,6 +72,13 @@ class geo_peer extends db_peer_postgre
         return $this->get_item($id);
     }
 
+    public function get_country($id)
+    {
+        return $this->get_country_metadata($id)['name_'.session::get('language', 'ru')];
+    }
+
+    /* COUNTRIES */
+
     public function get_country_metadata($country_id)
     {
         $this->table_name = 'countries';
@@ -63,10 +88,36 @@ class geo_peer extends db_peer_postgre
         return $this->get_item($id, true);
     }
 
-    /* COUNTRIES */
-    public function get_country($id)
+    /**
+     * @param array $exclude
+     * @return array
+     */
+    public function get_countries_diff($exclude)
     {
-        return $this->get_country_metadata($id)['name_'.session::get('language', 'ru')];
+        $this->table_name = 'countries';
+
+        $cond = [];
+        if (!isset($cond['hidden'])) {
+            $cond['hidden'] = 'false';
+        }
+
+        return $this->sanitizeRecords(array_diff($this->get_list($cond, [], ['priority DESC']), $exclude));
+    }
+
+    /**
+     * @param array $ids
+     * @return array
+     */
+    private function sanitizeRecords($ids)
+    {
+        return array_map(
+            function ($id) {
+                $item = $this->get_item($id);
+
+                return array_merge($item, ['name' => $item[sprintf("name_%s", session::get('language', 'ru'))]]);
+            },
+            $ids
+        );
     }
 
     public function get_countries($cond = [])
@@ -77,31 +128,7 @@ class geo_peer extends db_peer_postgre
             $cond['hidden'] = 'false';
         }
 
-        $countries_id = $this->get_list($cond, [], ['priority DESC']);
-
-        $countries = [];
-        foreach ($countries_id as $country_id) {
-            $countries[]                              = $this->get_item($country_id);
-            $countries[count($countries) - 1]['name'] = $countries[count($countries) - 1]['name_'.session::get('language', 'ru')];
-        }
-
-        return $countries;
-    }
-
-    public function set_country($country)
-    {
-        $this->table_name = 'countries';
-
-        $data = [
-            'country_id' => $country['country_id'],
-            'name'       => $country['name'],
-        ];
-
-        if (is_bool($country['hidden'])) {
-            $data['hidden'] = $country['hidden'];
-        }
-
-        return $this->insert($data);
+        return $this->sanitizeRecords($this->get_list($cond, [], ['priority DESC']));
     }
 
     public function set_countries($countries)
@@ -114,7 +141,24 @@ class geo_peer extends db_peer_postgre
         return $keys;
     }
 
+    public function set_country($country)
+    {
+        $this->table_name = 'countries';
+
+        $data = [
+            'country_id' => $country['country_id'],
+            'name' => $country['name'],
+        ];
+
+        if (is_bool($country['hidden'])) {
+            $data['hidden'] = $country['hidden'];
+        }
+
+        return $this->insert($data);
+    }
+
     /* REGIONS */
+
     public function get_region($region_id)
     {
         $this->table_name = 'regions';
@@ -145,29 +189,12 @@ class geo_peer extends db_peer_postgre
         $regions = [];
         foreach ($regions_id as $region_id) {
             if (!in_array($region_id, [720], true)) {
-                $regions[]                            = $this->get_item($region_id);
+                $regions[] = $this->get_item($region_id);
                 $regions[count($regions) - 1]['name'] = $regions[count($regions) - 1]['name_'.session::get('language', 'ru')];
             }
         }
 
         return $regions;
-    }
-
-    public function set_region($region)
-    {
-        $this->table_name = 'regions';
-
-        $data = [
-            'country_id' => $region['country_id'],
-            'region_id'  => $region['region_id'],
-            'name'       => $region['name'],
-        ];
-
-        if (is_bool($region['hidden'])) {
-            $data['hidden'] = $region['hidden'];
-        }
-
-        return $this->insert($data);
     }
 
     public function set_regions($regions)
@@ -180,7 +207,25 @@ class geo_peer extends db_peer_postgre
         return $keys;
     }
 
+    public function set_region($region)
+    {
+        $this->table_name = 'regions';
+
+        $data = [
+            'country_id' => $region['country_id'],
+            'region_id' => $region['region_id'],
+            'name' => $region['name'],
+        ];
+
+        if (is_bool($region['hidden'])) {
+            $data['hidden'] = $region['hidden'];
+        }
+
+        return $this->insert($data);
+    }
+
     /* CITIES */
+
     public function get_city($city_id)
     {
         $this->table_name = 'cities';
@@ -213,8 +258,8 @@ class geo_peer extends db_peer_postgre
         $cities_id = $this->get_list($cond, [], ['name_'.session::get('language', 'ru').' ASC']);
 
         $districts = [];
-        $cities    = [];
-        $centers   = [];
+        $cities = [];
+        $centers = [];
 
         $big_cities = [
             [10184, 10398, 10029, 9977, 10532, 10337, 10251, 10252],
@@ -222,7 +267,7 @@ class geo_peer extends db_peer_postgre
         ];
 
         foreach ($cities_id as $city_id) {
-            $city         = $this->get_item($city_id);
+            $city = $this->get_item($city_id);
             $city['name'] = $city['name_'.session::get('language', 'ru')];
             switch ($city['country_id']) {
                 // Германия
@@ -348,24 +393,6 @@ class geo_peer extends db_peer_postgre
         return array_merge($centers, $cities, $districts);
     }
 
-    public function set_city($city)
-    {
-        $this->table_name = 'cities';
-
-        $data = [
-            'country_id' => $city['country_id'],
-            'region_id'  => $city['region_id'],
-            'city_id'    => $city['city_id'],
-            'name'       => $city['name'],
-        ];
-
-        if (is_bool($city['hidden'])) {
-            $data['hidden'] = $city['hidden'];
-        }
-
-        return $this->insert($data);
-    }
-
     public function set_cities($cities)
     {
         $keys = [];
@@ -374,5 +401,23 @@ class geo_peer extends db_peer_postgre
         }
 
         return $keys;
+    }
+
+    public function set_city($city)
+    {
+        $this->table_name = 'cities';
+
+        $data = [
+            'country_id' => $city['country_id'],
+            'region_id' => $city['region_id'],
+            'city_id' => $city['city_id'],
+            'name' => $city['name'],
+        ];
+
+        if (is_bool($city['hidden'])) {
+            $data['hidden'] = $city['hidden'];
+        }
+
+        return $this->insert($data);
     }
 }

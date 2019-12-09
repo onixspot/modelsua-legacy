@@ -134,7 +134,7 @@ $().ready(function() {
             lang     : 'ru',
             height   : 200,
             toolbar  : 'complete',
-            cssfiles : ['http://css.<?=conf::get('server')?>/elrte.css']
+            cssfiles : ['https://css.<?=conf::get('server')?>/elrte.css']
     }
     
     $('#body').elrte(opts);
@@ -293,7 +293,7 @@ function show_list(resp) {
                     </div>\n\
                     <div class="left">\n\
                         <a href="javascript:;" onClick="delete_news(%id%);">\n\
-                            <img src="http://<?=conf::get('server')?>/ui/delete.png">\n\
+                            <img src="https://<?=conf::get('server')?>/ui/delete.png">\n\
                         </a>\n\
                     </div>\n\
                 </div>';

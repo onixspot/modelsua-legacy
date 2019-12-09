@@ -75,7 +75,7 @@
                 height   : 450,
 		width	 : 600,
                 toolbar  : 'complete',
-                cssfiles : ['http://css.<?=conf::get('server')?>/elrte.css']
+                cssfiles : ['https://css.<?=conf::get('server')?>/elrte.css']
         }
         $('#body').elrte(opts);
     });

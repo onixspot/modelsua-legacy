@@ -41,7 +41,7 @@
 						js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1";
 						fjs.parentNode.insertBefore(js, fjs);
 						}(document, 'script', 'facebook-jssdk'));</script>
-						<div class="fb-like" data-href="http://<?=$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"]?>" data-send="false" data-layout="button_count" data-width="140" data-show-faces="true"></div>
+						<div class="fb-like" data-href="https://<?=$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"]?>" data-send="false" data-layout="button_count" data-width="140" data-show-faces="true"></div>
 					</div>
 					<div class="left" style="margin-right: 30px; width: 100px;">
 						<a href="https://twitter.com/share" class="twitter-share-button" data-lang="ru"><?=t('Твитнуть')?></a>

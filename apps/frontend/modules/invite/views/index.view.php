@@ -19,7 +19,7 @@
 					<td class="aleft">
                                             <textarea style="width: 400px; height: 150px;" id="recomendation" rows="10" cols="5"><?=t('Привет!
 
-Я нашла интересный и полезный для моделей сайт, рекомендую его тебе - http://www.modelsua.org')?></textarea>
+Я нашла интересный и полезный для моделей сайт, рекомендую его тебе - https://www.modelsua.org')?></textarea>
                                         </td>
 				</tr>
                         </tbody></table>

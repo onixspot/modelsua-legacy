@@ -76,7 +76,7 @@
 				$('#profile-edit-form-options-subdomain-goto')
 					.show()
 					.click(function(){
-						window.location = 'http://'+$('#subdomain').val()+'.<?=conf::get('server')?>/';
+						window.location = 'https://'+$('#subdomain').val()+'.<?=conf::get('server')?>/';
 					});
 				$("#msg-success-options-subdomain")
 					.show()

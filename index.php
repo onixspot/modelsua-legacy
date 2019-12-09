@@ -1,7 +1,15 @@
 <?php
 
+
+header('Access-Control-Allow-Methods: GET, POST, PUT, DELETE, PATCH');
+
 define('APP_START_TS', microtime(true));
 session_set_cookie_params(10800);
+
+// header("Access-Control-Allow-Origin: http://models.org.ua");
+// header("Access-Control-Allow-Credentials: true");
+// header("Access-Control-Allow-Methods: GET, POST");
+// header("Access-Control-Allow-Headers: Content-Type, *");
 
 require_once getenv('FRAMEWORK_PATH').'/library/kernel/load.php';
 

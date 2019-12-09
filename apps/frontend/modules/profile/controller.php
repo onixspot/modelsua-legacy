@@ -8,9 +8,13 @@ load::model('user/profile');
 load::model('user/user_albums');
 load::model('user/user_photos');
 
+/**
+ * @property mixed profile
+ * @property bool by_code
+ * @property string learned_about
+ */
 abstract class profile_controller extends frontend_controller
 {
-
     public function execute()
     {
         $sn = explode('.', $_SERVER['SERVER_NAME']);
@@ -19,7 +23,7 @@ abstract class profile_controller extends frontend_controller
                 $this->user_id = false;
             }
 
-            $ud            = user_data_peer::instance()->get_item($ud_list[0]);
+            $ud = user_data_peer::instance()->get_item($ud_list[0]);
             $this->user_id = $ud['user_id'];
         } elseif ($code = request::get('code')) {
             $this->user_id = profile_peer::get_by_security($code);
@@ -34,7 +38,7 @@ abstract class profile_controller extends frontend_controller
         }
 
         if (!$this->user_id) {
-            $this->redirect('http://'.conf::get('server').'/');
+            $this->redirect('https://'.conf::get('server').'/');
         }
 
         $this->profile = profile_peer::instance()->get_item($this->user_id);
@@ -70,30 +74,28 @@ abstract class profile_controller extends frontend_controller
 
         if (!$this->by_code && $this->profile['hidden'] && !$this->profile['active'] && !session::has_credential('admin')
             && $this->user_id != session::get_user_id()) {
-            $this->redirect('http://'.conf::get('server').'/?1');
+            $this->redirect('https://'.conf::get('server').'/?1');
         }
 
         if (!$this->by_code && !session::is_authenticated() && $this->profile['hidden']) {
-            $this->redirect('http://'.conf::get('server').'/?2');
+            $this->redirect('https://'.conf::get('server').'/?2');
         }
 
         //		if($this->profile['approve'] < 1)
-        //			$this->redirect ("http://".conf::get('server')."/");
+        //			$this->redirect ("https://".conf::get('server')."/");
 
         $sys_albums = ['covers', 'portfolio'];
         foreach ($sys_albums as $album) {
             if (!user_albums_peer::instance()->get_list(['user_id' => $this->user_id, 'category' => $album])) {
-                user_albums_peer::instance()->insert([
-                    'user_id'    => $this->user_id,
-                    'category'   => $album,
-                    'additional' => serialize([]),
-                    'images'     => serialize([]),
-                ]);
+                user_albums_peer::instance()->insert(
+                    [
+                        'user_id' => $this->user_id,
+                        'category' => $album,
+                        'additional' => serialize([]),
+                        'images' => serialize([]),
+                    ]
+                );
             }
         }
-
     }
-
 }
-
-?>

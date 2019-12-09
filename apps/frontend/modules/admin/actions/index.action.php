@@ -49,7 +49,7 @@ class admin_index_action extends admin_controller
                 
                 $query = urlencode($query);
                 
-                $url = "http://translate.google.ru/translate_a/t?client=x&text=".$query."&sl=ru&tl=en&ie=UTF8";
+                $url = "https://translate.google.ru/translate_a/t?client=x&text=".$query."&sl=ru&tl=en&ie=UTF8";
                 
                 file_put_contents('/var/www/ukrmodels/public/js/t('.$i.').js',iconv('KOI8-R', 'UTF8', file_get_contents($url)));
         }
@@ -141,7 +141,7 @@ class admin_index_action extends admin_controller
 	    }
 	}
 	private function parse() {
-                $url = 'http://www.topuniversities.com/university-rankings/world-university-rankings/2011?page=';
+                $url = 'https://www.topuniversities.com/university-rankings/world-university-rankings/2011?page=';
                 $uni_name = '#<a href="/institution/(.*)\">(.*)</a>#';
                 $country_name = '#\<td\sclass\=\"views-field\sviews-field-name\">(.*)\<\/td\>#sUi';
                 $full = time();

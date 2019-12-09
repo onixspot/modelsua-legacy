@@ -18,4 +18,3 @@ require_once './apps/imgserve/index.php';
 
 $imgserve = new imgserve();
 $imgserve->execute();
-

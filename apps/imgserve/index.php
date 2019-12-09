@@ -30,7 +30,7 @@ class imgserve
         $db = conf::get('databases');
 
         $connection = [
-            'host=pgsql',
+            'host='.$db['master']['host'],
             'port=5432',
             'dbname='.$db['master']['dbname'],
             'user='.$db['master']['user'],

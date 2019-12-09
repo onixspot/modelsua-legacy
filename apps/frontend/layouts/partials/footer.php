@@ -1,6 +1,6 @@
 <div style="width: 1000px; margin: 0px auto; padding: 0px;" class="footer_box">
     <div class="footer_logo left">
-        <img src="http://<?=conf::get("server")?>/<?=session::get('language','ru')?>/logo_f.png" class="left" />
+        <img src="https://<?=conf::get("server")?>/<?=session::get('language','ru')?>/logo_f.png" class="left" />
     </div>
     <div class="links left">
 			<? foreach($menu_items as $menuItem){ ?>

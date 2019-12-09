@@ -42,7 +42,7 @@ class library_file_edit_action extends frontend_controller
                                 $links = array();
                                 if ( strlen($_POST['url'])>3 )
                                     {
-                                        if (mb_substr($_POST['url'],0,7)!='http://') $_POST['url']='http://'.$_POST['url'];
+                                        if (mb_substr($_POST['url'],0,7)!='https://') $_POST['url']='https://'.$_POST['url'];
                                             trim($_POST['title']) ? $title = trim($_POST['title']) : $title=$_POST['url'];
                                            library_files_peer::instance()->update(array(
                                                     'id' => $id,

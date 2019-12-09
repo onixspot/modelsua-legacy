@@ -2,14 +2,9 @@
 
 class agency_peer extends db_peer_postgre
 {
-    protected $table_name  = 'agency';
+    protected $table_name = 'agency';
 
     protected $primary_key = 'id';
-
-    public static function instance()
-    {
-        return parent::instance('agency_peer');
-    }
 
     public static function get_agency($id = false)
     {
@@ -25,6 +20,46 @@ class agency_peer extends db_peer_postgre
         return false;
     }
 
+    public function getCities($countryId)
+    {
+        $sql    = sprintf('SELECT city FROM agency WHERE country = %s AND city > 0 GROUP BY city;', $countryId);
+        return array_map(
+            function ($id) {
+                return $this->getCity($id);
+            },
+            db::get_cols($sql)
+        );
+    }
+
+    private function getCity($id)
+    {
+        $agencyIds = agency_peer::instance()->get_list(['city' => $id], [], ['name']);
+
+        return [
+            'id'       => $id,
+            'name'     => geo_peer::instance()->get_city($id),
+            'agencies' => array_map(
+                function ($id) {
+                    return agency_peer::instance()->get_item($id);
+                },
+                $agencyIds
+            ),
+        ];
+    }
+
+    /**
+     * @param string $peer
+     * @return agency_peer|db_peer|object
+     */
+    public static function instance($peer = 'agency_peer')
+    {
+        return parent::instance($peer);
+    }
+
+    /**
+     * @param $primary_key
+     * @return mixed
+     */
     public function get_item($primary_key)
     {
         $item = parent::get_item($primary_key);
@@ -52,7 +87,6 @@ class agency_peer extends db_peer_postgre
 
         return db::get_row($sql);
     }
-
 }
 
 

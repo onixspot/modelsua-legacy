@@ -13,7 +13,7 @@
 			<? $hidden_data = unserialize($profile['hidden_data']) ?>
 			<? if($profile['subdomain']){ ?>
 				<div class="pt5 pl25" style="background: url('/icon_m.png') no-repeat; height: 19px;">
-					<a href='http://<?=$profile['subdomain']?>.<?=conf::get('server')?>/'>http://<?=$profile['subdomain']?>.<?=conf::get('server')?></a>
+					<a href='https://<?=$profile['subdomain']?>.<?=conf::get('server')?>/'>https://<?=$profile['subdomain']?>.<?=conf::get('server')?></a>
 				</div>
 			<? } ?>
 			<? if(($user_contacts['_email']['access'] == 1 || session::has_credential('admin')) && ($user_contacts['email'] || $profile['email'])){ ?>
@@ -59,7 +59,7 @@
 								<? $user_contacts['facebook'] = 'facebook.com/'.$user_contacts['facebook']; ?>
 							<? } ?>
 							<? if(strpos($user_contacts['facebook'], 'http') === false){ ?>
-								<? $user_contacts['facebook'] = 'http://'.$user_contacts['facebook']; ?>
+								<? $user_contacts['facebook'] = 'https://'.$user_contacts['facebook']; ?>
 							<? } ?>
 							<a target="_blank" href="<?=$user_contacts['facebook']?>"><img src="/contacts_facebook.png" /></a>
 						</div>
@@ -70,7 +70,7 @@
 								<? $user_contacts['napodiume'] = 'napodiume.ru/'.$user_contacts['napodiume']; ?>
 							<? } ?>
 							<? if(strpos($user_contacts['napodiume'], 'http') === false){ ?>
-								<? $user_contacts['napodiume'] = 'http://'.$user_contacts['napodiume']; ?>
+								<? $user_contacts['napodiume'] = 'https://'.$user_contacts['napodiume']; ?>
 							<? } ?>
 							<a target="_blank" href="<?=$user_contacts['napodiume']?>"><img src="/contacts_butterfly.png" /></a>
 						</div>
@@ -84,7 +84,7 @@
 								<? $user_contacts['vkontakte'] = 'vk.com/'.$user_contacts['vkontakte']; ?>
 							<? } ?>
 							<? if(strpos($user_contacts['vkontakte'], 'http') === false){ ?>
-								<? $user_contacts['vkontakte'] = 'http://'.$user_contacts['vkontakte']; ?>
+								<? $user_contacts['vkontakte'] = 'https://'.$user_contacts['vkontakte']; ?>
 							<? } ?>
 							<a target="_blank" href="<?=$user_contacts['vkontakte']?>"><img src="/contacts_vk.png" /></a>
 						</div>

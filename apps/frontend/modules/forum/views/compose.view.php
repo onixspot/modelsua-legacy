@@ -119,9 +119,9 @@ if(request::get('action')=='compose')
 		<input type="button" title="Нумерованный список: [list=]text[/list]" onclick="bbstyle(12)" style="width: 40px" value="List=" name="addbbcode12" accesskey="o" class="button2">
 		<input type="button" title="Элемент списка: [*]text[/*]" onclick="bbstyle(-1)" style="width: 40px" value="[*]" name="addlistitem" accesskey="y" class="button2">
 
-			<input type="button" title="Вставить изображение: [img]http://image_url[/img]" onclick="bbstyle(14)" style="width: 40px" value="Img" name="addbbcode14" accesskey="p" class="button2">
+			<input type="button" title="Вставить изображение: [img]https://image_url[/img]" onclick="bbstyle(14)" style="width: 40px" value="Img" name="addbbcode14" accesskey="p" class="button2">
 
-			<input type="button" title="Вставить ссылку: [url]http://url[/url] или [url=http://url]URL text[/url]" onclick="bbstyle(16)" style="text-decoration: underline; width: 40px" value="URL" name="addbbcode16" accesskey="w" class="button2">
+			<input type="button" title="Вставить ссылку: [url]https://url[/url] или [url=https://url]URL text[/url]" onclick="bbstyle(16)" style="text-decoration: underline; width: 40px" value="URL" name="addbbcode16" accesskey="w" class="button2">
 
 		<select title="Размер шрифта" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]');this.form.addbbcode20.selectedIndex = 2;" name="addbbcode20">
 			<option value="50">Очень маленький</option>

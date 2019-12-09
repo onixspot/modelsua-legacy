@@ -1,23 +1,34 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
+    <meta charset="utf-8"/>
+
     <?= client_helper::get_meta() ?>
-    <?= client_helper::get_title() ?>
-    <!--<meta http-equiv="content-security-policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'">-->
-    <script type="text/javascript" src="http://js.<?= conf::get('server') ?>/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="http://js.<?= conf::get('server') ?>/main.js"></script>
-    <script type="text/javascript" src="http://js.<?= conf::get('server') ?>/erlte.js"></script>
-    <link href="http://f.<?= conf::get('server') ?>/public/css/flag-icon.min.css" rel="stylesheet"/>
-    <link href="http://css.<?= conf::get('server') ?>/main.css" rel="stylesheet"/>
-    <link href="http://css.<?= conf::get('server') ?>/erlte.css" rel="stylesheet"/>
+    <title><?= client_helper::get_title() ?></title>
+
+    <script type="text/javascript" src="https://js.<?= conf::get('server') ?>/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="https://js.<?= conf::get('server') ?>/main.js"></script>
+    <script type="text/javascript" src="https://js.<?= conf::get('server') ?>/erlte.js"></script>
+
+    <link href="https://f.<?= conf::get('server') ?>/public/css/flag-icon.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <link href="https://css.<?= conf::get('server') ?>/main.css" rel="stylesheet"/>
+    <link href="https://css.<?= conf::get('server') ?>/erlte.css" rel="stylesheet"/>
+
     <?php include __DIR__.'/_js_static.php' ?>
+
     <script type="text/javascript" src="https://apis.google.com/js/plusone.js">
-        {lang: 'uk'}
+        {
+            lang: 'uk'
+        }
     </script>
+
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
 </head>
 <body style="overflow-x: hidden">
 <div id="opaco" class="hide"></div>
-<div class="canvas tahoma p5 pl20" style="min-height: 1010px; background: #fff;">
+<div class="canvas tahoma p5 pl20" style="min-height: 1000px; background: #fff;">
 
     <div style="position: absolute; width: 1801px; margin: 0px auto; top: 0px; margin-left: -398px; z-index: -2;">
         <div class="left" style="background: url(/left.png); width: 378px; height: 1138px;"></div>
@@ -25,19 +36,9 @@
         <div class="clear"></div>
     </div>
 
-    <div
-            style="position: absolute; cursor: pointer; width: 42px; height: 286px; background: url('/banners/UFW.png'); margin-left: 1025px; margin-top: 140px;"
-            onclick="
-					window.open('http://fashionweek.ua/');
-				">
-    </div>
+    <!--<div style="position: absolute; cursor: pointer; width: 42px; height: 286px; background-image: url('/banners/UFW.png'); margin-left: 1025px; margin-top: 140px;" onclick="window.open('https://fashionweek.ua/');"></div>-->
 
-    <div
-            style="position: absolute; cursor: pointer; width: 42px; height: 115px; background: url('/banners/elle.png'); margin-left: 1025px; margin-top: 456px;"
-            onclick="
-					window.open('http://elle.com.ua/');
-				">
-    </div>
+    <!--<div style="position: absolute; cursor: pointer; width: 42px; height: 115px; background: url('/banners/elle.png'); margin-left: 1025px; margin-top: 456px;" onclick="window.open('https://elle.com.ua/');""></div>-->
 
     <script type="text/javascript">
         $(function () {
@@ -72,7 +73,7 @@
             var ga = document.createElement('script');
             ga.type = 'text/javascript';
             ga.async = true;
-            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
             var s = document.getElementsByTagName('script')[0];
             s.parentNode.insertBefore(ga, s);
         })();
@@ -97,5 +98,11 @@
 <div class="footer tahoma">
     <?php include 'partials/footer.php' ?>
 </div>
+<script src="https://www.google.com/recaptcha/api.js?render=6LdO1MUUAAAAAPeYMtLpiZdoJVXwq-jEXhXpp6oM"></script>
+<script>
+    grecaptcha.ready(function () {
+        grecaptcha.execute('6LdO1MUUAAAAAPeYMtLpiZdoJVXwq-jEXhXpp6oM', {action: 'homepage'});
+    });
+</script>
 </body>
 </html>

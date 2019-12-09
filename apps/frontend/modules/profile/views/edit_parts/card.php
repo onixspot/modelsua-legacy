@@ -267,33 +267,33 @@ if (!empty($agency)) {
             $('#name').val(eval("(" + $(this).attr('rel') + ")"));
             $('#name_span').html(eval("(" + $(this).attr('rel') + ")"));
         });
-        $('#card_uploadify').uploadify({
-            'uploader': '/uploadify.swf',
-            'script': '/profile/card',
-            'fileDataName': 'image',
-            'scriptData': {
-                'upload_card_avatar': 1,
-                'user_id': <?=$card_user?>,
-                'language': $('#language').val()
-            },
-            'cancelImg': '/cancel.png',
-            'buttonImg': '/buttons/upload_photo.png',
-            'width': '153',
-            'transparent': true,
-            'folder': '/',
-            'fileDesc': 'jpg; gif; png; jpeg;',
-            'fileExt': '*.jpg;*.gif;*.png;*.jpeg;',
-            'auto': true,
-            'multi': false,
-            'onError': function (event, queueID, fileObj, response) {
-                console.log(response);
-            },
-            'onComplete': function (event, queueID, fileObj, response, data) {
-                var resp = eval("(" + response + ")");
-                if (resp.success) {
-                    window.location = window.location;
-                }
-            }
-        });
+        //$('#card_uploadify').uploadify({
+        //    'uploader': '/uploadify.swf',
+        //    'script': '/profile/card',
+        //    'fileDataName': 'image',
+        //    'scriptData': {
+        //        'upload_card_avatar': 1,
+        //        'user_id': <?//=$card_user?>//,
+        //        'language': $('#language').val()
+        //    },
+        //    'cancelImg': '/cancel.png',
+        //    'buttonImg': '/buttons/upload_photo.png',
+        //    'width': '153',
+        //    'transparent': true,
+        //    'folder': '/',
+        //    'fileDesc': 'jpg; gif; png; jpeg;',
+        //    'fileExt': '*.jpg;*.gif;*.png;*.jpeg;',
+        //    'auto': true,
+        //    'multi': false,
+        //    'onError': function (event, queueID, fileObj, response) {
+        //        console.log(response);
+        //    },
+        //    'onComplete': function (event, queueID, fileObj, response, data) {
+        //        var resp = eval("(" + response + ")");
+        //        if (resp.success) {
+        //            window.location = window.location;
+        //        }
+        //    }
+        //});
     });
 </script>

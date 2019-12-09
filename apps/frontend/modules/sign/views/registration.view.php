@@ -1,4 +1,4 @@
-<script type="text/javascript" src="http://js.<?= conf::get('server') ?>/libraries/ajaxupload.js"></script>
+<script type="text/javascript" src="https://js.<?= conf::get('server') ?>/libraries/ajaxupload.js"></script>
 <div class="fs12 mb10 mt10" style="width: 700px;">
     <!--<div class="mb10">
 	    <a href="/page?link=membership" class="fs14 underline bold">

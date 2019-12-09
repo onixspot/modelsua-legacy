@@ -14,13 +14,13 @@
 </div>
 <div id="block-agency-contacts" class="mt10">
 	<div id="agency-link" class="pt5 pl25<?// if(null === $agency['link']){ ?> hide<?// } ?>" style="background: url('/icon_m.png') no-repeat; height: 19px;">
-		<a href="http://<?=$agency['link']?>.<?=conf::get('server')?>"><?=$agency['link']?>.<?=conf::get('server')?></a>
+		<a href="https://<?=$agency['link']?>.<?=conf::get('server')?>"><?=$agency['link']?>.<?=conf::get('server')?></a>
 	</div>
 	<div id="agency-contacts-person" class="pt5 pl25<? if($agency['contacts']['_person'] === '0'){ ?> hide<? } ?>" style="background: url('/contacts_man.png') no-repeat; height: 19px;">
 		<?=$agency['contacts']['_person']?>
 	</div>
 	<div id="agency-contacts-website" class="pt5 pl25<? if($agency['contacts']['website'] == ''){ ?> hide<? } ?>" style="background: url('/contacts_site.png') no-repeat; height: 19px;">
-		<a href="<? if(strpos($agency['contacts']['website'], 'http://') !== true){ ?>http://<? } ?><?=$agency['contacts']['website']?>" target="_blank"><?=$agency['contacts']['website']?></a>
+		<a href="<? if(strpos($agency['contacts']['website'], 'https://') !== true){ ?>https://<? } ?><?=$agency['contacts']['website']?>" target="_blank"><?=$agency['contacts']['website']?></a>
 	</div>
 	<div class="pt5 pl25<? if($agency['contacts']['phone'] === ''){ ?> hide<? } ?>" style="background: url('/contacts_tel.png') no-repeat; height: 19px;">
 		<span id="agency-contacts-phone" class="cblack"><?=$agency['contacts']['phone']?></span> <span id="agency-contacts-phone2" class="cgray"><?=$agency['contacts']['phone2']?></span>
@@ -169,7 +169,7 @@
 							.empty()
 							.show();
 
-						var link = 'http://'+response.link+'.<?=conf::get('server')?>';
+						var link = 'https://'+response.link+'.<?=conf::get('server')?>';
 						var a = $('<a />')
 							.attr('href', link)
 							.html(response.link+'.<?=conf::get('server')?>');
@@ -202,8 +202,8 @@
 					if(data.website != '')
 					{
 						var http = '';
-						if(data.website.indexOf('http://') < 0)
-							http = 'http://';
+						if(data.website.indexOf('https://') < 0)
+							http = 'https://';
 						$('#agency-contacts-website')
 							.show()
 							.find('a')

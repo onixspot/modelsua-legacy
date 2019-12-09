@@ -364,9 +364,9 @@ class profile_index_action extends profile_controller
 		$name = request::get_string("name");
 		$link = request::get_string("link");
 		
-		if(strpos($link, "http://") === false)
+		if(strpos($link, "https://") === false)
 		{
-			$link = "http://".$link;
+			$link = "https://".$link;
 		}
 		
 		$data = array(

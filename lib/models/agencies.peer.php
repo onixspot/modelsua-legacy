@@ -10,4 +10,3 @@ class agencies_peer extends db_peer_postgre
 		return parent::instance("agencies_peer");
 	}
 }
-?>

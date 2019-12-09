@@ -53,7 +53,7 @@
 		    <td>
 			    <input type="button" value="<?=t('Отправить')?>" id="send-message-button" class="button">
 			    <input type="button" value="<?=t('Отмена')?>" class="button_gray" name="cancel" onclick="$('#compose_form').slideToggle(500,function() {$('#receiver_id,#receiver,#body').val('')})" id="cancel">
-			    <img align="absmiddle" width="15" src="http://s1.meritokrat.org/common/loading.gif" class="hide ml10" id="wait_panel">					
+			    <img align="absmiddle" width="15" src="https://s1.meritokrat.org/common/loading.gif" class="hide ml10" id="wait_panel">					
 			    <div class="success hide mr10 mt10"><?=t('Сообщение отправлено')?></div>
 			    <div class="error hide mr10 mt10"></div>
 		    </td>

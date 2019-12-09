@@ -26,7 +26,7 @@
 		<td class="acenter bold">
 		    <?$crop = unserialize($uinfo['ph_crop'])?>
 		    <?$v = $uinfo?>
-		    <?$src = "http://".conf::get('server')."/imgserve?pid=".$v['pid']."&w=".$crop['w']."&h=".$crop['h']."&x=".$crop['x']."&y=".$crop['y']."&z=crop";?>
+		    <?$src = "https://".conf::get('server')."/imgserve?pid=".$v['pid']."&w=".$crop['w']."&h=".$crop['h']."&x=".$crop['x']."&y=".$crop['y']."&z=crop";?>
                     <img src="<?=$src?>" style="width: 50px;"/>
                 </td>
                 <td>

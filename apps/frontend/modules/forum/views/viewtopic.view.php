@@ -86,7 +86,7 @@
 		    <dd><strong>Откуда:</strong><?=geo_peer::instance()->get_country($ts['country']); ?></dd>
 		    <dd class="hide">
 			    <ul class="profile-icons">
-				    <li class="icq-icon"><a title="ICQ" onclick="popup(this.href, 550, 320); return false;" href="http://www.icq.com/people/117045076/"><span>ICQ</span></a></li>
+				    <li class="icq-icon"><a title="ICQ" onclick="popup(this.href, 550, 320); return false;" href="https://www.icq.com/people/117045076/"><span>ICQ</span></a></li>
 			    </ul>
 		    </dd>
 		</dl>
@@ -159,7 +159,7 @@
 		<dd><strong>Откуда:</strong> <?=geo_peer::instance()->get_country($ts['country']); ?></dd>
 			<dd>
 				<ul class="profile-icons">
-					<li class="web-icon"><a title="WWW: http://440hz.ru" href="http://440hz.ru"><span>Сайт</span></a></li><li class="icq-icon"><a title="ICQ" onclick="popup(this.href, 550, 320); return false;" href="http://www.icq.com/people/43053852/"><span>ICQ</span></a></li>
+					<li class="web-icon"><a title="WWW: https://440hz.ru" href="https://440hz.ru"><span>Сайт</span></a></li><li class="icq-icon"><a title="ICQ" onclick="popup(this.href, 550, 320); return false;" href="https://www.icq.com/people/43053852/"><span>ICQ</span></a></li>
 				</ul>
 			</dd>
 		</dl>

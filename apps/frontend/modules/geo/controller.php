@@ -12,4 +12,3 @@ abstract class geo_controller extends frontend_controller
 	}
 }
 
-?>

@@ -137,10 +137,10 @@
                 $v = $successful[0];
                 if ($v['ph_crop']) {
                     $crop = unserialize($v['ph_crop']);
-                    $src  = "http://".conf::get('server')."/imgserve?pid="
+                    $src  = "https://".conf::get('server')."/imgserve?pid="
                         .$v['pid'];//."&w=".$crop['w']."&h=".$crop['h']."&x=".$crop['x']."&y=".$crop['y']."&z=crop";
                 } else {
-                    $src = "http://".conf::get('server')."/no_image.png";
+                    $src = "https://".conf::get('server')."/no_image.png";
                 }
                 $fi = db::get_rows("SELECT first_name, last_name FROM user_data WHERE user_id=:uid", ['uid' => $v['id']]);
 
@@ -167,7 +167,7 @@
                         <td class="left">
                             <?php $crop = unserialize($model1['ph_crop']); ?>
                             <?php $imgUrl = sprintf(
-                                'http://%s/imgserve?pid=%s&w=%s&h=%s&x=%s&y=%s&z=crop',
+                                'https://%s/imgserve?pid=%s&w=%s&h=%s&x=%s&y=%s&z=crop',
                                 conf::get('server'),
                                 $model1['pid'],
                                 $crop['w'],
@@ -180,7 +180,7 @@
                         <td class="acenter">
                             <?php $crop = unserialize($model2['ph_crop']); ?>
                             <?php $imgUrl = sprintf(
-                                'http://%s/imgserve?pid=%s&w=%s&h=%s&x=%s&y=%s&z=crop',
+                                'https://%s/imgserve?pid=%s&w=%s&h=%s&x=%s&y=%s&z=crop',
                                 conf::get('server'),
                                 $model2['pid'],
                                 $crop['w'],
@@ -236,10 +236,10 @@
             $winner_profile = profile_peer::instance()->get_item($winner[0]['user_id']);
             if ($winner_profile['ph_crop']) {
                 $crop = unserialize($winner_profile['ph_crop']);
-                $src  = "http://".conf::get('server')."/imgserve?pid=".$winner_profile['pid']."&w=".$crop['w']."&h=".$crop['h']."&x=".$crop['x']."&y="
+                $src  = "https://".conf::get('server')."/imgserve?pid=".$winner_profile['pid']."&w=".$crop['w']."&h=".$crop['h']."&x=".$crop['x']."&y="
                     .$crop['y']."&z=crop";
             } else {
-                $src = "http://".conf::get('server')."/no_image.png";
+                $src = "https://".conf::get('server')."/no_image.png";
             }
 
             ?>
@@ -248,7 +248,7 @@
             </div>
             <!--<div class="text-box left" style="margin-top: 105px; width: auto !important;">-->
                 <!--<div class="top-title fs24 cpurple pointer">
-                    <a href="http://elle.com.ua"><b>ELLE</b></a>
+                    <a href="https://elle.com.ua"><b>ELLE</b></a>
                 </div>-->
                 <!--                <div class="top-text fs13 cblack">
                                     ero. Vestibulum ultricies, erat eu commodo aliquet, nisi quam sollicitudin nunc, et vulputate nulla tortor non libero.
@@ -286,7 +286,7 @@
                 <div class="news-text-box" style="width: 295px;">
                     <div>
                         <a href="/news/view?id=<?= $news['id'] ?>">
-                            <img src="http://img.<?= conf::get('server') ?>/m/<?= $news['salt'].'.jpg' ?>" style="width: 295px; height: 390px;">
+                            <img src="https://img.<?= conf::get('server') ?>/m/<?= $news['salt'].'.jpg' ?>" style="width: 295px; height: 390px;">
                         </a>
                     </div>
                     <div class="fs14 mt10 mb10 bold ucase acenter">
@@ -321,7 +321,7 @@
                 <div class="news-text-box" style="width: 295px;">
                     <div>
                         <a href="/news/view?id=<?= $publication['id'] ?>">
-                            <img src="http://img.<?= conf::get('server') ?>/m/<?= $publication['salt'].'.jpg' ?>"
+                            <img src="https://img.<?= conf::get('server') ?>/m/<?= $publication['salt'].'.jpg' ?>"
                                  style="width: 295px; height: 390px;">
                         </a>
                     </div>
@@ -357,7 +357,7 @@
                 <div class="news-text-box" style="width: 295px;">
                     <div>
                         <a href="/news/view?id=<?= $anons['id'] ?>">
-                            <img src="http://img.<?= conf::get('server') ?>/m/<?= $anons['salt'].'.jpg' ?>" style="width: 295px; height: 390px;">
+                            <img src="https://img.<?= conf::get('server') ?>/m/<?= $anons['salt'].'.jpg' ?>" style="width: 295px; height: 390px;">
                         </a>
                     </div>
                     <div class="fs14 mt10 mb10 bold ucase acenter">

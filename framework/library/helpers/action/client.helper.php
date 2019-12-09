@@ -2,70 +2,75 @@
 
 class client_helper
 {
-	private static $variables = array();
-	private static $title = '';
-	private static $meta = array(
-			"Content-Type" => array(
-					"http-equiv" => "Content-Type",
-					"content" => "text/html; charset=utf-8"
-			)
-	);
+    private static $variables = [];
+    private static $title = '';
+    private static $meta = [
+        "Content-Type" => [
+            "http-equiv" => "Content-Type",
+            "content" => "text/html; charset=utf-8",
+        ],
+    ];
 
-	public static function register_variable( $name, $value )
-	{
-		self::$variables[$name] = $value;
-	}
+    public static function register_variable($name, $value)
+    {
+        self::$variables[$name] = $value;
+    }
 
-	public static function get_variables()
-	{
-		$clientController = context::get_controller()->get_module()."Controller";
+    public static function get_variables()
+    {
+        $clientController = context::get_controller()->get_module()."Controller";
 
-		$js = '';
+        $js = '';
 
-		foreach ( self::$variables as $name => $value )
-		{
-			$js .= "{$clientController}.{$name} = " . json_encode($value) . ';';
-		}
+        foreach (self::$variables as $name => $value) {
+            $js .= "{$clientController}.{$name} = ".json_encode($value).';';
+        }
 
-		return $js;
-	}
+        return $js;
+    }
 
-	public static function set_title( $title )
-	{
-		self::$title = $title;
-	}
+    /**
+     * @return string
+     */
+    public static function get_title()
+    {
+        return self::$title;
+    }
 
-	public static function get_title()
-	{
-		return "<title>".self::$title."</title>\n";
-	}
+    public static function set_title($title)
+    {
+        self::$title = $title;
+    }
 
-	private static function render_meta( $data )
-	{
-		$attrs = array();
-		foreach ( $data as $key => $value )
-		{
-			$value = htmlspecialchars($value);
-			$attrs[] = "{$key}=\"{$value}\"";
-		}
+    public static function get_html_title()
+    {
+        return "<title>".self::$title."</title>\n";
+    }
 
-		return "<meta ".implode(" ", $attrs)."/>\n";
-	}
+    public static function get_meta()
+    {
+        $output = "";
+        foreach (self::$meta as $meta_data) {
+            $output .= self::render_meta($meta_data);
+        }
 
-	public static function get_meta()
-	{
-		$output = "";
-		foreach ( self::$meta as $meta_data )
-		{
-			$output .= self::render_meta($meta_data);
-		}
+        return $output;
+    }
 
-		return $output;
-	}
+    public static function set_meta($data)
+    {
+        $key = $data["name"] ? $data["name"] : $data["http-equiv"];
+        self::$meta[$key] = $data;
+    }
 
-	public static function set_meta( $data )
-	{
-		$key = $data["name"] ? $data["name"] : $data["http-equiv"];
-		self::$meta[$key] = $data;
-	}
+    private static function render_meta($data)
+    {
+        $attrs = array();
+        foreach ($data as $key => $value) {
+            $value = htmlspecialchars($value);
+            $attrs[] = "{$key}=\"{$value}\"";
+        }
+
+        return "<meta ".implode(" ", $attrs)."/>\n";
+    }
 }

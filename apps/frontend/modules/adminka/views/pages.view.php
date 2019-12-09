@@ -111,7 +111,7 @@ $().ready(function() {
                 lang     : 'ru',
                 height   : 450,
                 toolbar  : 'complete',
-                cssfiles : ['http://css.<?=conf::get('server')?>/elrte.css','http://css.<?=conf::get('server')?>/elfinder.css'],
+                cssfiles : ['https://css.<?=conf::get('server')?>/elrte.css','https://css.<?=conf::get('server')?>/elfinder.css'],
                 fmOpen : function(callback) {
                     $('#finder').elfinder({
                             url : '/connectors/elfinder',

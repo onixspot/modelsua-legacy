@@ -1,12 +1,12 @@
 <html>
 	<head>
 		<?=client_helper::get_meta()?>
-		<?=client_helper::get_title()?>
-		<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-		<script type="text/javascript" src="http://js.<?=conf::get("server")?>/main.js"></script>
-		<script type="text/javascript" src="http://js.<?=conf::get("server")?>/forum.js"></script>
-                <link href="http://css.<?=conf::get("server")?>/main.css" rel="stylesheet" />
-		<link href="http://css.<?=conf::get("server")?>/forum.css" rel="stylesheet" />
+		<?=client_helper::get_html_title()?>
+		<script type="text/javascript" src="https://code.jquery.com/jquery-latest.min.js"></script>
+		<script type="text/javascript" src="https://js.<?=conf::get("server")?>/main.js"></script>
+		<script type="text/javascript" src="https://js.<?=conf::get("server")?>/forum.js"></script>
+                <link href="https://css.<?=conf::get("server")?>/main.css" rel="stylesheet" />
+		<link href="https://css.<?=conf::get("server")?>/forum.css" rel="stylesheet" />
 		
 		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
 	</head> 
@@ -23,14 +23,14 @@
 			<div
 				style="position: absolute; cursor: pointer; width: 42px; height: 286px; background: url('/banners/UFW.png'); margin-left: 1025px; margin-top: 140px;"
 				onclick="
-					window.open('http://fashionweek.ua/');
+					window.open('https://fashionweek.ua/');
 				">
 			</div>
 			
 			<div
 				style="position: absolute; cursor: pointer; width: 42px; height: 115; background: url('/banners/elle.png'); margin-left: 1025px; margin-top: 456px;"
 				onclick="
-					window.open('http://elle.com.ua/');
+					window.open('https://elle.com.ua/');
 				">
 			</div>
 			
@@ -67,7 +67,7 @@
 
 				(function() {
 					var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-					ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+					ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'https://www') + '.google-analytics.com/ga.js';
 					var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
 				})();
 

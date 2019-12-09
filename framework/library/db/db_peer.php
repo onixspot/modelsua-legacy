@@ -14,7 +14,7 @@ abstract class db_peer
 	{}
 	
 	/**
-	 * @return db_peer
+	 * @return db_peer|object
 	 */
 	public static function instance( $peer )
 	{

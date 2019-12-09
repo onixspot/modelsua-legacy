@@ -65,7 +65,7 @@ class library_file_add_action extends frontend_controller
                                 $links = array();
                                 if ( strlen($_POST['url'])>3 )
                                     {
-                                        if (mb_substr($_POST['url'],0,7)!='http://') $_POST['url']='http://'.$_POST['url'];
+                                        if (mb_substr($_POST['url'],0,7)!='https://') $_POST['url']='https://'.$_POST['url'];
                                             library_files_peer::instance()->get_icon(end(explode('.', $_POST['url'])))!=='unknown.png' ? $ext=end(explode('.', $_POST['url'])) : $ext=NULL;
                                             trim($_POST['title']) ? $title = trim($_POST['title']) : $title=$_POST['url'];
                                             $id = library_files_peer::instance()->insert(array(

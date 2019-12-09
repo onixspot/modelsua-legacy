@@ -1,5 +1,5 @@
-<script src="http://api-maps.yandex.ru/1.1/index.xml?key=AKfcOE8BAAAA1RwlGAIAFkDoi-3nG4A2ZF4iJhblvhDijMQAAAAAAAAAAABbw6MCfhnTxHF_9BO-cwe7kN-QHg==" type="text/javascript"></script>
-<script type="text/javascript" src="http://api-maps.yandex.ru/1.1/?key=AKfcOE8BAAAA1RwlGAIAFkDoi-3nG4A2ZF4iJhblvhDijMQAAAAAAAAAAABbw6MCfhnTxHF_9BO-cwe7kN-QHg==&modules=traffics" charset="utf-8"></script>
+<script src="https://api-maps.yandex.ru/1.1/index.xml?key=AKfcOE8BAAAA1RwlGAIAFkDoi-3nG4A2ZF4iJhblvhDijMQAAAAAAAAAAABbw6MCfhnTxHF_9BO-cwe7kN-QHg==" type="text/javascript"></script>
+<script type="text/javascript" src="https://api-maps.yandex.ru/1.1/?key=AKfcOE8BAAAA1RwlGAIAFkDoi-3nG4A2ZF4iJhblvhDijMQAAAAAAAAAAABbw6MCfhnTxHF_9BO-cwe7kN-QHg==&modules=traffics" charset="utf-8"></script>
 <script type="text/javascript">
     window.onload = function () {
         var map = new YMaps.Map(document.getElementById("YMapsID"));

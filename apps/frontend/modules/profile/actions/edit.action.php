@@ -2,22 +2,33 @@
 
 load::app('modules/profile/controller');
 
+/**
+ * @property int user_id
+ * @property array json
+ * @property int|mixed|null card_user
+ * @property mixed preview
+ * @property mixed card_profile
+ */
 class profile_edit_action extends profile_controller
 {
-
     public function execute()
     {
         parent::execute();
 
         load::model('user/user_photos');
 
-        $this->card_user    = (session::has_credential('admin') && request::get_int('id')) ? request::get_int('id') : session::get_user_id();
+        $this->card_user = (session::has_credential('admin') && request::get_int('id'))
+            ? request::get_int('id')
+            : session::get_user_id();
         $this->card_profile = profile_peer::instance()->get_item($this->card_user);
-        $this->preview      = db::get_row('SELECT * FROM user_photos WHERE user_id=:uid AND type=:type AND name=:name', [
-            'uid'  => $this->card_user,
-            'type' => user_photos_peer::TYPE_CARD_PREVIEW,
-            'name' => 'ru',
-        ]);
+        $this->preview = db::get_row(
+            'SELECT * FROM user_photos WHERE user_id=:uid AND type=:type AND name=:name',
+            [
+                'uid' => $this->card_user,
+                'type' => user_photos_peer::TYPE_CARD_PREVIEW,
+                'name' => 'ru',
+            ]
+        );
 
         if (session::get_user_id() != $this->user_id && !session::has_credential('admin')) {
             $this->redirect('/profile?id='.$this->user_id);
@@ -25,7 +36,8 @@ class profile_edit_action extends profile_controller
 
         $group = request::get('group');
 
-        if (in_array($group,
+        if (in_array(
+            $group,
             [
                 'general',
                 'locality',
@@ -36,7 +48,8 @@ class profile_edit_action extends profile_controller
                 'options',
                 'photo',
                 'ph_crop',
-            ])) {
+            ]
+        )) {
             $this->set_renderer('ajax');
             $this->json = ['success' => true];
             $this->$group();
@@ -62,12 +75,12 @@ class profile_edit_action extends profile_controller
         }
 
         $_data[] = [
-            'user_id'       => $this->user_id,
-            'agency_id'     => request::get_int('agency'),
-            'name'          => request::get('another_agency'),
-            'contract'      => $contract,
+            'user_id' => $this->user_id,
+            'agency_id' => request::get_int('agency'),
+            'name' => request::get('another_agency'),
+            'contract' => $contract,
             'contract_type' => $contract_type,
-            'type'          => request::get_int('agency-type') ? 1 : 0,
+            'type' => request::get_int('agency-type') ? 1 : 0,
         ];
 
         for ($i = 1; $i <= 99; $i++) {
@@ -76,12 +89,12 @@ class profile_edit_action extends profile_controller
             }
 
             $_data[] = [
-                'user_id'        => $this->user_id,
-                'agency_id'      => -1,
-                'name'           => request::get('foreign_agency_name-'.$i),
-                'city'           => request::get('foreign_agency_city-'.$i),
+                'user_id' => $this->user_id,
+                'agency_id' => -1,
+                'name' => request::get('foreign_agency_name-'.$i),
+                'city' => request::get('foreign_agency_city-'.$i),
                 'foreign_agency' => 1,
-                'type'           => request::get_bool('foreign_agency_type-'.$i) ? 1 : 0,
+                'type' => request::get_bool('foreign_agency_type-'.$i) ? 1 : 0,
             ];
         }
 
@@ -94,14 +107,14 @@ class profile_edit_action extends profile_controller
     public function params()
     {
         $data = [
-            'user_id'     => $this->user_id,
-            'growth'      => request::get('growth'),
-            'weigth'      => request::get('weigth'),
-            'breast'      => request::get('breast'),
-            'waist'       => request::get('waist'),
-            'hip'         => request::get('hip'),
-            'eye_color'   => request::get('eye_color'),
-            'hair_color'  => request::get('hair_color'),
+            'user_id' => $this->user_id,
+            'growth' => request::get('growth'),
+            'weigth' => request::get('weigth'),
+            'breast' => request::get('breast'),
+            'waist' => request::get('waist'),
+            'hip' => request::get('hip'),
+            'eye_color' => request::get('eye_color'),
+            'hair_color' => request::get('hair_color'),
             'hair_length' => request::get('hair_length'),
         ];
 
@@ -111,18 +124,18 @@ class profile_edit_action extends profile_controller
     public function additional()
     {
         $data = [
-            'user_id'                        => $this->user_id,
-            'work_experience'                => request::get('work_experience'),
-            'visa'                           => request::get('visa'),
+            'user_id' => $this->user_id,
+            'work_experience' => request::get('work_experience'),
+            'visa' => request::get('visa'),
             //				"foreign_work_experience" => request::get_bool("foreign_work_experience-yes") ? 1 : 0,
-            'foreign_work_experience_desc'   => request::get('foreign_work_experience_desc'),
+            'foreign_work_experience_desc' => request::get('foreign_work_experience_desc'),
             //				"marital_status" => request::get_bool("marital_status-yes") ? 1 : 0,
             //				"kids" => request::get_bool("kids-yes") ? 1 : 0,
-            'current_work_place_name'        => request::get('current_work_place_name'),
+            'current_work_place_name' => request::get('current_work_place_name'),
             'current_work_place_appointment' => request::get('current_work_place_appointment'),
             //				"smoke" => request::get_bool("smoke-yes") ? 1 : 0,
-            'about_self'                     => request::get_string('about_self'),
-            'eng_knowledge'                  => request::get_int('eng_knowledge'),
+            'about_self' => request::get_string('about_self'),
+            'eng_knowledge' => request::get_int('eng_knowledge'),
         ];
 
         $data['foreign_work_experience'] = -1;
@@ -164,11 +177,11 @@ class profile_edit_action extends profile_controller
 
         $higher_education = [
             0 => [
-                'university'  => request::get_string('university'),
-                'faculty'     => request::get_string('faculty'),
-                'study'       => request::get_int('study'),
-                'status'      => request::get_int('status'),
-                'entry_year'  => request::get_int('entry_year'),
+                'university' => request::get_string('university'),
+                'faculty' => request::get_string('faculty'),
+                'study' => request::get_int('study'),
+                'status' => request::get_int('status'),
+                'entry_year' => request::get_int('entry_year'),
                 'ending_year' => request::get_int('ending_year'),
             ],
         ];
@@ -187,16 +200,18 @@ class profile_edit_action extends profile_controller
     {
         if (request::get('ad') == 'subdomain') {
             $subdomain = request::get_string('subdomain');
-            user_data_peer::instance()->update([
-                'user_id'   => $this->user_id,
-                'subdomain' => $subdomain,
-            ]);
+            user_data_peer::instance()->update(
+                [
+                    'user_id' => $this->user_id,
+                    'subdomain' => $subdomain,
+                ]
+            );
 
             return true;
         }
 
         //		$old_password = request::get("old_password");
-        $new_password              = request::get('new_password');
+        $new_password = request::get('new_password');
         $new_password_confirmation = request::get('new_password_confirmation');
 
         //		var_dump($this->profile);
@@ -212,7 +227,7 @@ class profile_edit_action extends profile_controller
         if ($new_password != $new_password_confirmation || $new_password == '') {
             $this->json = [
                 'success' => false,
-                'error'   => 'confirmation',
+                'error' => 'confirmation',
             ];
 
             return false;
@@ -224,18 +239,18 @@ class profile_edit_action extends profile_controller
     private function general()
     {
         $data = [
-            'user_id'       => $this->user_id,
-            'last_name'     => trim(request::get('last_name')),
-            'first_name'    => trim(request::get('first_name')),
-            'last_name_en'  => trim(request::get('last_name_en')),
+            'user_id' => $this->user_id,
+            'last_name' => trim(request::get('last_name')),
+            'first_name' => trim(request::get('first_name')),
+            'last_name_en' => trim(request::get('last_name_en')),
             'first_name_en' => trim(request::get('first_name_en')),
-            'middle_name'   => trim(request::get('middle_name')),
-            'sex'           => request::get_bool('male') ? 0 : 1,
-            'birthday'      => ui_helper::dateval('birthday'),
-            'country'       => request::get_int('country'),
-            'region'        => request::get_int('region'),
-            'city'          => request::get_int('city'),
-            'another_city'  => request::get('another_city'),
+            'middle_name' => trim(request::get('middle_name')),
+            'sex' => request::get_bool('male') ? 0 : 1,
+            'birthday' => ui_helper::dateval('birthday'),
+            'country' => request::get_int('country'),
+            'region' => request::get_int('region'),
+            'city' => request::get_int('city'),
+            'another_city' => request::get('another_city'),
         ];
 
         profile_peer::instance()->update($data, $data['user_id']);
@@ -244,10 +259,10 @@ class profile_edit_action extends profile_controller
     private function locality()
     {
         $data = [
-            'user_id'      => $this->user_id,
-            'country'      => request::get_int('country'),
-            'region'       => request::get_int('region'),
-            'city'         => request::get_int('city'),
+            'user_id' => $this->user_id,
+            'country' => request::get_int('country'),
+            'region' => request::get_int('region'),
+            'city' => request::get_int('city'),
             'another_city' => request::get('another_city'),
         ];
 
@@ -257,37 +272,37 @@ class profile_edit_action extends profile_controller
     private function contacts()
     {
         $data = [
-            'user_id'   => $this->user_id,
-            'email'     => [
-                'value'  => request::get_string('email'),
+            'user_id' => $this->user_id,
+            'email' => [
+                'value' => request::get_string('email'),
                 'access' => request::get_int('email-access'),
             ],
-            'phone'     => [
-                'value'  => request::get('phone'),
+            'phone' => [
+                'value' => request::get('phone'),
                 'access' => request::get_int('phone-access'),
             ],
-            'website'   => [
-                'value'  => request::get('website'),
+            'website' => [
+                'value' => request::get('website'),
                 'access' => request::get_int('website-access'),
             ],
-            'skype'     => [
-                'value'  => request::get('skype'),
+            'skype' => [
+                'value' => request::get('skype'),
                 'access' => request::get_int('skype-access'),
             ],
-            'icq'       => [
-                'value'  => request::get('icq'),
+            'icq' => [
+                'value' => request::get('icq'),
                 'access' => request::get_int('icq-access'),
             ],
-            'facebook'  => [
-                'value'  => request::get('facebook'),
+            'facebook' => [
+                'value' => request::get('facebook'),
                 'access' => request::get_int('facebook-access'),
             ],
             'napodiume' => [
-                'value'  => request::get('napodiume'),
+                'value' => request::get('napodiume'),
                 'access' => request::get_int('napodiume-access'),
             ],
             'vkontakte' => [
-                'value'  => request::get('vkontakte'),
+                'value' => request::get('vkontakte'),
                 'access' => request::get_int('vkontakte-access'),
             ],
         ];
@@ -295,8 +310,11 @@ class profile_edit_action extends profile_controller
         $email = user_auth_peer::instance()->get_item($this->user_id);
 
         if (!filter_var($data['email']['value'], FILTER_VALIDATE_EMAIL)) {
-            $inx = db::get_scalar('SELECT COUNT(id) FROM user_auth WHERE id <> '.$this->user_id
-                .' AND email = :email', ['email' => $data['email']['value']]);
+            $inx = db::get_scalar(
+                'SELECT COUNT(id) FROM user_auth WHERE id <> '.$this->user_id
+                .' AND email = :email',
+                ['email' => $data['email']['value']]
+            );
 
             if ($data['email']['value'] == '' || $inx > 0) {
                 $this->json['error'] = 'email';
@@ -314,14 +332,16 @@ class profile_edit_action extends profile_controller
 
             $hidden_data = is_array($arr = unserialize($profile['hidden_data'])) ? $arr : [];
 
-            $hidden_data['email']   = request::get_string('hd_email');
-            $hidden_data['phone']   = request::get_string('hd_phone');
+            $hidden_data['email'] = request::get_string('hd_email');
+            $hidden_data['phone'] = request::get_string('hd_phone');
             $hidden_data['alt_tel'] = request::get_string('hd_alt_tel');
 
-            user_data_peer::instance()->update([
-                'user_id'     => $this->user_id,
-                'hidden_data' => serialize($hidden_data),
-            ]);
+            user_data_peer::instance()->update(
+                [
+                    'user_id' => $this->user_id,
+                    'hidden_data' => serialize($hidden_data),
+                ]
+            );
         }
     }
 
@@ -329,7 +349,7 @@ class profile_edit_action extends profile_controller
     {
         $data = [
             'user_id' => request::get_int('uid'),
-            'pid'     => request::get_int('pid'),
+            'pid' => request::get_int('pid'),
         ];
         user_data_peer::instance()->update($data);
         $this->json['pid'] = $data['pid'];

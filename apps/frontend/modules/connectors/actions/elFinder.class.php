@@ -903,7 +903,7 @@ class elFinder {
 	
 	
 	/**
-	 * Send header Connection: close. Required by safari to fix bug http://www.webmasterworld.com/macintosh_webmaster/3300569.htm
+	 * Send header Connection: close. Required by safari to fix bug https://www.webmasterworld.com/macintosh_webmaster/3300569.htm
 	 *
 	 * @return void
 	 **/

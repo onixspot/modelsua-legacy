@@ -34,11 +34,11 @@ class agency_index_action extends agency_controller
         $this->agency = agency_peer::instance()->get_item($agency_id);
 
         if (!$agency_id || !$this->agency) {
-            $this->redirect("http://".conf::get('server')."/");
+            $this->redirect("https://".conf::get('server')."/");
         }
 
         if (!$this->agency['page_active']) {
-            $this->redirect("http://".conf::get('server')."/");
+            $this->redirect("https://".conf::get('server')."/");
         }
 
         $this->agency['location'] = profile_peer::get_location($this->agency);
@@ -345,5 +345,3 @@ class agency_index_action extends agency_controller
         return $list;
     }
 }
-
-?>

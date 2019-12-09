@@ -68,7 +68,7 @@ $().ready(function() {
                 lang     : 'ru',
                 height   : 450,
                 toolbar  : 'complete',
-                cssfiles : ['http://css.<?=conf::get('server')?>/elrte.css']
+                cssfiles : ['https://css.<?=conf::get('server')?>/elrte.css']
         }
         $('#content').elrte(opts);
         build_tree();

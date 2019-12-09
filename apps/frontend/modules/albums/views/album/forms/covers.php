@@ -107,7 +107,7 @@
 			<input type="text" id="link" style="width: 164px" />
 		</div>
 		<div class="fs10 cgray">
-			<?=t('Вставте ссылку. Пример')?>: http://www.story.com.ua
+			<?=t('Вставте ссылку. Пример')?>: https://www.story.com.ua
 		</div>
 	</div>
 	<div class="clear"></div>

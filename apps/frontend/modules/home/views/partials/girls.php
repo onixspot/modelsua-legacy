@@ -8,7 +8,7 @@
     <div class="image-box">
         <?php if ($most) { ?>
             <?php foreach ($most as $k => $v) {
-                $baseUrl = sprintf('http://%s', conf::get('server'));
+                $baseUrl = sprintf('https://%s', conf::get('server'));
                 $urlPath = 'no_image.png';
 
                 if ($v['ph_crop']) {

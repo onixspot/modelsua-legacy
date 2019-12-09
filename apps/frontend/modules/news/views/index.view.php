@@ -17,7 +17,7 @@
 				<div class="one-news-box">
 					<div class="right-box left">
 						<a href="/news/view?id=<?=$id?>">
-							<img style="width: 100px" src="http://img.<?=conf::get('server')?>/pp/<?=$news['salt']?>">
+							<img style="width: 100px" src="https://img.<?=conf::get('server')?>/pp/<?=$news['salt']?>">
 						</a>
 					</div>
 					<div class="left-box left ml15">

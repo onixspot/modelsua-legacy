@@ -1,6 +1,6 @@
 <div class="news-data-container mt20">
 	<div id="news-container" style="border-bottom: 1px solid #E5E8EE; width: 708px;">
-		<!-- <img class="left mr10 mb5" style="width: 295px;" src="http://img.<?=conf::get('server')?>/np/<?=$news['salt']?>.jpg" /> -->
+		<!-- <img class="left mr10 mb5" style="width: 295px;" src="https://img.<?=conf::get('server')?>/np/<?=$news['salt']?>.jpg" /> -->
 		<div>
 			<div class="left" style="width: 604px;">
 				<a href="/news/view?id=<?=$news['id']?>" class="fs20 bold cpurple" style="color: #000000;">
@@ -58,7 +58,7 @@
 			js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1";
 			fjs.parentNode.insertBefore(js, fjs);
 			}(document, 'script', 'facebook-jssdk'));</script>
-			<div class="fb-like" data-href="http://<?=$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"]?>" data-send="false" data-layout="button_count" data-width="140" data-show-faces="true"></div>
+			<div class="fb-like" data-href="https://<?=$_SERVER['HTTP_HOST'].$_SERVER["REQUEST_URI"]?>" data-send="false" data-layout="button_count" data-width="140" data-show-faces="true"></div>
         </div>
         <div class="left mr20">
             <g:plusone size="medium" width="80"></g:plusone>

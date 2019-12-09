@@ -71,7 +71,7 @@
                                 Название
                             </td>
                             <td>
-                                <input name="title" type="text" id="title" value="" maxlength="54"/>
+                                <input name="title" type="text" id="title" value=""/>
                             </td>
                         </tr>
                         <tr>
@@ -220,7 +220,7 @@ $().ready(function() {
             lang     : 'ru',
             height   : 600,
             toolbar  : 'maxi',
-            cssfiles : ['http://css.<?=conf::get('server')?>/erlte/elrte.min.css','http://css.<?=conf::get('server')?>/erlte/elfinder.css'],
+            cssfiles : ['https://css.<?=conf::get('server')?>/erlte/elrte.min.css','https://css.<?=conf::get('server')?>/erlte/elfinder.css'],
             fmOpen : function(callback) {
                  $('#finder').elfinder({
                         url : '/connectors/elfinder',
@@ -312,7 +312,7 @@ function show_data(data) {
 				break;
 				
 			case "salt":
-				$("#new-cover").attr("src", "http://img.<?=conf::get('server')?>/pp/"+data[i]);
+				$("#new-cover").attr("src", "https://img.<?=conf::get('server')?>/pp/"+data[i]);
 				break;
 				
             default: 
@@ -459,10 +459,10 @@ function show_list(resp) {
                     </td>\n\
                     <td>\n\
                         <a href="javascript:;" onClick="get_item_data(%id%);">\n\
-                            <img src="http://<?=conf::get('server')?>/ui/edit.png">\n\
+                            <img src="https://<?=conf::get('server')?>/ui/edit.png">\n\
                         </a>\n\
                         <a href="javascript:;" onClick="delete_news(%id%);">\n\
-                            <img src="http://<?=conf::get('server')?>/ui/delete.png">\n\
+                            <img src="https://<?=conf::get('server')?>/ui/delete.png">\n\
                         </a>\n\
                     </td>\n\
                 </tr>';

@@ -1,6 +1,7 @@
-<div class="profile mt20 mb10">
-	<div>
-		<div class="left" style="width: 400px;">
+<div class="profile mt-3 mb-3 container">
+
+    <div class="row">
+		<div class="col-6">
 			<!-- START NAME AND SURNAME -->
 			<div class="mb10 fs30" style="color: #000000">
 				<div class="left">
@@ -314,7 +315,7 @@
             <? } ?>
 		</div>
 
-		<div class="left ml20 fs11" style="width: 580px;">
+		<div class="col-6">
 			<!-- START PHOTO -->
 			<? include "index_parts/photo.php"; ?>
 			<!-- END PHOTO -->
@@ -650,10 +651,10 @@
 			</div>-->
 			<!-- END VIDEOS -->
 		</div>
-		<div class="clear"></div>
-		
 	</div>
+
 </div>
+
 <?if($by_code) {
     include 'index_parts/login_by_code_form.php';
 } ?>

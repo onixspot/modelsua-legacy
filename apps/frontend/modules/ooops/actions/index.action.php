@@ -28,7 +28,7 @@ class ooops_index_action extends frontend_controller
                         if ( session::is_authenticated() )
                         {
                                 //$body .= 'Пользователь: ' . profile_peer::full_name(session::get_user_id(), false) . "\n";
-                                $body .= 'http://' . context::get('host') . '/profile?id=' . session::get_user_id() . "\n\n";
+                                $body .= 'https://' . context::get('host') . '/profile?id=' . session::get_user_id() . "\n\n";
                         }
                         $body .= 'URL: ' . $_SERVER['REQUEST_URI'] . "\n\n";
                         $body .= 'Referrer: ' . $_SERVER['HTTP_REFERER'] . "\n\n";

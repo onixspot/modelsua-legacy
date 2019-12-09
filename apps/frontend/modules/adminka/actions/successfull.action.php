@@ -65,6 +65,11 @@ class adminka_successfull_action extends frontend_controller
                     $user_data = db::get_row('SELECT * FROM user_data WHERE user_id=:id', ['id' => $id]);
                     $check     = db::get_scalar('SELECT id FROM user_auth WHERE id=:id AND '.$check_sql, ['id' => $id]);
 
+                    if (isset($_GET['debug-mode']) && 1 === (int) $_GET['debug-mode']) {
+                        die(sprintf("%s\n", json_encode($user_data, JSON_PRETTY_PRINT)));
+
+                    }
+
                     if ($check) {
                         $this->json = ['success' => 0, 'reason' => 'Выбраный пользователь уже находиться в другом списке'];
                     } elseif (!$user_data['pid'] || !$user_data['ph_crop']) {
