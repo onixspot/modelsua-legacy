@@ -5,21 +5,21 @@
  */
 class geo_peer extends db_peer_postgre
 {
-    const UKRAINE = 9908;
-    const ITALIA = 1786;
-    const FRANCE = 10668;
-    const USA = 5681;
-    const CHINA = 2374;
-    const JAPAN = 11060;
-    const SINGAPORE = 277565;
-    const GERMANY = 1012;
-    const INDONESIA = 277559;
-    const MALAYSIA = 277563;
-    const TURKEY = 9705;
-    const LEBANON = 582060;
-    const SPAIN = 1707;
-    const TAIWAN = 277567;
-    const UK = 616;
+    const UKRAINE     = 9908;
+    const ITALIA      = 1786;
+    const FRANCE      = 10668;
+    const USA         = 5681;
+    const CHINA       = 2374;
+    const JAPAN       = 11060;
+    const SINGAPORE   = 277565;
+    const GERMANY     = 1012;
+    const INDONESIA   = 277559;
+    const MALAYSIA    = 277563;
+    const TURKEY      = 9705;
+    const LEBANON     = 582060;
+    const SPAIN       = 1707;
+    const TAIWAN      = 277567;
+    const UK          = 616;
     const SOUTH_KOREA = 11014;
 
     const COUNTRY_IDS = [
@@ -90,6 +90,7 @@ class geo_peer extends db_peer_postgre
 
     /**
      * @param array $exclude
+     *
      * @return array
      */
     public function get_countries_diff($exclude)
@@ -106,6 +107,7 @@ class geo_peer extends db_peer_postgre
 
     /**
      * @param array $ids
+     *
      * @return array
      */
     private function sanitizeRecords($ids)
@@ -147,7 +149,7 @@ class geo_peer extends db_peer_postgre
 
         $data = [
             'country_id' => $country['country_id'],
-            'name' => $country['name'],
+            'name'       => $country['name'],
         ];
 
         if (is_bool($country['hidden'])) {
@@ -189,7 +191,7 @@ class geo_peer extends db_peer_postgre
         $regions = [];
         foreach ($regions_id as $region_id) {
             if (!in_array($region_id, [720], true)) {
-                $regions[] = $this->get_item($region_id);
+                $regions[]                            = $this->get_item($region_id);
                 $regions[count($regions) - 1]['name'] = $regions[count($regions) - 1]['name_'.session::get('language', 'ru')];
             }
         }
@@ -213,8 +215,8 @@ class geo_peer extends db_peer_postgre
 
         $data = [
             'country_id' => $region['country_id'],
-            'region_id' => $region['region_id'],
-            'name' => $region['name'],
+            'region_id'  => $region['region_id'],
+            'name'       => $region['name'],
         ];
 
         if (is_bool($region['hidden'])) {
@@ -229,18 +231,12 @@ class geo_peer extends db_peer_postgre
     public function get_city($city_id)
     {
         $this->table_name = 'cities';
+        $ids        = $this->get_list(['city_id' => $city_id], [], [], 1);
+        if (count($ids) === 0) {
+            return null;
+        }
 
-        $cond = [
-            'city_id' => $city_id,
-        ];
-
-        $cities_id = $this->get_list($cond, [], [], 1);
-
-        $city = $this->get_item($cities_id[0]);
-
-        $ret['name'] = $city['name_'.session::get('language', 'ru')];
-
-        return $ret['name'];
+        return $this->get_item($ids[0])['name_'.session::get('language', 'ru')];
     }
 
     public function get_cities($cond = [], $options = [])
@@ -258,8 +254,8 @@ class geo_peer extends db_peer_postgre
         $cities_id = $this->get_list($cond, [], ['name_'.session::get('language', 'ru').' ASC']);
 
         $districts = [];
-        $cities = [];
-        $centers = [];
+        $cities    = [];
+        $centers   = [];
 
         $big_cities = [
             [10184, 10398, 10029, 9977, 10532, 10337, 10251, 10252],
@@ -267,7 +263,7 @@ class geo_peer extends db_peer_postgre
         ];
 
         foreach ($cities_id as $city_id) {
-            $city = $this->get_item($city_id);
+            $city         = $this->get_item($city_id);
             $city['name'] = $city['name_'.session::get('language', 'ru')];
             switch ($city['country_id']) {
                 // Германия
@@ -409,9 +405,9 @@ class geo_peer extends db_peer_postgre
 
         $data = [
             'country_id' => $city['country_id'],
-            'region_id' => $city['region_id'],
-            'city_id' => $city['city_id'],
-            'name' => $city['name'],
+            'region_id'  => $city['region_id'],
+            'city_id'    => $city['city_id'],
+            'name'       => $city['name'],
         ];
 
         if (is_bool($city['hidden'])) {

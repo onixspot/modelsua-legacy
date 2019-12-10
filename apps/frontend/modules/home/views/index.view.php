@@ -7,63 +7,57 @@
  */
 ?>
 
-<?php if (session::has_credential('admin')) { ?>
-    <?php $context = [
-        'title'          => t('Самые успешные'),
-        'href'           => '/people?status=legendary',
-        'css'            => 'mt5',
-        'collection'     => $legendary,
-        'register_links' => [
-            [
-                'text'   => t('Зарегистрироваться в каталоге'),
-                'href'   => '/sign/registration?set=member',
-                'enable' => static function () {
-                    return !session::is_authenticated();
-                },
-            ],
-            [
-                'text'   => t('Хочу стать моделью'),
-                'href'   => '/sign/registration',
-                'enable' => static function () {
-                    return !session::is_authenticated();
-                },
-            ],
-            [
-                'text'   => t('Пригласи подругу'),
-                'href'   => '/invite',
-                'enable' => static function () {
-                    return session::is_authenticated();
-                },
-            ],
+<?php $context = [
+    'title'          => t('Самые успешные'),
+    'href'           => '/people?status=legendary',
+    'css'            => 'mt5',
+    'collection'     => $legendary,
+    'register_links' => [
+        [
+            'text'   => t('Зарегистрироваться в каталоге'),
+            'href'   => '/sign/registration?set=member',
+            'enable' => static function () {
+                return !session::is_authenticated();
+            },
         ],
-    ]; ?>
-    <?php include __DIR__.'/partials/photos_row.php' ?>
-<?php } ?>
+        [
+            'text'   => t('Хочу стать моделью'),
+            'href'   => '/sign/registration',
+            'enable' => static function () {
+                return !session::is_authenticated();
+            },
+        ],
+        [
+            'text'   => t('Пригласи подругу'),
+            'href'   => '/invite',
+            'enable' => static function () {
+                return session::is_authenticated();
+            },
+        ],
+    ],
+]; ?>
+<?php include __DIR__.'/index/photos_row.php' ?>
 
 <?php $context = [
     'title'      => t('Успешные'),
     'href'       => '/people?status=successful',
     'collection' => $successful,
 ]; ?>
-<?php include __DIR__.'/partials/photos_row.php' ?>
+<?php include __DIR__.'/index/photos_row.php' ?>
 
-<?php if (session::has_credential('admin')) { ?>
-    <?php $context = [
-        'title'      => t('Перспективные'),
-        'href'       => '/people?status=perspective',
-        'collection' => $perspective,
-    ]; ?>
-    <?php include __DIR__.'/partials/photos_row.php' ?>
-<?php } ?>
+<?php $context = [
+    'title'      => t('Перспективные'),
+    'href'       => '/people?status=perspective',
+    'collection' => $perspective,
+]; ?>
+<?php include __DIR__.'/index/photos_row.php' ?>
 
-<?php if (session::has_credential('admin')) { ?>
-    <?php $context = [
-        'title'      => t('Новые лица'),
-        'href'       => '/people?status=new-face',
-        'collection' => $new_faces,
-    ]; ?>
-    <?php include __DIR__.'/partials/photos_row.php' ?>
-<?php } ?>
+<?php $context = [
+    'title'      => t('Новые лица'),
+    'href'       => '/people?status=new-face',
+    'collection' => $new_faces,
+]; ?>
+<?php include __DIR__.'/index/photos_row.php' ?>
 
 <script type="text/javascript">
     $(document).ready(function () {
@@ -84,32 +78,7 @@
     });
 </script>
 
-<div class="small-title square_p pl10 mb10 mt5">
-    <a href="/updates"><?= t('Новые фотографии') ?></a>
-</div>
-<div class="mb20 updates" style="width: 100%;">
-    <?php foreach ($boxes as $box) { ?>
-        <?php rsort($box["images"]) ?>
-        <div class="update">
-            <div style="width: 220px; height: 295px; overflow: hidden;">
-                <div class="photo" category="<?= $box["category"] ?>" step="0"
-                     style="background: url('/imgserve?pid=<?= $box["images"][0] ?>&h=295') center;"></div>
-                <?php $user_data = profile_peer::instance()->get_item($users[$box["images"][0]]); ?>
-                <div class="desc"><a class="cwhite"
-                                     href="/profile?id=<?= $users[$box["images"][0]] ?>"><?= profile_peer::get_name($user_data, "&fn") ?> <span
-                                class="ucase"><?= profile_peer::get_name($user_data, "&ln") ?></span></a></div>
-            </div>
-            <div class="acenter ucase fs14 bold mt10">
-                <a class="underline"
-                   href="/updates?category=<?= $box["category"] == "advertisement" || $box["category"] == "catalogs" ? "adv" : $box["category"] ?>">
-                    <?= user_albums_peer::get_category($box["category"] == "advertisement" || $box["category"] == "catalogs" ? "adv"
-                        : $box["category"]) ?>
-                </a>
-            </div>
-        </div>
-    <?php } ?>
-    <div class="clear"></div>
-</div>
+<?php include __DIR__.'/index/photo_updates.php' ?>
 
 <div class="grid columns top-row">
     <div>
@@ -247,12 +216,12 @@
                 <img src="/journal.jpg" style="height: 285px;">
             </div>
             <!--<div class="text-box left" style="margin-top: 105px; width: auto !important;">-->
-                <!--<div class="top-title fs24 cpurple pointer">
-                    <a href="https://elle.com.ua"><b>ELLE</b></a>
-                </div>-->
-                <!--                <div class="top-text fs13 cblack">
-                                    ero. Vestibulum ultricies, erat eu commodo aliquet, nisi quam sollicitudin nunc, et vulputate nulla tortor non libero.
-                                </div>-->
+            <!--<div class="top-title fs24 cpurple pointer">
+                <a href="https://elle.com.ua"><b>ELLE</b></a>
+            </div>-->
+            <!--                <div class="top-text fs13 cblack">
+                                ero. Vestibulum ultricies, erat eu commodo aliquet, nisi quam sollicitudin nunc, et vulputate nulla tortor non libero.
+                            </div>-->
             <!--</div>-->
         </div>
         <div class="top-detail-link hide fs11 left  arrow_p bold" style="margin-top: 15px;">

@@ -193,6 +193,9 @@ class UIRadioInput extends UIElement {
 
     value(value) {
         const radio = this._valueMap.get(value.toString());
+        if (!radio) {
+            return;
+        }
         radio.click();
         radio.dispatchEvent(new CustomEvent('change', {target: {value}}));
     }
@@ -342,37 +345,39 @@ class UIRadioInput extends UIElement {
         .controller((f, {$api}) => {
             const addBtn   = f.querySelector('input[type="button"]#add_foreign_agency'),
                   template = f.querySelector('template#foreign_agency'),
-                  nodes    = new Set(),
-                  intro    = new Map();
+                  nodes    = new Map();
 
             let idx = 0;
             addBtn.addEventListener('click', () => {
-                const node    = document.importNode(template.content, true),
-                      close   = node.querySelector('button.close'),
-                      country = UISelect.bind('name="ufa[0][country]"', node),
-                      city    = UISelect.bind('name="ufa[0][city]"', node),
-                      cityDiv = city._target.closest('div.form-row'),
-                      id      = UISelect.bind('name="ufa[0][id]"', node),
-                      idDiv   = id._target.closest('div.form-row'),
-                      name    = UIInput.bind('name="ufa[0][name]"', node);
+                const node         = document.importNode(template.content, true),
+                      close        = node.querySelector('button.close'),
+                      country      = UISelect.bind('name="ufa[0][country]"', node),
+                      city         = UISelect.bind('name="ufa[0][city]"', node),
+                      cityDiv      = city._target.closest('div.form-row'),
+                      id           = UISelect.bind('name="ufa[0][id]"', node),
+                      idDiv        = id._target.closest('div.form-row'),
+                      name         = UIInput.bind('name="ufa[0][name]"', node),
+                      motherAgency = node.querySelector('input[name="mother_agency[]"]');
+
+                const context = nodes.get(idx);
 
                 const handleCountryChange = (data) => {
                     city
                         .reset(data, ({id, name}) => [id, name])
-                        .value(0);
+                        .value(context !== undefined ? context.city : 0);
                 };
 
                 const handleCityChange = (data) => {
                     id
                         .reset(data, ({id, name}) => [id, name], 'Другое')
-                        .value(0);
+                        .value(context !== undefined ? context.id : 0);
                 };
 
-                close.addEventListener('click', ({target}) => {
-                    target.closest('div[rel="section"]').remove();
-                });
-
-                if (nodes.size === 0) {
+                if (idx !== 0) {
+                    close.addEventListener('click', ({target}) => {
+                        target.closest('div[rel="section"]').remove();
+                    });
+                } else {
                     close.remove();
                 }
 
@@ -381,13 +386,11 @@ class UIRadioInput extends UIElement {
                     value = parseInt(value);
 
                     if (value > 0) {
-                        UIElement.visible(cityDiv, true);
                         $api
                             .citiesByCounty(value)
                             .then(handleCountryChange);
                     } else {
                         handleCountryChange();
-                        UIElement.visible(cityDiv, false);
                     }
                 });
 
@@ -396,13 +399,13 @@ class UIRadioInput extends UIElement {
                     value = parseInt(value);
 
                     if (value > 0) {
-                        UIElement.visible(idDiv, true);
+                        // UIElement.visible(idDiv, true);
                         $api
                             .agencies(value, country.value())
                             .then(handleCityChange);
                     } else {
                         handleCityChange();
-                        UIElement.visible(idDiv, false);
+                        // UIElement.visible(idDiv, false);
                     }
                 });
 
@@ -414,7 +417,7 @@ class UIRadioInput extends UIElement {
                         id.visible(false);
                         name
                             .visible(true)
-                            .value('')
+                            .value(context !== undefined ? context.name : '')
                             .focus();
                     } else {
                         id.visible(true);
@@ -432,20 +435,24 @@ class UIRadioInput extends UIElement {
                     }
                 });
 
-                (() => {
-                    country.value(0);
-                })();
-
-                node.querySelector('input[name="mother_agency[]"]').value = idx;
-
-                nodes.add({idx, node});
+                country.value(context !== undefined ? context.country : 0);
+                motherAgency.value = idx;
+                if (context !== undefined && parseInt(context.mother_agency) !== 0) {
+                    motherAgency.click();
+                }
+                nodes.set(idx, {...context, node});
                 template.before(node);
                 idx++;
             });
 
             return ({ufa}) => {
-                ufa.forEach((agency) => {
-                    addBtn.dispatchEvent(new Event('click'));
+                if (ufa.length === 0) {
+                    ufa = [{country: 0, city: 0, id: 0, name: ''}];
+                }
+
+                ufa.forEach((dataSet, idx) => {
+                    nodes.set(idx, {...dataSet});
+                    addBtn.dispatchEvent(new MouseEvent('click'));
                 });
             }
         })
@@ -469,173 +476,5 @@ class UIRadioInput extends UIElement {
 
             };
         });
-
-
-    // register('profile_edit_agency', {$agency, $foreignAgency}, function (...deps) {
-    //     const form = document.querySelector('form[name="profile_edit_agency"]');
-
-    //
-    //     deps.map(d => {
-    //         d.apply(this, [form]);
-    //     });
-    //
-    //     return () => {
-    //
-    //     };
-    // });
-    //
-    //
-    // function $agency(form) {
-    //     const city            = form.querySelector('select[name="agency[city]"]'),
-    //           id              = form.querySelector('select[name="agency[id]"]'),
-    //           name            = form.querySelector('input[name="agency[name]"]'),
-    //           contracts       = form.querySelectorAll('input[type="radio"][name="agency[contract]"]'),
-    //           contractTypes   = form.querySelectorAll('input[name="agency[contract_type]"]'),
-    //           contractTypeDiv = form.querySelector('input[name="agency[contract_type]"]').closest('div.form-row');
-    //
-    //     city.addEventListener('change', ({target: {value}}) => {
-    //         toggleFormRow(id, value > 0);
-    //         getAgencies(value);
-    //         id.dispatchEvent(new Event('change'));
-    //     });
-    //
-    //     id.addEventListener('change', ({target: {value}}) => {
-    //         value = parseInt(value);
-    //         toggleElement(id, value > -1);
-    //         toggleFormRow(name, value === -1, 'label');
-    //         value === -1 && name.focus();
-    //     });
-    //
-    //     name.addEventListener('blur', ({target: {value}}) => {
-    //         if (value === '') {
-    //             name.parentElement.style.display = 'none';
-    //             id.style.display = '';
-    //             id.focus();
-    //         }
-    //     });
-    //
-    //     contracts.forEach((radio) => {
-    //         radio.addEventListener('change', ({target: {value}}) => {
-    //             if (parseInt(value) !== 1) {
-    //                 contractTypeDiv.style.display = 'none';
-    //             } else {
-    //                 contractTypeDiv.style.display = '';
-    //             }
-    //         });
-    //         if (parseInt(radio.value) === 0) {
-    //             radio.checked = true;
-    //             radio.dispatchEvent(new CustomEvent('change', {target: {value: 0}}));
-    //         }
-    //     });
-    //
-    //     city.dispatchEvent(new CustomEvent('change', {target: {value: 0}}));
-    //
-    //     contractTypes[0].checked = true;
-    //     contractTypes[0].dispatchEvent(new Event('change'));
-    //
-    //     return {
-    //         run() {
-    //
-    //         }
-    //     }
-    // }
-    //
-    // function $foreignAgency(form) {
-    //     const $this    = this,
-    //           template = form.querySelector('template#foreign_agency'),
-    //           addBtn   = form.querySelector('input#add_foreign_agency');
-    //
-    //     addBtn.addEventListener('click', () => {
-    //         this.add({});
-    //     });
-    //
-    //     $this.add = ({enable_close_btn}) => {
-
-    //     };
-    //
-    //     addBtn.dispatchEvent(new Event('click'));
-    // }
-    //
-    // // const agencyRegion = form.querySelector('select#agencyRegion'),
-    // //     agencyCity = form.querySelector('select#agencyCity'),
-    // //     agency = form.querySelector('select#agency'),
-    // //     agencyName = form.querySelector('input#agencyName'),
-    // //     agencyContractType = form.querySelector('input[name="agency[contract_type]"]').closest('div.form-row'),
-    // //     addForeignAgencyBtn = form.querySelector('input#addForeignAgency');
-    // //
-    // // const state = JSON.parse(form.querySelector('script[type="application/json"]').innerText);
-    //
-    //
-    // // form
-    // //     .querySelectorAll('input[type="radio"][name="agency[contract]"]')
-    // //     .forEach(radio => radio.addEventListener('change', handleRadioChange));
-    // //
-    // // agencyRegion.addEventListener('change', ({target: {value}}) => {
-    // //     value = parseInt(value);
-    // //
-    // //     if (value > 0) {
-    // //         getCitiesByRegionId(value);
-    // //     } else {
-    // //         resetSelect(agencyCity);
-    // //     }
-    // //
-    // //     changeAgencyCity(0);
-    // //     toggleFormRow(agencyCity, value > 0);
-    // // }, true);
-    // //
-    // // agencyCity.addEventListener('change', ({target: {value}}) => {
-    // //     value = parseInt(value);
-    // //
-    // //     if (value > 0) {
-    // //         getAgencies(value);
-    // //     } else {
-    // //         resetSelect(agency);
-    // //     }
-    // //
-    // //     changeAgency(0);
-    // //     toggleFormRow(agency, value > 0);
-    // // }, true);
-    //
-    //
-    // // // ---------------------------
-    // // (() => {
-    // //     changeAgencyRegion(agencyRegion.dataset.value);
-    // //     renderForeignAgency();
-    // // })();
-    // //
-    // // // ---------------------------
-    // //
-    // //
-    // // function changeAgencyRegion(value) {
-    // //     agencyRegion.value = value;
-    // //     agencyRegion.dispatchEvent(new CustomEvent('change', {target: {value}}));
-    // // }
-    // //
-    // // function changeAgencyCity(value) {
-    // //     agencyCity.value = value;
-    // //     agencyCity.dispatchEvent(new CustomEvent('change', {target: {value}}));
-    // // }
-    // //
-    // // function changeAgency(value) {
-    // //     agency.value = value;
-    // //     agency.dispatchEvent(new CustomEvent('change', {target: {value}}));
-    // // }
-    //
-    // function toggleFormRow(target, state, selector) {
-    //     toggleElement(target.closest(selector !== undefined ? selector : 'div.form-row'), state)
-    // }
-    //
-    // function toggleElement(element, state) {
-    //     element.style.display = !state ? 'none' : '';
-    // }
-    //
-    // // function getCitiesByRegionId(region_id) {
-    // //     sendRequest('POST', '/geo', {
-    // //         act: 'get_cities',
-    // //         region_id
-    // //     }).then(({cities}) => {
-    // //         resetSelect(agencyCity, cities, ({city_id, name}) => [city_id, name]);
-    // //     });
-    // // }
 
 })();

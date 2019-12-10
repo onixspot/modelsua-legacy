@@ -21,7 +21,7 @@
                 ?>
                 <a href="/profile?id=<?= $v['id'] ?>" data-user-id="<?= $v['id'] ?>">
                     <img src="<?= $imgSrc ?>" <?= ($k % 10 === 0 && $k) ? 'style="margin-right: 0px;"'
-                        : ($i === 0 ? 'style="margin-left: 0px;"' : ''); ?>>
+                        : ($i === 0 ? 'style="margin-left: 0px;"' : '') ?>>
 
                     <?php $tooltip_style = [
                         'position: absolute',

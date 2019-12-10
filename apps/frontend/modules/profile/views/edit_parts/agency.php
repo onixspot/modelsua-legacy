@@ -57,16 +57,16 @@ $user_foreign_agency = user_agency_peer::instance()->get_item($ufaIds[0]);
                         <div class="form-row mt-2">
                             <label class="col-3 col-form-label text-right"><?= t('Контракт') ?>:</label>
                             <div class="col pt-2">
-                                <label>
-                                    <input type="radio" name="uua[contract]" value="0" <?= $user_agency['contract'] == 0 ? 'checked' : '' ?>/>
+                                <label class="mr-2">
+                                    <input type="radio" name="uua[contract]" value="0" />
                                     &mdash;
                                 </label>
-                                <label>
-                                    <input type="radio" name="uua[contract]" value="1" <?= $user_agency['contract'] == 1 ? 'checked' : '' ?>/>
+                                <label class="mr-2">
+                                    <input type="radio" name="uua[contract]" value="1" />
                                     <?= t('Да') ?>
                                 </label>
-                                <label>
-                                    <input type="radio" name="uua[contract]" value="-1" <?= $user_agency['contract'] == -1 ? 'checked' : '' ?>/>
+                                <label class="mr-2">
+                                    <input type="radio" name="uua[contract]" value="-1" />
                                     <?= t('Нет') ?>
                                 </label>
                             </div>
@@ -134,11 +134,11 @@ $user_foreign_agency = user_agency_peer::instance()->get_item($ufaIds[0]);
                             <div class="form-row mt-1">
                                 <span class="col-3 col-form-label text-right"><?= t('Название') ?>:</span>
                                 <div class="col-5 pt-1">
-                                    <label class="w-50">
-                                        <select name="ufa[0][id]" class="w-100">
+                                    <label class="w-100">
+                                        <select name="ufa[0][id]" class="w-75">
                                             <option value="0">&mdash;</option>
                                         </select>
-                                        <input type="text" name="ufa[0][name]" value="<?= $user_foreign_agency['name'] ?>" class="w-100">
+                                        <input type="text" name="ufa[0][name]" value="<?= $user_foreign_agency['name'] ?>" class="w-75">
                                     </label>
                                 </div>
                             </div>
@@ -146,7 +146,7 @@ $user_foreign_agency = user_agency_peer::instance()->get_item($ufaIds[0]);
                             <div class="form-row mt-2 mb-3">
                                 <div class="col-8 offset-3">
                                     <label class="w-100">
-                                        <input type="radio" name="mother_agency[]" value="1" <?php if ($user_agency['type']){ ?>checked<?php } ?>/>
+                                        <input type="radio" name="mother_agency[]" value="1"/>
                                         <?= t('Материнское агентство') ?>
                                     </label>
                                 </div>
@@ -189,23 +189,23 @@ $user_foreign_agency = user_agency_peer::instance()->get_item($ufaIds[0]);
 <script type="application/javascript">
     window['form[name="user_agency"]'].run({
         user_id: <?= $profile['user_id'] ?>,
-        city: <?= $user_agency['city_id'] ?>,
-        id: <?= $user_agency['agency_id'] ?>,
+        city: <?= $user_agency['city_id'] ?: 0 ?>,
+        id: <?= $user_agency['agency_id'] ?: 0 ?>,
         name: '<?= $user_agency['name'] ?>',
-        mother_agency: <?=$user_agency['type']?>,
-        contract: <?=$user_agency['contract']?>,
-        contract_type: <?=$user_agency['contract_type']?>,
+        mother_agency: <?=$user_agency['type'] ?: 0?>,
+        contract: <?=$user_agency['contract'] ?: 0?>,
+        contract_type: <?=$user_agency['contract_type'] ?: 0?>,
         ufa: <?= json_encode(
             array_map(
                 static function ($id) {
                     $ufa = user_agency_peer::instance()->get_item($id);
 
                     return [
-                        'country'       => $ufa['country_id'],
-                        'city'          => $ufa['city_id'],
-                        'id'            => $ufa['agency_id'],
-                        'name'          => $ufa['name'],
-                        'mother_agency' => $ufa['type'],
+                        'country'       => $ufa['country_id'] ?: 0,
+                        'city'          => $ufa['city_id'] ?: 0,
+                        'id'            => $ufa['agency_id'] ?: 0,
+                        'name'          => $ufa['name'] ?: '',
+                        'mother_agency' => $ufa['type'] ?: 0,
                     ];
                 },
                 $ufaIds

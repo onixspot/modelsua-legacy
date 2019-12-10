@@ -2,11 +2,19 @@
 
 class user_agency_peer extends db_peer_postgre
 {
-    protected $table_name = 'user_agency';
+    const EXCLUSIVE_CONTRACT_TYPE     = 1;
+    const NON_EXCLUSIVE_CONTRACT_TYPE = -1;
+    const CONTRACT_TYPES              = [
+        self::EXCLUSIVE_CONTRACT_TYPE     => 'эксклюзивный',
+        self::NON_EXCLUSIVE_CONTRACT_TYPE => 'неэксклюзивный',
+    ];
+
+    protected $table_name  = 'user_agency';
     protected $primary_key = 'id';
 
     /**
      * @param string $peer
+     *
      * @return db_peer|object|user_agency_peer
      */
     public static function instance($peer = 'user_agency_peer')
@@ -35,7 +43,7 @@ class user_agency_peer extends db_peer_postgre
         if ($id !== null) {
             $this->update($agency, ['id' => $id]);
 
-            return (int)$id;
+            return (int) $id;
         }
 
         return $this->insert($agency);
