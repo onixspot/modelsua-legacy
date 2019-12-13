@@ -97,7 +97,7 @@ class admin_index_action extends admin_controller
 	}
 	
 	private function verifySoM() {
-	    $offsets = array(user_auth_peer::successful,  user_auth_peer::new_faces, user_auth_peer::perspective);
+	    $offsets = array(user_auth_peer::SUCCESSFUL,  user_auth_peer::NEW_FACES, user_auth_peer::PERSPECTIVE);
 	    foreach ($offsets as $index=>$offset) {
 		$sql = "SELECT * FROM user_auth WHERE show_on_main>".$offset;
 		if(isset($offsets[($index+1)]))

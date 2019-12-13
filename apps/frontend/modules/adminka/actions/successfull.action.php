@@ -8,10 +8,10 @@ class adminka_successfull_action extends frontend_controller
 
     public function execute()
     {
-        $new_face    = user_auth_peer::new_faces;
-        $perspective = user_auth_peer::perspective;
-        $successful  = user_auth_peer::successful;
-        $legendary   = user_auth_peer::legendary;
+        $new_face    = user_auth_peer::NEW_FACES;
+        $perspective = user_auth_peer::PERSPECTIVE;
+        $successful  = user_auth_peer::SUCCESSFUL;
+        $legendary   = user_auth_peer::LEGENDARY;
 
         $model_type = request::get_int('mt');
 
@@ -154,7 +154,7 @@ class adminka_successfull_action extends frontend_controller
 
     private function verifySoM()
     {
-        $offsets = [user_auth_peer::successful, user_auth_peer::new_faces, user_auth_peer::perspective];
+        $offsets = [user_auth_peer::SUCCESSFUL, user_auth_peer::NEW_FACES, user_auth_peer::PERSPECTIVE];
         foreach ($offsets as $index => $offset) {
             $sql = 'SELECT * FROM user_auth WHERE show_on_main>'.$offset;
             if (isset($offsets[($index + 1)])) {

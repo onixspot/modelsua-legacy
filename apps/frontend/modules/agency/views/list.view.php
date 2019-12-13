@@ -14,17 +14,16 @@
         <div>
             <h3 class="p0 m0 mt10 mb15">
                 <span class="flag-icon flag-icon-<?= $country['code'] ?>"
-                      style="font-size: 200%; background-size: cover; width: 35%; box-shadow: 0px 0px 5px #9CA1AE"></span>
+                      style="font-size: 200%; background-size: cover; width: 90%; line-height: 1.5em; box-shadow: 0px 0px 5px #9CA1AE"/>
             </h3>
             <ul>
                 <?php foreach ($country['cities'] as $city) { ?>
-                    <li class="p0 mt5">
-                        <h4 class="p0 m0 mt10"><?= $city['name'] ?></h4>
+                    <li class="p-0 mt-1">
+                        <h6 class="mt-3 p-1 text-uppercase" style="width: 90%; background-color: #6C7580; color: white"><?= $city['name'] ?></h6>
                         <ul>
                             <?php foreach ($city['agencies'] as $agency) { ?>
                                 <li class="p0 mt5" style="color: #aaa">
-                                    <a href="/agency/?id=<?= $agency['id'] ?>"><?= $agency['name'] ?></a><?= $agency['members_count'] > 0
-                                        ? " - {$agency['members_count']}" : '' ?>
+                                    <a href="/agency/?id=<?= $agency['id'] ?>" class="mr-1"><?= $agency['name'] ?></a><?= $agency['members_count'] > 0 ? $agency['members_count'] : '' ?>
                                 </li>
                             <?php } ?>
                         </ul>
@@ -40,7 +39,7 @@
         <ul>
             <?php foreach ($group as $agency) { ?>
 
-                <a href="<?=$agency['link']?>"><?= $agency['name'] ?></a><?= $agency['members_count'] > 0 ? " - {$agency['members_count']}"
+                <a href="<?= $agency['link'] ?>"><?= $agency['name'] ?></a><?= $agency['members_count'] > 0 ? " - {$agency['members_count']}"
                     : '' ?>
             <? } ?>
         </ul>
@@ -110,7 +109,7 @@
     div.grid-container {
         display: grid;
         grid-auto-flow: column;
-        grid-template-columns: repeat(auto-fit, minmax(115px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     }
 
     div.horizontal-scrolling-container {

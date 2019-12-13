@@ -1,8 +1,9 @@
 .grid {
     display: grid;
+    width: 100%;
 }
 
-.grid.columns {
+.grid.auto-flow-column {
     grid-auto-flow: column;
     grid-auto-columns: 1fr;
 }

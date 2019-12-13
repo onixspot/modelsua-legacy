@@ -4,6 +4,7 @@
  * @var array $legendary
  * @var array $perspective
  * @var array $new_faces
+ * @var array $boxes
  */
 ?>
 
@@ -78,10 +79,13 @@
     });
 </script>
 
-<?php include __DIR__.'/index/photo_updates.php' ?>
+<?= call_user_func(require __DIR__.'/index/photo_updates.php', $boxes) ?>
 
-<div class="grid columns top-row">
+<div class="grid auto-flow-column top-row">
     <div>
+        <div class="headline">
+            <span>К</span>аталог моделей
+        </div>
         <div class="big-title fs20 cgray ka_<?= session::get('language', 'ru') ?>" style="width: auto;">
             <span><?= t('аталог моделей') ?></span>
         </div>
@@ -106,7 +110,7 @@
                 $v = $successful[0];
                 if ($v['ph_crop']) {
                     $crop = unserialize($v['ph_crop']);
-                    $src  = "https://".conf::get('server')."/imgserve?pid="
+                    $src  = 'https://'.conf::get('server')."/imgserve?pid="
                         .$v['pid'];//."&w=".$crop['w']."&h=".$crop['h']."&x=".$crop['x']."&y=".$crop['y']."&z=crop";
                 } else {
                     $src = "https://".conf::get('server')."/no_image.png";

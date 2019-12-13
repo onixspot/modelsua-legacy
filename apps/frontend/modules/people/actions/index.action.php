@@ -19,19 +19,19 @@ class people_index_action extends people_controller
         $this->status = request::get('status');
         switch ($this->status) {
             case 'new-face':
-                $sqladd = sprintf(' AND show_on_main >= %s AND show_on_main < %s', user_auth_peer::new_faces, user_auth_peer::perspective);
+                $sqladd = sprintf(' AND show_on_main >= %s AND show_on_main < %s', user_auth_peer::NEW_FACES, user_auth_peer::PERSPECTIVE);
                 break;
 
             case 'perspective':
-                $sqladd = sprintf(' AND show_on_main >= %s AND show_on_main < %s', user_auth_peer::perspective, user_auth_peer::legendary);
+                $sqladd = sprintf(' AND show_on_main >= %s AND show_on_main < %s', user_auth_peer::PERSPECTIVE, user_auth_peer::LEGENDARY);
                 break;
 
             case 'successful':
-                $sqladd = sprintf(' AND show_on_main > %s AND show_on_main < %s', user_auth_peer::successful, user_auth_peer::new_faces);
+                $sqladd = sprintf(' AND show_on_main > %s AND show_on_main < %s', user_auth_peer::SUCCESSFUL, user_auth_peer::NEW_FACES);
                 break;
 
             case 'legendary':
-                $sqladd = sprintf(' AND show_on_main >= %s', user_auth_peer::legendary);
+                $sqladd = sprintf(' AND show_on_main >= %s', user_auth_peer::LEGENDARY);
                 break;
 
             default:
@@ -82,10 +82,10 @@ class people_index_action extends people_controller
         }
 
         $page = request::get('page');
-        //$this->limit = session::get('people.limit');
         $this->limit = 24;
-        /*if( ! $this->limit)
-            $this->limit = 10;*/
+
+        $this->paginator = PaginatorFactory::create($this->list);
+
         $this->pager         = pager_helper::get_pager($this->list, $page, $this->limit);
         $this->count_members = $this->pager->get_total();
         $this->count_pages   = $this->pager->get_pages();

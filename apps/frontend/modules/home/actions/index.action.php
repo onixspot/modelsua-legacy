@@ -169,10 +169,10 @@ class home_index_action extends home_controller
 
     private function getGirls($type = 0)
     {
-        $new_faces   = user_auth_peer::new_faces;
-        $perspective = user_auth_peer::perspective;
-        $successful  = user_auth_peer::successful;
-        $legendary   = user_auth_peer::legendary;
+        $successful  = user_auth_peer::SUCCESSFUL;
+        $new_faces   = user_auth_peer::NEW_FACES;
+        $perspective = user_auth_peer::PERSPECTIVE;
+        $legendary   = user_auth_peer::LEGENDARY;
 
         switch ($type) {
             case 1:
@@ -191,7 +191,7 @@ class home_index_action extends home_controller
                 break;
 
             default:
-                $sqladd = sprintf(' a.show_on_main > %s AND a.show_on_main < %s', $successful, $new_faces);
+                $sqladd = sprintf(' a.show_on_main >= %s AND a.show_on_main < %s', $successful, $new_faces);
                 $key    = 'new_faces_view_type';
                 break;
         }
@@ -201,6 +201,7 @@ SELECT a.id, d.pid, d.ph_crop, d.first_name, d.last_name
 FROM user_auth AS a
     JOIN user_data d ON a.id = d.user_id
 WHERE %s
+  AND a.del = 0
   AND d.pid IS NOT NULL
   AND d.ph_crop IS NOT NULL
   AND a.hidden=false
@@ -222,4 +223,3 @@ SQL;
 
 }
 
-?>

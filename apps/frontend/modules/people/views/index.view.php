@@ -1,3 +1,9 @@
+<?php
+/**
+ * @var \Paginator $paginator
+ */
+?>
+
 <div class="mb10 fs12">
 
     <!--<div class="left mr10">
@@ -48,7 +54,6 @@
                style="<?= $anchor_style ?>;<?= $status === 'new-face' ? $selected_anchor_style : '' ?>"><?= t('Новые лица') ?></a>
         <?php } ?>
     </div>
-
     <div>
         <style type="text/css">
             #sortable, sortable2 {
@@ -209,9 +214,9 @@
 
         <table width="100%">
             <tr>
-                <td align="right">
+                <td align="center">
                     <div class="paginator">
-                        <?= pager_helper::get_full($pager) ?>
+                        <?= $paginator ?>
                     </div>
                 </td>
             </tr>

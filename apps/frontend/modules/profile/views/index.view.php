@@ -57,13 +57,18 @@
                 <div class="left">
                     <!-- START STATUS -->
                     <div class="fs12 mb10 bold">
-                        <?php if ($profile['show_on_main'] >= user_auth_peer::new_faces && $profile['show_on_main'] < user_auth_peer::perspective) { ?>
-                            <?php $status = t('Новое лицо'); ?>
-                        <?php } elseif ($profile['show_on_main'] >= user_auth_peer::perspective) { ?>
-                            <?php $status = t('Перспективная модель'); ?>
-                        <?php } elseif ($profile['show_on_main'] > user_auth_peer::successful && $profile['show_on_main'] < user_auth_peer::new_faces) { ?>
-                            <?php $status = t('Успешная модель'); ?>
-                        <?php } ?>
+                        <?= profile_peer::instance()
+                            ->useContext($profile)
+                            ->useStatusTypeCaptionMap(
+                                [
+                                    profile_peer::SUCCESSFUL_KEY  => t('Успешная модель'),
+                                    profile_peer::NEW_FACES_KEY   => t('Новое лицо'),
+                                    profile_peer::PERSPECTIVE_KEY => t('Перспективная модель'),
+                                    profile_peer::LEGENDARY_KEY   => t('Одна из самых успешных моделей'),
+                                ]
+                            )
+                            ->getStatusTypeCaption() ?>
+
                         <?php if ($profile['status'] == 22) { ?>
                             <?php $status .= ', '.t > ('Член Ассоциации'); ?>
                         <?php } elseif ($profile['status'] == 24) { ?>
@@ -120,7 +125,7 @@
                     <?php if ($profile['type'] != 4) { ?>
                         <?php include 'index_parts/location.php' ?>
                     <?php } else { ?>
-                        <?php $user_additional_id = user_additional_peer::instance()->get_list(array('user_id' => $profile['user_id'])); ?>
+                        <?php $user_additional_id = user_additional_peer::instance()->get_list(['user_id' => $profile['user_id']]); ?>
                         <?php $user_additional = user_additional_peer::instance()->get_item($user_additional_id[0]); ?>
                         <?php if ($profile['manager_agency_id'] > 0) { ?>
                             <?php $agency = agency_peer::instance()->get_item($profile['manager_agency_id']); ?>
@@ -420,11 +425,11 @@
                                 </div>
                                 <div id="window-categories" class="pb10 pl5 pr5 mt5 hide" style="position: absolute; border: 1px solid gray; background: #fff; box-shadow: 0px 0px 5px #aaa">
                                     <?php foreach ($works as $category_key => $work) { ?>
-                                        <?php if (in_array($category_key, array('portfolio'))) { ?>
+                                        <?php if (in_array($category_key, ['portfolio'])) { ?>
                                             <?php continue; ?>
                                         <?php } ?>
                                         <div class="pt5">
-                                            <?php if (in_array($category_key, array('covers'))) { ?>
+                                            <?php if (in_array($category_key, ['covers'])) { ?>
                                                 <a class="underline cgray" onmouseover="$(this).css('color', 'black')" onmouseout="$(this).css('color', 'gray')" href='/albums/album?aid=<?= $albums[$category_key][0]['id'] ?>&uid=<?= $user_id ?>&show=add_photo'><?= $work ?></a>
                                             <?php } else { ?>
                                                 <a class="underline cgray" onmouseover="$(this).css('color', 'black')" onmouseout="$(this).css('color', 'gray')" href='/albums?filter=<?= $category_key ?>&uid=<?= $user_id ?>&show=add_album'><?= $work ?></a>
@@ -440,14 +445,14 @@
                     <div class="fs12">
                         <?php $flag = false; ?>
                         <?php foreach ($works as $category_key => $work) { ?>
-                            <?php if (in_array($category_key, array('portfolio', 'contest'))) { ?>
+                            <?php if (in_array($category_key, ['portfolio', 'contest'])) { ?>
                                 <?php continue; ?>
                             <?php } ?>
                             <?php if (count($albums[$category_key][0]['images'][0]) > 0) { ?>
                                 <?php $flag = true; ?>
                                 <div class="left mr10" style="width: 100px;">
                                     <div class="acenter" style="height: 32px;">
-                                        <?php if (in_array($category_key, array('covers'))) { ?>
+                                        <?php if (in_array($category_key, ['covers'])) { ?>
                                             <?php // $albums_id = user_albums_peer::instance()->get_list(array('user_id' => $user_id, 'category' => $category_key)); ?>
                                             <a class="underline" href="/albums/album?aid=<?= $albums[$category_key][0]['id'] ?>&uid=<?= $user_id ?>"><?= $work ?>&nbsp;(<?= count($albums[$category_key][0]['images']) ?>)</a>
                                         <?php } else { ?>
@@ -455,7 +460,7 @@
                                         <?php } ?>
                                     </div>
                                     <div
-                                        <?php if (in_array($category_key, array('covers'))) { ?>
+                                        <?php if (in_array($category_key, ['covers'])) { ?>
                                             onclick="window.location = '/albums/album?aid=<?= $albums[$category_key][0]['id'] ?>&uid=<?= $user_id ?>';"
                                         <?php } else { ?>
                                             onclick="window.location = '/albums?filter=<?= $category_key ?>&uid=<?= $user_id ?>';"
@@ -464,7 +469,7 @@
                                     ></div>
                                     <div class="acenter">
                                         <?php $name = $albums[$category_key][0]['name'] ?>
-                                        <?php if (in_array($category_key, array('covers'))) { ?>
+                                        <?php if (in_array($category_key, ['covers'])) { ?>
                                             <?php $photo = user_photos_peer::instance()->get_item($albums[$category_key][0]['images'][0]); ?>
                                             <?php $photo['additional'] = unserialize($photo['additional']); ?>
                                             <?php $name = $photo['additional']['journal_name'].' :: '.$photo['additional']['journal_number'].', '.$photo['additional']['journal_year']; ?>

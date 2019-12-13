@@ -17,30 +17,30 @@
                     <div style="display: grid; grid-auto-flow: row">
                         <label>
                             <input type="radio" class="mr5" name="additional-list-change[]" value=""<?= (
-                                $profile['show_on_main'] === user_auth_peer::successful
+                                $profile['show_on_main'] === user_auth_peer::SUCCESSFUL
                             ) ? ' checked' : ' ' ?>>&mdash;</label>
 
                         <label>
                             <input type="radio" class="mr5" name="additional-list-change[]" value="1"<?= (
-                                $profile['show_on_main'] > user_auth_peer::successful
-                                && $profile['show_on_main'] < user_auth_peer::new_faces
+                                $profile['show_on_main'] > user_auth_peer::SUCCESSFUL
+                                && $profile['show_on_main'] < user_auth_peer::NEW_FACES
                             ) ? ' checked' : ' ' ?>><?= t('Успешные') ?></label>
 
                         <label>
                             <input type="radio" class="mr5" name="additional-list-change[]" value="3"<?= (
-                                $profile['show_on_main'] >= user_auth_peer::perspective
-                                && $profile['show_on_main'] < user_auth_peer::legendary
+                                $profile['show_on_main'] >= user_auth_peer::PERSPECTIVE
+                                && $profile['show_on_main'] < user_auth_peer::LEGENDARY
                             ) ? ' checked' : ' ' ?>><?= t('Перспективные') ?></label>
 
                         <label>
                             <input type="radio" class="mr5" name="additional-list-change[]" value="2"<?= (
-                                $profile['show_on_main'] >= user_auth_peer::new_faces
-                                && $profile['show_on_main'] < user_auth_peer::perspective
+                                $profile['show_on_main'] >= user_auth_peer::NEW_FACES
+                                && $profile['show_on_main'] < user_auth_peer::PERSPECTIVE
                             ) ? ' checked' : ' ' ?>><?= t('Новые лица') ?></label>
 
                         <label>
                             <input type="radio" class="mr5" name="additional-list-change[]" value="4"<?= (
-                                $profile['show_on_main'] >= user_auth_peer::legendary
+                                $profile['show_on_main'] >= user_auth_peer::LEGENDARY
                             ) ? ' checked' : ' ' ?>><?= t('Самые успешные') ?></label>
                     </div>
                 </td>

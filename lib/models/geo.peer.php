@@ -21,23 +21,80 @@ class geo_peer extends db_peer_postgre
     const TAIWAN      = 277567;
     const UK          = 616;
     const SOUTH_KOREA = 11014;
+    const SWITZERLAND = 10904;
+    const NETHERLANDS = 277551;
+    const BELGIUM     = 404;
+    const DENMARK     = 1366;
+    const SWEDEN      = 10933;
+    const AUSTRIA     = 63;
+    const ISRAEL      = 1393;
+    const GREECE      = 1258;
+    const CANADA      = 2172;
+    const BRAZIL      = 467;
+    const CHILE       = 582031;
+    const NORWAY      = 2880;
+    const UAE         = 582051;
 
     const COUNTRY_IDS = [
-        geo_peer::USA,
-        geo_peer::UK,
-        geo_peer::FRANCE,
-        geo_peer::ITALIA,
-        geo_peer::CHINA,
-        geo_peer::JAPAN,
-        geo_peer::SINGAPORE,
-        geo_peer::GERMANY,
-        geo_peer::INDONESIA,
-        geo_peer::MALAYSIA,
-        geo_peer::TURKEY,
-        geo_peer::LEBANON,
-        geo_peer::SPAIN,
-        geo_peer::TAIWAN,
-        geo_peer::SOUTH_KOREA,
+        self::USA,
+        self::UK,
+        self::FRANCE,
+        self::ITALIA,
+        self::CHINA,
+        self::JAPAN,
+        self::SINGAPORE,
+        self::GERMANY,
+        self::INDONESIA,
+        self::MALAYSIA,
+        self::TURKEY,
+        self::LEBANON,
+        self::SPAIN,
+        self::TAIWAN,
+        self::SOUTH_KOREA,
+        self::SWITZERLAND,
+        self::NETHERLANDS,
+        self::BELGIUM,
+        self::DENMARK,
+        self::SWEDEN,
+        self::AUSTRIA,
+        self::ISRAEL,
+        self::GREECE,
+        self::CANADA,
+        self::BRAZIL,
+        self::CHILE,
+        self::NORWAY,
+        self::UAE,
+    ];
+
+    const ALLOWED_CITY_IDS_BY_COUNTRY_ID = [
+        self::GERMANY     => [1014, 1107, 278190, 278154, 1117],
+        self::SPAIN       => [1764, 1733],
+        self::MALAYSIA    => [279122],
+        self::UAE         => [2372615, 5000000],
+        self::CHINA       => [2422, 2425, 3503075, 15790018, 15790019, 4691841],
+        self::JAPAN       => [11267],
+        self::USA         => [7992, 279123, 278193, 6788, 6517, 8721, 9085, 9327],
+        self::ITALIA      => [1820, 1835],
+        self::FRANCE      => [10805],
+        self::UK          => [740],
+        self::SWITZERLAND => [10932, 10917],
+        self::NETHERLANDS => [278093],
+        self::BELGIUM     => [409],
+        self::DENMARK     => [2331530],
+        self::SOUTH_KOREA => [11053],
+        self::SWEDEN      => [10961],
+        self::AUSTRIA     => [65],
+        self::ISRAEL      => [1447],
+        self::NORWAY      => [2888,],
+        self::CHILE       => [2412951],
+        self::BRAZIL      => [589],
+        self::CANADA      => [2183, 2215, 2287],
+        self::GREECE      => [1262],
+        self::INDONESIA   => null,
+        self::TURKEY      => null,
+        self::LEBANON     => null,
+        self::TAIWAN      => null,
+        self::SINGAPORE   => null,
     ];
 
     protected $table_name = '';
@@ -231,7 +288,7 @@ class geo_peer extends db_peer_postgre
     public function get_city($city_id)
     {
         $this->table_name = 'cities';
-        $ids        = $this->get_list(['city_id' => $city_id], [], [], 1);
+        $ids              = $this->get_list(['city_id' => $city_id], [], [], 1);
         if (count($ids) === 0) {
             return null;
         }
@@ -266,89 +323,6 @@ class geo_peer extends db_peer_postgre
             $city         = $this->get_item($city_id);
             $city['name'] = $city['name_'.session::get('language', 'ru')];
             switch ($city['country_id']) {
-                // Германия
-                case self::GERMANY:
-                    if (in_array($city['city_id'], [1014, 1107, 278190, 278154, 1117], true)) {
-                        $cities[] = $city;
-                    }
-                    break;
-
-                // Испания
-                case self::SPAIN:
-                    if (in_array($city['city_id'], [1764, 1733], true)) {
-                        $cities[] = $city;
-                    }
-                    break;
-
-                // Малайзия
-                case self::MALAYSIA:
-                    if (in_array($city['city_id'], [279122], true)) {
-                        $cities[] = $city;
-                    }
-                    break;
-
-                // ОАЭ
-                case 582051:
-                    if (in_array($city['city_id'], [2372615, 5000000], true)) {
-                        $cities[] = $city;
-                    }
-                    break;
-
-                // Китай
-                case self::CHINA:
-                    if (in_array($city['city_id'], [2422, 2425, 3503075, 15790018, 15790019, 4691841], true)) {
-                        $cities[] = $city;
-                    }
-                    break;
-
-                // Япония
-                case self::JAPAN:
-                    if (in_array($city['city_id'], [11267/*, 11125, 11199*/], true)) {
-                        $cities[] = $city;
-                    }
-                    break;
-
-                // США
-                case self::USA:
-                    if (in_array($city['city_id'], [7992, 279123, 278193, 6788, 6517, 8721, 9085, 9327], true)) {
-                        $cities[] = $city;
-                    }
-                    break;
-
-                // Италия
-                case self::ITALIA:
-                    if (in_array($city['city_id'], [1820, 1835/*, 278193, 1863, 1853, 1822, 1886, 1875, 5911563*/], true)) {
-                        $cities[] = $city;
-                    }
-                    break;
-
-                // Франция
-                case self::FRANCE:
-                    if (in_array($city['city_id'], [10805/*, 10685, 10822*/], true)) {
-                        $cities[] = $city;
-                    }
-                    break;
-
-                case self::UK:
-                    if (in_array($city['city_id'], [740/*, 10685, 10822*/], true)) {
-                        $cities[] = $city;
-                    }
-                    break;
-
-                case self::SOUTH_KOREA:
-                    if (in_array($city['city_id'], [0, 11053], true)) {
-                        $cities[] = $city;
-                    }
-                    break;
-
-                case self::INDONESIA:
-                case self::TURKEY:
-                case self::LEBANON:
-                case self::TAIWAN:
-                case self::SINGAPORE:
-                    $cities[] = $city;
-                    break;
-
                 // Украина
                 case self::UKRAINE:
                     if (isset($options['big-cities']) && $options['big-cities'] !== false) {
@@ -370,6 +344,17 @@ class geo_peer extends db_peer_postgre
                             $centers[] = $city;
                         }
                     }
+                    break;
+
+                default:
+                    if (!array_key_exists($city['country_id'], self::ALLOWED_CITY_IDS_BY_COUNTRY_ID)
+                        || (self::ALLOWED_CITY_IDS_BY_COUNTRY_ID[$city['country_id']] !== null
+                            && !in_array($city['city_id'], self::ALLOWED_CITY_IDS_BY_COUNTRY_ID[$city['country_id']], true))) {
+                        continue 2;
+                    }
+
+                    $cities[] = $city;
+
                     break;
             }
         }

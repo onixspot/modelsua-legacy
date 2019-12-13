@@ -58,7 +58,7 @@ class agency_index_action extends agency_controller
 				user_auth AS ua 
 			INNER JOIN user_data AS ud ON ua.id = ud.user_id 
 			INNER JOIN user_agency AS ug ON ug.user_id = ud.user_id 
-			WHERE ug.agency_id = '.$this->agency['id']
+			WHERE ua.del = 0 AND ug.agency_id = '.$this->agency['id']
             .' AND ua.type = 2 AND ud.status > 20 AND ua.hidden = false AND ud.agency_rank > 0 ORDER BY ud.agency_rank ASC';
         $this->models_list = db::get_cols($sql);
 
@@ -66,7 +66,7 @@ class agency_index_action extends agency_controller
 				user_auth AS ua 
 			INNER JOIN user_data AS ud ON ua.id = ud.user_id 
 			INNER JOIN user_agency AS ug ON ug.user_id = ud.user_id 
-			WHERE ug.agency_id = '.$this->agency['id']
+			WHERE ua.del = 0 AND ug.agency_id = '.$this->agency['id']
             .' AND ua.type = 2 AND ud.status > 20 AND ua.hidden = false AND ud.agency_rank = 0 ORDER BY ud.rank ASC';
         $this->models_list = array_merge($this->models_list, db::get_cols($sql));
 
@@ -82,20 +82,20 @@ class agency_index_action extends agency_controller
 
         $this->filter = request::get_string('filter');
         if ($this->filter != '') {
-            $sql = 'SELECT ua.id FROM user_auth AS ua WHERE ua.id IN ('.implode(', ', $this->models_list).') AND ';
+            $sql = 'SELECT ua.id FROM user_auth AS ua WHERE ua.id IN ('.implode(', ', $this->models_list).') AND ua.del = 0 AND ';
             switch ($this->filter) {
                 case 'new_faces':
-                    $sql .= 'show_on_main > '.user_auth_peer::new_faces.' AND ';
-                    $sql .= 'show_on_main < '.user_auth_peer::perspective.' ';
+                    $sql .= 'show_on_main > '.user_auth_peer::NEW_FACES.' AND ';
+                    $sql .= 'show_on_main < '.user_auth_peer::PERSPECTIVE.' ';
                     break;
 
                 case 'perspective':
-                    $sql .= 'show_on_main > '.user_auth_peer::perspective.' ';
+                    $sql .= 'show_on_main > '.user_auth_peer::PERSPECTIVE.' ';
                     break;
 
                 case 'successful':
-                    $sql .= 'show_on_main > '.user_auth_peer::successful.' AND ';
-                    $sql .= 'show_on_main < '.user_auth_peer::new_faces.' ';
+                    $sql .= 'show_on_main > '.user_auth_peer::SUCCESSFUL.' AND ';
+                    $sql .= 'show_on_main < '.user_auth_peer::NEW_FACES.' ';
                     break;
             }
 
