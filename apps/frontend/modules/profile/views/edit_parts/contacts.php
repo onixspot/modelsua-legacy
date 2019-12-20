@@ -62,7 +62,7 @@
             <div class="clear"></div>
         </div>
         <div class="mb10">
-            <div class="left pt5 mr5 aright" style="width: 200px">Facebook.com:</div>
+            <div class="left pt5 mr5 aright" style="width: 200px">Facebook:</div>
             <div class="left">
                 <input type="text" id="facebook" value="<?= $profile_contacts['facebook'] ?>"/>
             </div>
@@ -122,7 +122,7 @@
         <div class="mb10">
             <div class="left pt5 mr5 aright" style="width: 200px">Wiki:</div>
             <div class="left">
-                <input type="text" id="wiki" value="<?= $profile_contacts['vkontakte'] ?>"/>
+                <input type="text" id="wiki" value="<?= $profile_contacts['wiki'] ?>"/>
             </div>
             <div class="left mt5 ml5">
                 <input type="checkbox" id="wiki-access" <?php if ($profile_contacts['_wiki']['access'] == 1){ ?>checked<?php } ?> />

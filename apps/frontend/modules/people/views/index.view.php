@@ -48,6 +48,8 @@
                style="<?= $anchor_style ?>;<?= $status === 'legendary' ? $selected_anchor_style : '' ?>"><?= t('Самые успешные') ?></a> |
             <a href="/people?status=successful"
                style="<?= $anchor_style ?>;<?= $status === 'successful' ? $selected_anchor_style : '' ?>"><?= t('Успешные') ?></a> |
+            <a href="/people?status=modelscom"
+               style="<?= $anchor_style ?>;<?= $status === 'modelscom' ? $selected_anchor_style : '' ?>"><?= t('Models.com') ?></a> |
             <a href="/people?status=perspective"
                style="<?= $anchor_style ?>;<?= $status === 'perspective' ? $selected_anchor_style : '' ?>"><?= t('Перспективные') ?></a> |
             <a href="/people?status=new-face"
@@ -89,7 +91,7 @@
                              style="position: absolute; background: black; color: white; border-radius: 5px;">
                             <?= profile_peer::get_name($profile) ?><br/>
                             <!--<span class="fs10"><?= profile_peer::get_location($profile) ?></span>
-							<?php if (intval(profile_peer::get_age($profile['birthday'])) > 1) { ?>
+							<?php if ((int) profile_peer::get_age($profile['birthday']) > 1) { ?>
 								<br />
 								<span class="fs10"><?= profile_peer::get_age($profile['birthday']) ?></span>
 							<?php } ?>-->
@@ -217,6 +219,7 @@
                 <td align="center">
                     <div class="paginator">
                         <?= $paginator ?>
+                        <span class="text-muted">(<?=$count_members?>)</span>
                     </div>
                 </td>
             </tr>

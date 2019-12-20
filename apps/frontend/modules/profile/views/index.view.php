@@ -87,7 +87,7 @@
 
                     <?php if ($profile['type'] != 4) { ?>
                         <!-- START BIRTHDAY AND BIRTHPLACE -->
-                        <?php if (intval(profile_peer::get_age($profile['birthday'])) > 1) { // && session::has_credential('admin') ?>
+                        <?php if ((int) profile_peer::get_age($profile['birthday']) > 1) { // && session::has_credential('admin') ?>
                             <div class="fs12">
                                 <div class="left aright mr5 cgray"></div>
                                 <div class="left">
@@ -287,7 +287,7 @@
             <!-- END MESSAGES -->
 
             <!-- START CONTACTS -->
-            <?php include 'index_parts/contacts.php'; ?>
+            <?= call_user_func(require 'index_parts/contacts.php', $profile) ?>
             <!-- END CONTACTS -->
 
             <!-- START CARD -->

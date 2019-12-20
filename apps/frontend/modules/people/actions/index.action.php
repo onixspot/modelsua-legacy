@@ -54,6 +54,7 @@ class people_index_action extends people_controller
             'del'    => 0,
             'reserv' => 0,
         ];
+
         if (session::has_credential('admin')) {
             $sql        = 'SELECT id FROM user_auth WHERE type=:type AND del=:del AND hidden=:hidden AND reserv=:reserv';
             $coditional = [
@@ -62,6 +63,26 @@ class people_index_action extends people_controller
                 'del'    => 0,
                 'reserv' => 0,
             ];
+        }
+
+        if ($this->status === 'modelscom') {
+            $sql        = <<<HEREDOC
+select ua.id from user_auth as ua
+    left join user_contacts as uc on uc.user_id = ua.id
+where uc.key = 'modelscom'
+  and uc.value != ''
+  and ua.type = :type
+  and ua.del = :del
+  and ua.hidden = :hidden
+  and ua.reserv = :reserv;
+HEREDOC;
+            $coditional = [
+                'type'   => $this->type_key,
+                'hidden' => 0,
+                'del'    => 0,
+                'reserv' => 0,
+            ];
+
         }
         //		echo "<pre>";
         //		var_dump($sql);
@@ -81,7 +102,7 @@ class people_index_action extends people_controller
             }
         }
 
-        $page = request::get('page');
+        $page        = request::get('page');
         $this->limit = 24;
 
         $this->paginator = PaginatorFactory::create($this->list);

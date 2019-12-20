@@ -1,4 +1,4 @@
-<div class="mt15 mb5 fs10" style="width: 1000px;">
+<div class="mt15 mb5 fs10 p-3">
 	<div class="left mr20 mt5" style="width: 262px;">
 		<a href="/"><img src="/<?=session::get('language','ru')?>/logo.png" style="margin-bottom: 10px" /></a>
 	</div>

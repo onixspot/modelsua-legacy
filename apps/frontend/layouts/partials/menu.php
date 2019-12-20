@@ -53,7 +53,7 @@ function display_recursive($subtree, $from_db = true)
     }
 </style>
 
-<div style="width: 1000px; margin-top: -5px">
+<div>
 	<div class="mb5 ddsmoothmenu left" id="smoothmenu" style="background: #000000; width: <? if(session::is_authenticated()){ ?>827<? } else { ?>827<? } ?>px; height: 31px">
 		<ul>
 			<? foreach($menu_items as $menu_item){ ?>

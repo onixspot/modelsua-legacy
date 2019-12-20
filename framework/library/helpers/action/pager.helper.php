@@ -166,6 +166,7 @@ class Paginator
     /** @var array */
     private $collection;
 
+    /** @var int */
     private $currentPage;
 
     /**

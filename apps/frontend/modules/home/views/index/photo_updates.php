@@ -22,7 +22,7 @@ HTML;
     );
 
     return <<< HTML
-<div class="container">
+<div class="container p-0">
     <div class="row">
         <div class="col small-title square_p pl10">
             <a href="/updates">Новые фотографии</a>

@@ -58,6 +58,7 @@ class compressor extends compressor_controller
                     './multiselect.css',
                     './imgareaselect-default.css',
                     './grid.css',
+                    './style.v2.css',
                 ],
             ]
         );
