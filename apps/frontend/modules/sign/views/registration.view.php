@@ -9,7 +9,7 @@
     </div>
 
     <div id="registration-collection" class="p10" style="border: 1px solid #000000;">
-        <form id="registration" action="/sign/registration" method="post">
+        <form id="registration" action="/sign/registration" method="post" class="container-fluid p-0">
 
             <div class="mb10 p5 bold hide" style="background: #eee;">
                 <?= t('Прошу') ?>:
@@ -18,11 +18,11 @@
                 <div class="left mr5 aright" style="width: 128px">&nbsp;</div>
                 <div class="left" style="width: 512px">
                     <div class="left"><input type="radio" id="model" name="statement_type[]"
-                                             <? if (request::get('set') != 'asso'){ ?>checked<? } ?> /></div>
+                                             <?php if (request::get('set') != 'asso'){ ?>checked<?php } ?> /></div>
                     <div class="left ml5" style="width: 480px"><label for="model"><?= t('включить меня в Каталог моделей Украины') ?></label></div>
                     <div class="clear"></div>
                     <div class="left"><input type="radio" id="association_member" name="statement_type[]"
-                                             <? if (request::get('set') == 'asso'){ ?>checked<? } ?> /></div>
+                                             <?php if (request::get('set') == 'asso'){ ?>checked<?php } ?> /></div>
                     <div class="left ml5" style="width: 480px"><label
                                 for="association_member"><?= t('включить меня в Каталог моделей Украины и принять в Ассоциацию моделей Украины') ?></label>
                     </div>
@@ -53,7 +53,7 @@
                     <div class="mt10">
                         <div class="left"><input type="radio" id="iwantbemember" name="iwant[]"/></div>
                         <div class="left ml5" style="width: 480px"><label
-                                    for="iwantbemember"><?= t('Хочу попасть в Каталог моделей Украины, т.к. я уже модель') // , т.к. я уже модель ?></label>
+                                    for="iwantbemember"><?= t('Хочу попасть в Каталог моделей Украины, т.к. я уже модель') // , т.к. я уже модель            ?></label>
                         </div>
                         <div class="clear"></div>
                     </div>
@@ -61,7 +61,7 @@
                         <div class="mb5">
                             <div class="left pt5" style="width: 200px"><?= t('Опыт работы моделью') ?>:</div>
                             <div class="left mt5">
-                                <?
+                                <?php
                                 $slist                        = profile_peer::instance()->get_additional_list();
                                 $slist['work_experience'][0]  = t('Нет опыта');
                                 $slist['work_experience'][-1] = '&mdash;';
@@ -91,15 +91,15 @@
                             $('#block-whydoyouwantbemember').show();
                         });
 
-                        <? if(request::get('set') != 'member'){ ?>
+                        <?php if(request::get('set') != 'member'){ ?>
                         $('#iwantbemodel')
                             .attr('checked', true)
                             .click();
-                        <? } else { ?>
+                        <?php } else { ?>
                         $('#iwantbemember')
                             .attr('checked', true)
                             .click();
-                        <? } ?>
+                        <?php } ?>
                     });
                 </script>
             </div>
@@ -129,28 +129,97 @@
                 <div class="left">
                     <input type="radio" id="male" name="sex[]" value="male"/>
                     <label for="male">Мужской</label><br/>
-                    <input type="radio" id="female" name="sex[]" value="female" checked/>
+                    <input type="radio" id="female" name="sex[]" value="female" checked="checked"/>
                     <label for="female">Женский</label>
                 </div>
                 <div class="clear"></div>
             </div>
 
-            <div class="mb10">
-                <div class="left pt5 mr5 aright" style="width: 128px"><?= t('Фамилия') ?>:</div>
-                <div class="left">
-                    <input type="text" id="last_name" name="last_name" value=""/>
-                </div>
-                <div id="msgErr-last_name-empty" class="hide left pt5 ml5 bold" style="color: #f00">
-                    <?= t('Это поле должно быть заполнено') ?>
-                </div>
-                <div class="clear"></div>
+            <div class="form-group row align-items-baseline">
+                <!--<label for="last_name" class="col-3 col-form-label text-right">--><?php //= t('Имя') ?><!-- --><?php //= t('Фамилия') ?><!--:</label>-->
+                <label class="col-3 offset-2 pr-0">
+                    <input type="text"
+                           id="first_name"
+                           name="first_name"
+                           placeholder="<?= t('Имя') ?>"
+                           value=""
+                           class="form-control"/>
+                </label>
+                <label class="col-3">
+                    <input type="text"
+                           id="last_name"
+                           name="last_name"
+                           placeholder="<?= t('Фамилия') ?>"
+                           value=""
+                           class="form-control"/>
+                </label>
+            </div>
+
+            <div class="form-group row">
+                <label class="col offset-2">
+                    <select class="datefield form-control" id="birthday_day" name="birthday_day" value="0">
+                        <option value="0" selected="">—</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
+                        <option value="11">11</option>
+                        <option value="12">12</option>
+                        <option value="13">13</option>
+                        <option value="14">14</option>
+                        <option value="15">15</option>
+                        <option value="16">16</option>
+                        <option value="17">17</option>
+                        <option value="18">18</option>
+                        <option value="19">19</option>
+                        <option value="20">20</option>
+                        <option value="21">21</option>
+                        <option value="22">22</option>
+                        <option value="23">23</option>
+                        <option value="24">24</option>
+                        <option value="25">25</option>
+                        <option value="26">26</option>
+                        <option value="27">27</option>
+                        <option value="28">28</option>
+                        <option value="29">29</option>
+                        <option value="30">30</option>
+                        <option value="31">31</option>
+                    </select>
+                </label>
+                <label class="col">
+                    <select class="datefield form-control" id="birthday_month" name="birthday_month" onclick="Calendar.checkdate(this)" use_values="" value="0">
+                        <option value="0" selected="">—</option>
+                        <option value="1">января</option>
+                        <option value="2">февраля</option>
+                        <option value="3">марта</option>
+                        <option value="4">апреля</option>
+                        <option value="5">мая</option>
+                        <option value="6">июня</option>
+                        <option value="7">июля</option>
+                        <option value="8">августа</option>
+                        <option value="9">сентября</option>
+                        <option value="10">октября</option>
+                        <option value="11">ноября</option>
+                        <option value="12">декабря</option>
+                    </select>
+                </label>
+                <label class="col">
+                    <select class="datefield form-control" id="birthday_year" name="birthday_year" onclick="Calendar.checkdate(this)" value="0">
+                        <option value="0" selected="selected">—</option>
+                        <?php for ($i = date('Y'); $i > date('Y') - 50; $i--) { ?>
+                            <option value="<?= $i ?>"><?= $i ?></option>
+                        <?php } ?>
+                    </select>
+                </label>
             </div>
 
             <div class="mb10">
-                <div class="left pt5 mr5 aright" style="width: 128px"><?= t('Имя') ?>:</div>
-                <div class="left">
-                    <input type="text" id="first_name" name="first_name" value=""/>
-                </div>
                 <div id="msgErr-first_name-empty" class="hide left pt5 ml5 bold" style="color: #f00">
                     <?= t('Это поле должно быть заполнено') ?>
                 </div>
@@ -160,7 +229,7 @@
             <div class="mb10">
                 <div class="left pt5 mr5 aright" style="width: 128px"><?= t('Дата рождения') ?>:</div>
                 <div class="left">
-                    <? load::view_helper('ui'); ?>
+                    <?php load::view_helper('ui'); ?>
                     <?= ui_helper::datefields('birthday', 0, false, [], true) ?>
                 </div>
                 <div id="msgErr-birthday-empty" class="hide left pt5 ml5 bold" style="color: #f00">
@@ -172,7 +241,7 @@
             <!--<div class="mb10">
 				<div class="left mr5 aright" style="width: 128px"><?= t('Опыт работы моделью') ?>: </div>
 				<div class="left mt5">
-					<?
+					<?php
             $slist                        = profile_peer::instance()->get_additional_list();
             $slist['work_experience'][0]  = t('Нет опыта');
             $slist['work_experience'][-1] = '&mdash;';
@@ -236,9 +305,9 @@
                 <div class="left">
                     <select id="growth">
                         <option value="0" selected>&mdash;</option>
-                        <? for ($i = 165; $i <= 190; $i++) { ?>
+                        <?php for ($i = 165; $i <= 190; $i++) { ?>
                             <option value="<?= $i ?>"><?= $i ?></option>
-                        <? } ?>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="left pt5 ml5"><?= t('см') ?></div>
@@ -253,9 +322,9 @@
                 <div class="left">
                     <select id="weigth">
                         <option value="0" selected>&mdash;</option>
-                        <? for ($i = 35; $i <= 70; $i++) { ?>
+                        <?php for ($i = 35; $i <= 70; $i++) { ?>
                             <option value="<?= $i ?>"><?= $i ?></option>
-                        <? } ?>
+                        <?php } ?>
                     </select>
                 </div>
                 <div class="left pt5 ml5"><?= t('кг') ?></div>
@@ -303,9 +372,9 @@
                 <div class="left">
                     <select id="eye_color">
                         <option value="0">&mdash;</option>
-                        <? foreach (profile_peer::$params['eye_color'] as $param_id => $param) { ?>
+                        <?php foreach (profile_peer::$params['eye_color'] as $param_id => $param) { ?>
                             <option value="<?= $param_id ?>"><?= $param ?></option>
-                        <? } ?>
+                        <?php } ?>
                     </select>
                 </div>
                 <div id="msgErr-eye_color-empty" class="hide left pt5 ml5 bold" style="color: #f00">
@@ -318,9 +387,9 @@
                 <div class="left">
                     <select id="hair_color">
                         <option value="0" selected>&mdash;</option>
-                        <? foreach (profile_peer::$params['hair_color'] as $param_id => $param) { ?>
+                        <?php foreach (profile_peer::$params['hair_color'] as $param_id => $param) { ?>
                             <option value="<?= $param_id ?>"><?= $param ?></option>
-                        <? } ?>
+                        <?php } ?>
                     </select>
                 </div>
                 <div id="msgErr-hair_color-empty" class="hide left pt5 ml5 bold" style="color: #f00">
@@ -333,9 +402,9 @@
                 <div class="left">
                     <select id="hair_length">
                         <option value="0" selected>&mdash;</option>
-                        <? foreach (profile_peer::$params['hair_length'] as $param_id => $param) { ?>
+                        <?php foreach (profile_peer::$params['hair_length'] as $param_id => $param) { ?>
                             <option value="<?= $param_id ?>"><?= $param ?></option>
-                        <? } ?>
+                        <?php } ?>
                     </select>
                 </div>
                 <div id="msgErr-hair_length-empty" class="hide left pt5 ml5 bold" style="color: #f00">
@@ -383,25 +452,24 @@
                 <div class="clear"></div>
             </div>
 
-            <div class="mb10">
-                <div class="left mr5 aright" style="width: 128px; padding-top: 3px">
-                    Skype:
-                </div>
-                <div class="left">
-                    <input type="text" id="skype" value=""/>
-                </div>
-                <div class="clear"></div>
-            </div>
-
-            <div class="mb10">
-                <div class="left mr5 aright" style="width: 128px; padding-top: 3px">
-                    Icq:
-                </div>
-                <div class="left">
-                    <input type="text" id="icq" value=""/>
-                </div>
-                <div class="clear"></div>
-            </div>
+            <!--<div class="mb10">-->
+            <!--    <div class="left mr5 aright" style="width: 128px; padding-top: 3px">-->
+            <!--        Skype:-->
+            <!--    </div>-->
+            <!--    <div class="left">-->
+            <!--        <input type="text" id="skype" value=""/>-->
+            <!--    </div>-->
+            <!--    <div class="clear"></div>-->
+            <!--</div>-->
+            <!--<div class="mb10">-->
+            <!--    <div class="left mr5 aright" style="width: 128px; padding-top: 3px">-->
+            <!--        Icq:-->
+            <!--    </div>-->
+            <!--    <div class="left">-->
+            <!--        <input type="text" id="icq" value=""/>-->
+            <!--    </div>-->
+            <!--    <div class="clear"></div>-->
+            <!--</div>-->
 
             <div class="mb10">
                 <div class="left pt5 mr5 aright" style="width: 128px">
@@ -415,23 +483,42 @@
 
             <div class="mb10">
                 <div class="left pt5 mr5 aright" style="width: 128px">
-                    Napodiume:
+                    Telegram:
                 </div>
                 <div class="left">
-                    <input type="text" id="napodiume" value=""/>
+                    <input type="text" id="telegram" value=""/>
                 </div>
                 <div class="clear"></div>
             </div>
 
             <div class="mb10">
                 <div class="left pt5 mr5 aright" style="width: 128px">
-                    Vkontakte:
+                    Instagram:
                 </div>
                 <div class="left">
-                    <input type="text" id="vkontakte" value=""/>
+                    <input type="text" id="instagram" value=""/>
                 </div>
                 <div class="clear"></div>
             </div>
+
+            <!--<div class="mb10">-->
+            <!--    <div class="left pt5 mr5 aright" style="width: 128px">-->
+            <!--        Napodiume:-->
+            <!--    </div>-->
+            <!--    <div class="left">-->
+            <!--        <input type="text" id="napodiume" value=""/>-->
+            <!--    </div>-->
+            <!--    <div class="clear"></div>-->
+            <!--</div>-->
+            <!--<div class="mb10">-->
+            <!--    <div class="left pt5 mr5 aright" style="width: 128px">-->
+            <!--        Vkontakte:-->
+            <!--    </div>-->
+            <!--    <div class="left">-->
+            <!--        <input type="text" id="vkontakte" value=""/>-->
+            <!--    </div>-->
+            <!--    <div class="clear"></div>-->
+            <!--</div>-->
 
             <div class="mb10">
                 <div class="left mr5 aright" style="width: 128px; padding-top: 3px">
@@ -457,13 +544,17 @@
                         <label for="from_facebook">Facebook</label>
                     </div>
                     <div class="mt5">
-                        <input type="radio" id="from_vkontakte" name="learned_about[]"/>
-                        <label for="from_vkontakte">Vkontakte</label>
+                        <input type="radio" id="from_instagram" name="learned_about[]"/>
+                        <label for="from_instagram">Instagram</label>
                     </div>
-                    <div class="mt5">
-                        <input type="radio" id="from_odnoklassniki" name="learned_about[]"/>
-                        <label for="from_odnoklassniki">Odnoklassniki</label>
-                    </div>
+                    <!--<div class="mt5">-->
+                    <!--    <input type="radio" id="from_vkontakte" name="learned_about[]"/>-->
+                    <!--    <label for="from_vkontakte">Vkontakte</label>-->
+                    <!--</div>-->
+                    <!--<div class="mt5">-->
+                    <!--    <input type="radio" id="from_odnoklassniki" name="learned_about[]"/>-->
+                    <!--    <label for="from_odnoklassniki">Odnoklassniki</label>-->
+                    <!--</div>-->
                     <div class="mt5">
                         <input type="radio" id="from_google" name="learned_about[]"/>
                         <label for="from_google">Google</label>
@@ -584,9 +675,9 @@
 <script type="text/javascript">
     $(document).ready(function () {
 
-        var uploaders = new Array();
+        var uploaders = [];
 
-        var uploaded_images = new Array();
+        var uploaded_images = [];
 
         for (var i = 0; i < 6; i++) {
             uploaders.push(new AjaxUpload($('#uploader-photo-button-add-' + i), {
@@ -752,7 +843,7 @@
                 var option = $("<option />");
                 $(option)
                     .attr("value", this.country_id)
-                    .html(this.name)
+                    .html(this.name);
                 $("#country").append($(option));
             });
             $("#country").val(<?=$profile['country']?>);
@@ -773,7 +864,7 @@
 //				$("#email-label").html(data.email);
                 $(window).scrollTop(0);
             }
-        }
+        };
 
         $("#registration #submit").click(function () {
             form.data.submit = 1;

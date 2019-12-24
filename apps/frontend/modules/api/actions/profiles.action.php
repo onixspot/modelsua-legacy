@@ -13,7 +13,19 @@ class api_profiles_action extends api_controller
     {
         return [
             '/^\/api\/profiles\/(?P<id>\d+)\/agencies.*/' => [[$this, 'updateProfileAgencies'], ['id']],
+            '/^\/api\/profiles\/(?P<id>\d+)\/milestones.*/' => [[$this, 'setProfileMilestone'], ['id']],
         ];
+    }
+
+    public function setProfileMilestone($profileId)
+    {
+        $value = request::get_int('milestone');
+
+        profile_peer::instance()
+            ->useContext(user_auth_peer::instance()->get_item($profileId))
+            ->setMilestone($value);
+
+        return true;
     }
 
     protected function updateProfileAgencies($id)

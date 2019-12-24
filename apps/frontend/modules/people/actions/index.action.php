@@ -84,11 +84,15 @@ HEREDOC;
             ];
 
         }
-        //		echo "<pre>";
-        //		var_dump($sql);
-        //		var_dump($coditional);
-        //		exit;
-        $ua_list = db::get_cols($sql.$sqladd, $coditional);
+
+        $byMilestone = $this->getByMilestone(request::get_int('milestone', null));
+
+        if ($byMilestone !== null) {
+            $ua_list = $byMilestone;
+        } else {
+            $ua_list = db::get_cols($sql.$sqladd, $coditional);
+        }
+
         $ud_list = user_data_peer::instance()->get_list([], [], ['rank ASC']);
 
         $hold = session::get('hold_people', []);
@@ -112,6 +116,29 @@ HEREDOC;
         $this->count_pages   = $this->pager->get_pages();
         $this->list          = $this->pager->get_list();
 
+    }
+
+    private function getByMilestone($milestone = null)
+    {
+        $sql = <<<SQL
+select ua.id
+from user_auth as ua
+where ua.del = :del
+  and ua.hidden = :hidden
+  and ua.reserv = :reserv
+  and ua.milestone = :milestone;
+SQL;
+
+        if ($milestone !== null) {
+            return db::get_cols($sql, [
+                'del'       => 0,
+                'hidden'    => false,
+                'reserv'    => 0,
+                'milestone' => $milestone,
+            ]);
+        }
+
+        return null;
     }
 
     private function set_limit()

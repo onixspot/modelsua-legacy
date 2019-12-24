@@ -4,36 +4,36 @@
  *
  * @return string
  */
-return static function ($profile) {
-    $t = 't';
-
-    return <<<HTML
-        <div class="container p-0">
-            <div class="row">
-                <div class="col">
-                    <a class="block-title text-uppercase font-weight-bold"
-                       href="javascript:void"
-                       id="profile-contacts-shower">
-                        {$t('Контакты')}
-                    </a>
-                </div>
-            </div>
-            
-            <div class="row pt-2" id="profile-contacts">
-                <div>
-                    <i></i>
-                    <span></span>
-</div>
-            </div>
-        </div>
-HTML;
-};
+// return static function ($profile) {
+//     $t = 't';
+//
+//     return <<<HTML
+// <div class="container p-0">
+//     <div class="row">
+//         <div class="col">
+//             <a class="block-title text-uppercase font-weight-bold"
+//                href="javascript:void(0);"
+//                id="profile-contacts-shower">
+//                 {$t('Контакты')}
+//             </a>
+//         </div>
+//     </div>
+//
+//     <div class="row pt-2" id="profile-contacts">
+//         <div>
+//             <i></i>
+//             <span></span>
+//         </div>
+//     </div>
+// </div>
+// HTML;
+// };
 
 ?>
 <div class="container p-0">
     <div class="row">
         <div class="col">
-            <a href="javascript:void"
+            <a href="javascript:void(0);"
                class="block-title text-uppercase font-weight-bold"
                id="profile-contacts-shower">
                 <?= t('Контакты') ?>
@@ -102,8 +102,8 @@ HTML;
         <?php } ?>
         <?php if (
             $user_contacts['facebook'] ||
-            $user_contacts['napodiume'] ||
-            $user_contacts['vkontakte']
+            $user_contacts['instagram'] ||
+            $user_contacts['modelscom']
         ) { ?>
             <div>
                 <div class="left"></div>
@@ -118,29 +118,28 @@ HTML;
                         <a target="_blank" href="<?= $user_contacts['facebook'] ?>"><img src="/contacts_facebook.png"/></a>
                     </div>
                 <?php } ?>
-                <?php if (($user_contacts['_napodiume']['access'] == 1 || session::has_credential('admin')) && $user_contacts['napodiume']) { ?>
+                <?php if (($user_contacts['_instagram']['access'] == 1 || session::has_credential('admin')) && $user_contacts['instagram']) { ?>
                     <div class="left mr5">
-                        <?php if (strpos($user_contacts['napodiume'], 'napodiume.ru') === false) { ?>
-                            <?php $user_contacts['napodiume'] = 'napodiume.ru/'.$user_contacts['napodiume']; ?>
+                        <?php if (strpos($user_contacts['instagram'], 'instagram.com') === false) { ?>
+                            <?php $user_contacts['instagram'] = 'instagram.com/'.$user_contacts['instagram']; ?>
                         <?php } ?>
                         <?php if (strpos($user_contacts['napodiume'], 'http') === false) { ?>
-                            <?php $user_contacts['napodiume'] = 'https://'.$user_contacts['napodiume']; ?>
+                            <?php $user_contacts['instagram'] = 'https://'.$user_contacts['instagram']; ?>
                         <?php } ?>
-                        <a target="_blank" href="<?= $user_contacts['napodiume'] ?>"><img src="/contacts_butterfly.png"/></a>
+                        <a target="_blank" href="<?= $user_contacts['instagram'] ?>">
+                            <img src="/contacts_instagram.png"/>
+                        </a>
                     </div>
                 <?php } ?>
-                <?php if (($user_contacts['_vkontakte']['access'] == 1 || session::has_credential('admin')) && $user_contacts['vkontakte']) { ?>
+                <?php if (($user_contacts['_modelscom']['access'] === 1 || session::has_credential('admin')) && $user_contacts['modelscom']) { ?>
                     <div class="left mr5">
-                        <?php if (
-                            strpos($user_contacts['vkontakte'], 'vkontakte.ru') === false &&
-                            strpos($user_contacts['vkontakte'], 'vk.com') === false
-                        ) { ?>
-                            <?php $user_contacts['vkontakte'] = 'vk.com/'.$user_contacts['vkontakte']; ?>
+                        <?php if (strpos($user_contacts['modelscom'], 'models.com') === false) { ?>
+                            <?php $user_contacts['modelscom'] = 'models.com/'.$user_contacts['modelscom']; ?>
                         <?php } ?>
-                        <?php if (strpos($user_contacts['vkontakte'], 'http') === false) { ?>
-                            <?php $user_contacts['vkontakte'] = 'https://'.$user_contacts['vkontakte']; ?>
+                        <?php if (strpos($user_contacts['modelscom'], 'http') === false) { ?>
+                            <?php $user_contacts['modelscom'] = 'https://'.$user_contacts['modelscom']; ?>
                         <?php } ?>
-                        <a target="_blank" href="<?= $user_contacts['vkontakte'] ?>"><img src="/contacts_vk.png"/></a>
+                        <a target="_blank" href="<?= $user_contacts['modelscom'] ?>"><img src="/contacts_modelscom.png"/></a>
                     </div>
                 <?php } ?>
                 <div class="clear"></div>
@@ -173,10 +172,11 @@ HTML;
         });
 
         <?php if( !session::has_credential('admin')){ ?>
-        $('#profile-contacts-shower').click();
+        // $('#profile-contacts-shower').click();
         <?php } ?>
 
-        if ($('#profile-contacts > div').length < 2)
-            $('#profile-contacts').parent().hide();
+        // if ($('#profile-contacts > div').length < 2) {
+        //     $('#profile-contacts').parent().hide();
+        // }
     });
 </script>

@@ -38,6 +38,7 @@ class profile_peer extends db_peer_postgre
         'model'              => 'в каталоге моделей ModelsUA.org',
         'association_member' => 'в каталоге моделей ModelsUA.org и вступление в Ассоциацию моделей Украины',
     ];
+
     /** @var array */
     private $context;
 
@@ -47,7 +48,7 @@ class profile_peer extends db_peer_postgre
     /**
      * @param string $peer
      *
-     * @return \db_peer|object|\profile_peer
+     * @return \profile_peer|\db_peer|object
      */
     public static function instance($peer = 'profile_peer')
     {
@@ -185,220 +186,6 @@ class profile_peer extends db_peer_postgre
 
     }
 
-    public static function get_by_security($code)
-    {
-        return db::get_scalar('SELECT id FROM user_auth WHERE security=:code', ['code' => $code]);
-    }
-
-    public static function get_credentials($user_data)
-    {
-        return [];
-    }
-
-    public static function get_name($user_data, $tpl = '&fn &ln', $lang = null)
-    {
-        $lang      = ($lang) ? $lang : session::get('language', 'ru');
-        $condition = [
-            'fn' => $user_data['first_name'.($lang == 'en' ? '_en' : '')] ? $user_data['first_name'
-            .($lang == 'en' ? '_en' : '')] : $user_data['first_name'],
-            'mn' => $user_data['middle_name'],
-            'ln' => $user_data['last_name'.($lang == 'en' ? '_en' : '')] ? $user_data['last_name'.($lang == 'en' ? '_en' : '')] : $user_data['last_name'],
-        ];
-
-        $_data = $tpl;
-        foreach ($condition as $key => $val) {
-            $_data = str_replace('&'.$key, $val, $_data);
-        }
-
-        return $_data;
-    }
-
-    public static function get_location($user_data, $splitter = ' / ')
-    {
-        $location = '';
-
-        if ($user_data['country'] > 0) {
-            $location = geo_peer::instance()->get_country($user_data['country']);
-        } else {
-            return $location;
-        }
-
-        if ($user_data['region'] > 0) {
-            $location .= $splitter.geo_peer::instance()->get_region($user_data['region']);
-        }
-
-        if ($user_data['city'] > 0) {
-            $location .= $splitter.geo_peer::instance()->get_city($user_data['city']);
-        } elseif ($user_data['city'] == -1 && $user_data['another_city'] != '') {
-            $location .= $splitter.$user_data['another_city'];
-        }
-
-        return $location;
-    }
-
-    public static function get_birthday($user_birthday, $format = 'd.m.Y')
-    {
-        if (is_null($user_birthday)) {
-            return false;
-        }
-
-        $time = strtotime($user_birthday);
-
-        return date($format, $time);
-    }
-
-    public static function get_age($user_birthday)
-    {
-
-        $age_words = [t('лет'), t('год'), t('года')];
-
-        if (is_null($user_birthday)) {
-            return false;
-        }
-
-        list($day_now, $month_now, $year_now) = explode('.', date('d.m.Y'));
-        list($day, $month, $year) = explode('.', date('d.m.Y', strtotime($user_birthday)));
-
-        if ($month_now >= $month && $day_now >= $day) {
-            $age = $year_now - $year;
-        } else {
-            $age = $year_now - $year - 1;
-        }
-
-        if ($age > 9) {
-            $mod = fmod($age, 10);
-        } else {
-            $mod = $age;
-        }
-
-        $w_index = 0;
-        if ($mod > 1 && $mod < 5) {
-            $w_index = 2;
-        } elseif ($mod == 1) {
-            $w_index = 1;
-        }
-
-        if ($age > 9 && $age < 20) {
-            $w_index = 0;
-        }
-
-        return $age.' '.$age_words[$w_index];
-    }
-
-    public static function get_types_list()
-    {
-        return self::$status_values;
-    }
-
-    public static function get_type_key($type_id)
-    {
-        foreach (self::$status_values as $key => $status) {
-            if ($status['id'] == $type_id) {
-                return $key;
-            }
-        }
-    }
-
-    public static function get_admin_status($type, $status)
-    {
-        $_type   = self::get_type($type);
-        $_status = self::get_status($type, $status);
-
-        if ($_status != '') {
-            $_type .= ' / '.$_status;
-        }
-
-        return $_type;
-    }
-
-    public static function get_type($type)
-    {
-        return self::$status_values[$type]['type'];
-    }
-
-    public static function get_status($type, $status)
-    {
-        return self::$status_values[$type]['status'][$status];
-    }
-
-    public static function get_status_by_user($uid)
-    {
-        return db::get_scalar('SELECT status FROM user_data WHERE user_id=:uid', ['uid' => $uid]);
-    }
-
-    public static function get_type_by_user($uid)
-    {
-        return db::get_scalar('SELECT type FROM user_auth WHERE id=:uid', ['uid' => $uid]);
-    }
-
-    public static function get_statement($statement_key)
-    {
-        return self::$statements[$statement_key];
-    }
-
-    public function useContext($context)
-    {
-        $this->context = $context;
-
-        return $this;
-    }
-
-    /**
-     * @param $map
-     *
-     * @return \profile_peer
-     */
-    public function useStatusTypeCaptionMap($map)
-    {
-        $this->statusTypeCaptionMap = $map;
-
-        return $this;
-    }
-
-    public function getStatusTypeCaption()
-    {
-        $type = $this->getStatusType();
-        $map  = $this->statusTypeCaptionMap;
-
-        if (!isset($map[$type])) {
-            return null;
-        }
-
-        return $map[$type];
-    }
-
-    public function getStatusType()
-    {
-        $type = $this->context['show_on_main'];
-
-        switch (true) {
-            case $type > self::SUCCESSFUL && $type < self::NEW_FACES:
-                return self::STATUS_TYPES[self::SUCCESSFUL];
-                break;
-
-            case $type >= self::NEW_FACES && $type < self::PERSPECTIVE:
-                return self::STATUS_TYPES[self::NEW_FACES];
-                break;
-
-            case $type >= self::PERSPECTIVE && $type < self::LEGENDARY:
-                return self::STATUS_TYPES[self::PERSPECTIVE];
-                break;
-
-            case $type >= self::LEGENDARY:
-                return self::STATUS_TYPES[self::LEGENDARY];
-                break;
-        }
-    }
-
-    /*
-     * Usage:
-     *		profile_peer::instance()->is_exists(array('email' => $value))
-     * or
-     *		profile_peer::instance()->is_exists(array('user_id' => $value))
-     *
-     * return true if exists and false if not exists
-     */
-
     public function insert($data)
     {
         if (!array_key_exists('password', $data)) {
@@ -446,7 +233,7 @@ class profile_peer extends db_peer_postgre
     {
         $struct = [];
 
-        if ($table == 'user_auth') {
+        if ($table === 'user_auth') {
             $tpl = [
                 'email',
                 'password',
@@ -467,7 +254,7 @@ class profile_peer extends db_peer_postgre
             ];
         }
 
-        if ($table == 'user_data') {
+        if ($table === 'user_data') {
             $tpl = [
                 'user_id',
                 'first_name',
@@ -522,8 +309,6 @@ class profile_peer extends db_peer_postgre
 
         return $struct;
     }
-
-    /* STATIC FUNCTIONS */
 
     public function set_contacts($data, $user_id)
     {
@@ -649,15 +434,6 @@ class profile_peer extends db_peer_postgre
         return $user_data;
     }
 
-    public function change_password($user_id, $password)
-    {
-        $data = [
-            'id'       => $user_id,
-            'password' => md5($password),
-        ];
-        user_auth_peer::instance()->update($data);
-    }
-
     public function delete_item($user_id)
     {
         user_auth_peer::instance()->delete_item($user_id);
@@ -699,6 +475,252 @@ class profile_peer extends db_peer_postgre
         }
 
         return user_auth_peer::instance()->get_list($where, $bind, $order, $limit, $cache_key);
+    }
+
+    public static function get_by_security($code)
+    {
+        return db::get_scalar('SELECT id FROM user_auth WHERE security=:code', ['code' => $code]);
+    }
+
+    public static function get_credentials($user_data)
+    {
+        return [];
+    }
+
+    public static function get_name($user_data, $tpl = '&fn &ln', $lang = null)
+    {
+        $lang      = ($lang) ? $lang : session::get('language', 'ru');
+        $condition = [
+            'fn' => $user_data['first_name'.($lang == 'en' ? '_en' : '')] ? $user_data['first_name'
+            .($lang == 'en' ? '_en' : '')] : $user_data['first_name'],
+            'mn' => $user_data['middle_name'],
+            'ln' => $user_data['last_name'.($lang == 'en' ? '_en' : '')] ? $user_data['last_name'.($lang == 'en' ? '_en' : '')] : $user_data['last_name'],
+        ];
+
+        $_data = $tpl;
+        foreach ($condition as $key => $val) {
+            $_data = str_replace('&'.$key, $val, $_data);
+        }
+
+        return $_data;
+    }
+
+    public static function get_location($user_data, $splitter = ' / ')
+    {
+        $location = '';
+
+        if ($user_data['country'] > 0) {
+            $location = geo_peer::instance()->get_country($user_data['country']);
+        } else {
+            return $location;
+        }
+
+        if ($user_data['region'] > 0) {
+            $location .= $splitter.geo_peer::instance()->get_region($user_data['region']);
+        }
+
+        if ($user_data['city'] > 0) {
+            $location .= $splitter.geo_peer::instance()->get_city($user_data['city']);
+        } elseif ($user_data['city'] == -1 && $user_data['another_city'] != '') {
+            $location .= $splitter.$user_data['another_city'];
+        }
+
+        return $location;
+    }
+
+    public static function get_birthday($user_birthday, $format = 'd.m.Y')
+    {
+        if (is_null($user_birthday)) {
+            return false;
+        }
+
+        $time = strtotime($user_birthday);
+
+        return date($format, $time);
+    }
+
+    public static function get_age($user_birthday)
+    {
+
+        if ($user_birthday === '1970-01-01 00:00:00') {
+            return '';
+        }
+
+        $age_words = [t('лет'), t('год'), t('года')];
+
+        if (is_null($user_birthday)) {
+            return false;
+        }
+
+        list($day_now, $month_now, $year_now) = explode('.', date('d.m.Y'));
+        list($day, $month, $year) = explode('.', date('d.m.Y', strtotime($user_birthday)));
+
+        if ($month_now >= $month && $day_now >= $day) {
+            $age = $year_now - $year;
+        } else {
+            $age = $year_now - $year - 1;
+        }
+
+        if ($age > 9) {
+            $mod = fmod($age, 10);
+        } else {
+            $mod = $age;
+        }
+
+        $w_index = 0;
+        if ($mod > 1 && $mod < 5) {
+            $w_index = 2;
+        } elseif ($mod == 1) {
+            $w_index = 1;
+        }
+
+        if ($age > 9 && $age < 20) {
+            $w_index = 0;
+        }
+
+        return $age.' '.$age_words[$w_index];
+    }
+
+    public static function get_types_list()
+    {
+        return self::$status_values;
+    }
+
+    public static function get_type_key($type_id)
+    {
+        foreach (self::$status_values as $key => $status) {
+            if ($status['id'] === $type_id) {
+                return $key;
+            }
+        }
+
+        return null;
+    }
+
+    public static function get_admin_status($type, $status)
+    {
+        $_type   = self::get_type($type);
+        $_status = self::get_status($type, $status);
+
+        if ($_status != '') {
+            $_type .= ' / '.$_status;
+        }
+
+        return $_type;
+    }
+
+    public static function get_type($type)
+    {
+        return self::$status_values[$type]['type'];
+    }
+
+    /*
+     * Usage:
+     *		profile_peer::instance()->is_exists(array('email' => $value))
+     * or
+     *		profile_peer::instance()->is_exists(array('user_id' => $value))
+     *
+     * return true if exists and false if not exists
+     */
+
+    public static function get_status($type, $status)
+    {
+        return self::$status_values[$type]['status'][$status];
+    }
+
+    public static function get_status_by_user($uid)
+    {
+        return db::get_scalar('SELECT status FROM user_data WHERE user_id=:uid', ['uid' => $uid]);
+    }
+
+    public static function get_type_by_user($uid)
+    {
+        return db::get_scalar('SELECT type FROM user_auth WHERE id=:uid', ['uid' => $uid]);
+    }
+
+    /* STATIC FUNCTIONS */
+
+    public static function get_statement($statement_key)
+    {
+        return self::$statements[$statement_key];
+    }
+
+    /**
+     * @param $value
+     *
+     * @return $this
+     */
+    public function setMilestone($value)
+    {
+        user_auth_peer::instance()->update([
+            'id'        => $this->context['id'],
+            'milestone' => $value,
+        ]);
+
+        return $this;
+    }
+
+    public function useContext($context)
+    {
+        $this->context = $context;
+
+        return $this;
+    }
+
+    /**
+     * @param $map
+     *
+     * @return \profile_peer
+     */
+    public function useStatusTypeCaptionMap($map)
+    {
+        $this->statusTypeCaptionMap = $map;
+
+        return $this;
+    }
+
+    public function getStatusTypeCaption()
+    {
+        $type = $this->getStatusType();
+        $map  = $this->statusTypeCaptionMap;
+
+        if (!isset($map[$type])) {
+            return null;
+        }
+
+        return $map[$type];
+    }
+
+    public function getStatusType()
+    {
+        $type = $this->context['show_on_main'];
+
+        switch (true) {
+            case $type > self::SUCCESSFUL && $type < self::NEW_FACES:
+                return self::STATUS_TYPES[self::SUCCESSFUL];
+                break;
+
+            case $type >= self::NEW_FACES && $type < self::PERSPECTIVE:
+                return self::STATUS_TYPES[self::NEW_FACES];
+                break;
+
+            case $type >= self::PERSPECTIVE && $type < self::LEGENDARY:
+                return self::STATUS_TYPES[self::PERSPECTIVE];
+                break;
+
+            case $type >= self::LEGENDARY:
+                return self::STATUS_TYPES[self::LEGENDARY];
+                break;
+        }
+    }
+
+    public function change_password($user_id, $password)
+    {
+        $data = [
+            'id'       => $user_id,
+            'password' => md5($password),
+        ];
+        user_auth_peer::instance()->update($data);
     }
 
     public function get_contacts($user_id)
@@ -811,5 +833,3 @@ class profile_peer extends db_peer_postgre
         return self::$additional;
     }
 }
-
-?>

@@ -117,6 +117,77 @@ class home_index_action extends home_controller
 
     }
 
+    private function get_random_data($data, $elements_count)
+    {
+        if ($elements_count > 0 && count($data) >= $elements_count) {
+            for ($i = 0; $i < $elements_count; $i++) {
+                $rand  = rand(0, (count($data) - 1));
+                $ret[] = $data[$rand];
+                unset($data[$rand]);
+                sort($data);
+            }
+
+            return $ret;
+        }
+
+        return $data;
+    }
+
+    private function getGirls($type = 0)
+    {
+        $successful  = user_auth_peer::SUCCESSFUL;
+        $new_faces   = user_auth_peer::NEW_FACES;
+        $perspective = user_auth_peer::PERSPECTIVE;
+        $legendary   = user_auth_peer::LEGENDARY;
+
+        switch ($type) {
+            default:
+            case 0:
+                $sqladd = sprintf(' a.show_on_main > %s AND a.show_on_main < %s', $successful, $new_faces);
+                $key    = 'new_faces_view_type';
+                break;
+
+            case 1:
+                $sqladd = sprintf(' a.show_on_main >= %s AND a.show_on_main < %s', $new_faces, $perspective);
+                $key    = 'successfull_models_view_type';
+                break;
+
+            case 2:
+                $sqladd = sprintf(' a.show_on_main >= %s AND a.show_on_main < %s', $perspective, $legendary);
+                $key    = 'perspective_models_view_type';
+                break;
+
+            case 3:
+                $sqladd = sprintf(' a.show_on_main >= %s', $legendary);
+                $key    = 'legendary_models_view_type';
+                break;
+        }
+
+        $sql = <<<SQL
+SELECT a.id, d.pid, d.ph_crop, d.first_name, d.last_name
+FROM user_auth AS a
+    JOIN user_data d ON a.id = d.user_id
+WHERE %s
+  AND a.del = 0
+  AND d.pid IS NOT NULL
+  AND d.ph_crop IS NOT NULL
+  AND a.hidden=false
+ORDER BY d.rank
+SQL;
+
+        $list = db::get_rows(sprintf($sql, $sqladd));
+
+        if (count($list) >= 12) {
+            if (db_key::i()->exists($key)) {
+                $this->most = $this->get_random_data($list, 12);
+            }
+
+            return array_slice($list, 0, 12);
+        }
+
+        return $list;
+    }
+
     public function get_next_update()
     {
         $category = request::get_string('category');
@@ -149,76 +220,6 @@ class home_index_action extends home_controller
             .profile_peer::get_name($profile, '&fn').' <span class="ucase">'.profile_peer::get_name($profile, '&ln').'</span></a>';
 
         return true;
-    }
-
-    private function get_random_data($data, $elements_count)
-    {
-        if ($elements_count > 0 && count($data) >= $elements_count) {
-            for ($i = 0; $i < $elements_count; $i++) {
-                $rand  = rand(0, (count($data) - 1));
-                $ret[] = $data[$rand];
-                unset($data[$rand]);
-                sort($data);
-            }
-
-            return $ret;
-        }
-
-        return $data;
-    }
-
-    private function getGirls($type = 0)
-    {
-        $successful  = user_auth_peer::SUCCESSFUL;
-        $new_faces   = user_auth_peer::NEW_FACES;
-        $perspective = user_auth_peer::PERSPECTIVE;
-        $legendary   = user_auth_peer::LEGENDARY;
-
-        switch ($type) {
-            case 1:
-                $sqladd = sprintf(' a.show_on_main >= %s AND a.show_on_main < %s', $new_faces, $perspective);
-                $key    = 'successfull_models_view_type';
-                break;
-
-            case 2:
-                $sqladd = sprintf(' a.show_on_main >= %s AND a.show_on_main < %s', $perspective, $legendary);
-                $key    = 'perspective_models_view_type';
-                break;
-
-            case 3:
-                $sqladd = sprintf(' a.show_on_main >= %s', $legendary);
-                $key    = 'legendary_models_view_type';
-                break;
-
-            default:
-                $sqladd = sprintf(' a.show_on_main >= %s AND a.show_on_main < %s', $successful, $new_faces);
-                $key    = 'new_faces_view_type';
-                break;
-        }
-
-        $sql = <<<SQL
-SELECT a.id, d.pid, d.ph_crop, d.first_name, d.last_name
-FROM user_auth AS a
-    JOIN user_data d ON a.id = d.user_id
-WHERE %s
-  AND a.del = 0
-  AND d.pid IS NOT NULL
-  AND d.ph_crop IS NOT NULL
-  AND a.hidden=false
-ORDER BY d.rank
-SQL;
-
-        $list = db::get_rows(sprintf($sql, $sqladd));
-
-        if (count($list) > 10) {
-            if (db_key::i()->exists($key)) {
-                $this->most = $this->get_random_data($list, 11);
-            }
-
-            return array_slice($list, 0, 11);
-        }
-
-        return $list;
     }
 
 }

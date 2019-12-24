@@ -45,11 +45,13 @@ function display_recursive($subtree, $from_db = true)
 		color: white;
 		text-align: center;
 		border-left: 1px solid #000000;
-		box-shadow: -1px 0 0px #E797BA;
+		/*box-shadow: -1px 0 0px #E797BA;*/
+        text-transform: uppercase;
     }
 	
 	div.invite_button:hover {
-		background: url('/buttons/invite/bg2.png') repeat-x;
+        background-color: #212121;
+		/*background: url('/buttons/invite/bg2.png') repeat-x;*/
     }
 </style>
 
@@ -74,7 +76,7 @@ function display_recursive($subtree, $from_db = true)
 		</ul>
 	</div>
 	<?// if(session::is_authenticated()){ ?>
-		<div class="invite_button right pointer" onClick ="window.location='/sign/registration'" style="width: 172px;"><?=t('Регистрация')?></div>
+		<div class="invite_button right pointer" onClick ="window.location='/sign/registration'" style="width: 193px;"><?=t('Регистрация')?></div>
 		<!--<div class="invite_button right pointer" onClick ="window.location='/invite'" style="width: 210px;"><?=t('Пригласи подругу')?></div>-->
 	<?// } ?>
 	<div class="clear"></div>

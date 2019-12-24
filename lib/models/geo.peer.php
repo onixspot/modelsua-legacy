@@ -5,96 +5,99 @@
  */
 class geo_peer extends db_peer_postgre
 {
-    const UKRAINE     = 9908;
-    const ITALIA      = 1786;
-    const FRANCE      = 10668;
-    const USA         = 5681;
-    const CHINA       = 2374;
-    const JAPAN       = 11060;
-    const SINGAPORE   = 277565;
-    const GERMANY     = 1012;
-    const INDONESIA   = 277559;
-    const MALAYSIA    = 277563;
-    const TURKEY      = 9705;
-    const LEBANON     = 582060;
-    const SPAIN       = 1707;
-    const TAIWAN      = 277567;
-    const UK          = 616;
-    const SOUTH_KOREA = 11014;
-    const SWITZERLAND = 10904;
-    const NETHERLANDS = 277551;
-    const BELGIUM     = 404;
-    const DENMARK     = 1366;
-    const SWEDEN      = 10933;
+    const AUSTRALIA   = 4;
     const AUSTRIA     = 63;
-    const ISRAEL      = 1393;
-    const GREECE      = 1258;
-    const CANADA      = 2172;
+    const BELGIUM     = 404;
     const BRAZIL      = 467;
+    const CANADA      = 2172;
     const CHILE       = 582031;
+    const CHINA       = 2374;
+    const DENMARK     = 1366;
+    const FRANCE      = 10668;
+    const GERMANY     = 1012;
+    const GREECE      = 1258;
+    const INDONESIA   = 277559;
+    const ISRAEL      = 1393;
+    const ITALIA      = 1786;
+    const JAPAN       = 11060;
+    const LEBANON     = 582060;
+    const MALAYSIA    = 277563;
+    const NETHERLANDS = 277551;
     const NORWAY      = 2880;
+    const SINGAPORE   = 277565;
+    const SOUTH_KOREA = 11014;
+    const SPAIN       = 1707;
+    const SWEDEN      = 10933;
+    const SWITZERLAND = 10904;
+    const TAIWAN      = 277567;
+    const TURKEY      = 9705;
     const UAE         = 582051;
+    const UK          = 616;
+    const UKRAINE     = 9908;
+    const USA         = 5681;
 
     const COUNTRY_IDS = [
-        self::USA,
-        self::UK,
-        self::FRANCE,
-        self::ITALIA,
-        self::CHINA,
-        self::JAPAN,
-        self::SINGAPORE,
-        self::GERMANY,
-        self::INDONESIA,
-        self::MALAYSIA,
-        self::TURKEY,
-        self::LEBANON,
-        self::SPAIN,
-        self::TAIWAN,
-        self::SOUTH_KOREA,
-        self::SWITZERLAND,
-        self::NETHERLANDS,
-        self::BELGIUM,
-        self::DENMARK,
-        self::SWEDEN,
+        self::AUSTRALIA,
         self::AUSTRIA,
-        self::ISRAEL,
-        self::GREECE,
-        self::CANADA,
+        self::BELGIUM,
         self::BRAZIL,
+        self::CANADA,
         self::CHILE,
+        self::CHINA,
+        self::DENMARK,
+        self::FRANCE,
+        self::GERMANY,
+        self::GREECE,
+        self::INDONESIA,
+        self::ISRAEL,
+        self::ITALIA,
+        self::JAPAN,
+        self::LEBANON,
+        self::MALAYSIA,
+        self::NETHERLANDS,
         self::NORWAY,
+        self::SINGAPORE,
+        self::SOUTH_KOREA,
+        self::SPAIN,
+        self::SWEDEN,
+        self::SWITZERLAND,
+        self::TAIWAN,
+        self::TURKEY,
         self::UAE,
+        self::UK,
+        self::USA,
     ];
 
     const ALLOWED_CITY_IDS_BY_COUNTRY_ID = [
-        self::GERMANY     => [1014, 1107, 278190, 278154, 1117],
-        self::SPAIN       => [1764, 1733],
-        self::MALAYSIA    => [279122],
-        self::UAE         => [2372615, 5000000],
-        self::CHINA       => [2422, 2425, 3503075, 15790018, 15790019, 4691841],
-        self::JAPAN       => [11267],
-        self::USA         => [7992, 279123, 278193, 6788, 6517, 8721, 9085, 9327],
-        self::ITALIA      => [1820, 1835],
-        self::FRANCE      => [10805],
-        self::UK          => [740],
-        self::SWITZERLAND => [10932, 10917],
-        self::NETHERLANDS => [278093],
-        self::BELGIUM     => [409],
-        self::DENMARK     => [2331530],
-        self::SOUTH_KOREA => [11053],
-        self::SWEDEN      => [10961],
+        self::AUSTRALIA   => [49],
         self::AUSTRIA     => [65],
-        self::ISRAEL      => [1447],
-        self::NORWAY      => [2888,],
-        self::CHILE       => [2412951],
+        self::BELGIUM     => [409, 406],
         self::BRAZIL      => [589],
         self::CANADA      => [2183, 2215, 2287],
+        self::CHILE       => [2412951],
+        self::CHINA       => [2422, 2425, 3503075, 15790018, 15790019, 4691841],
+        self::DENMARK     => [2331530],
+        self::FRANCE      => [10805],
+        self::GERMANY     => [1014, 1107, 278190, 278154, 1117, 1173, 1101],
         self::GREECE      => [1262],
         self::INDONESIA   => null,
-        self::TURKEY      => null,
+        self::ISRAEL      => [1447],
+        self::ITALIA      => [1820, 1835],
+        self::JAPAN       => [11267],
         self::LEBANON     => null,
-        self::TAIWAN      => null,
+        self::MALAYSIA    => [279122],
+        self::NETHERLANDS => [278093, 278219],
+        self::NORWAY      => [2888,],
         self::SINGAPORE   => null,
+        self::SOUTH_KOREA => [11053],
+        self::SPAIN       => [1764, 1733],
+        self::SWEDEN      => [10961],
+        self::SWITZERLAND => [10932, 10917],
+        self::TAIWAN      => null,
+        self::TURKEY      => null,
+        self::UAE         => [2372615, 5000000],
+        self::UK          => [740],
+        self::USA         => [7992, 279123, 278193, 6788, 6517, 8721, 9085, 9327, 6294],
     ];
 
     protected $table_name = '';

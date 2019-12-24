@@ -26,36 +26,68 @@
     </div>
     <div class="clear"></div>
 
-    <div class="mb15">
-        <?php if (session::has_credential('admin')) { ?>
-            <?php
-            $anchor_style          = implode('; ', [
-                'font-size: 12px',
-                'font-weight: normal',
-                // 'text-decoration: underline',
-                'text-transform: uppercase',
-            ]);
-            $selected_anchor_style = implode('; ', [
-                'background-color: #000000',
-                'border-radius: 5px',
-                'padding: 5px 10px',
-                'color: white',
-            ])
-            ?>
-            <a href="/people"
-               style="<?= $anchor_style ?>;<?= !$status ? $selected_anchor_style : '' ?>"><?= t('Все') ?></a> |
-            <a href="/people?status=legendary"
-               style="<?= $anchor_style ?>;<?= $status === 'legendary' ? $selected_anchor_style : '' ?>"><?= t('Самые успешные') ?></a> |
-            <a href="/people?status=successful"
-               style="<?= $anchor_style ?>;<?= $status === 'successful' ? $selected_anchor_style : '' ?>"><?= t('Успешные') ?></a> |
-            <a href="/people?status=modelscom"
-               style="<?= $anchor_style ?>;<?= $status === 'modelscom' ? $selected_anchor_style : '' ?>"><?= t('Models.com') ?></a> |
-            <a href="/people?status=perspective"
-               style="<?= $anchor_style ?>;<?= $status === 'perspective' ? $selected_anchor_style : '' ?>"><?= t('Перспективные') ?></a> |
-            <a href="/people?status=new-face"
-               style="<?= $anchor_style ?>;<?= $status === 'new-face' ? $selected_anchor_style : '' ?>"><?= t('Новые лица') ?></a>
-        <?php } ?>
-    </div>
+    <?php if (session::has_credential('admin')) { ?>
+        <div class="mb-3 container p-0">
+            <div class="row align-content-between align-items-center">
+                <div class="col">
+                    <?php
+                    $anchor_style          = implode('; ', [
+                        'font-size: 12px',
+                        'font-weight: normal',
+                        'text-transform: uppercase',
+                    ]);
+                    $selected_anchor_style = implode('; ', [
+                        'background-color: #000000',
+                        'border-radius: 5px',
+                        'padding: 5px 10px',
+                        'color: white',
+                    ])
+                    ?>
+                    <a href="/people"
+                       style="<?= $anchor_style ?>;<?= !$status ? $selected_anchor_style : '' ?>"><?= t('Все') ?></a> |
+                    <a href="/people?status=legendary"
+                       style="<?= $anchor_style ?>;<?= $status === 'legendary' ? $selected_anchor_style : '' ?>"><?= t('Самые успешные') ?></a> |
+                    <a href="/people?status=successful"
+                       style="<?= $anchor_style ?>;<?= $status === 'successful' ? $selected_anchor_style : '' ?>"><?= t('Успешные') ?></a> |
+                    <a href="/people?status=modelscom"
+                       style="<?= $anchor_style ?>;<?= $status === 'modelscom' ? $selected_anchor_style : '' ?>"><?= t('Models.com') ?></a> |
+                    <a href="/people?status=perspective"
+                       style="<?= $anchor_style ?>;<?= $status === 'perspective' ? $selected_anchor_style : '' ?>"><?= t('Перспективные') ?></a> |
+                    <a href="/people?status=new-face"
+                       style="<?= $anchor_style ?>;<?= $status === 'new-face' ? $selected_anchor_style : '' ?>"><?= t('Новые лица') ?></a>
+                </div>
+                <div class="col-3 text-right">
+                    <div id="milestones" class="btn-group" role="group" aria-label="...">
+                        <?= implode(PHP_EOL, array_map(static function ($i) {
+                            return sprintf('<button type="button" class="btn btn-outline-secondary" value="%s">%1$s</button>', $i);
+                        }, range(1, 5))) ?>
+                    </div>
+                    <script type="application/javascript">
+                        (() => {
+                            const btnGroup       = document.querySelector('div[role="group"]#milestones'),
+                                  buttonList     = btnGroup.querySelectorAll(':scope > button.btn'),
+                                  url            = new URL(window.location.href),
+                                  milestone      = parseInt(url.searchParams.get('milestone')),
+                                  handleBtnClick = ({ target: { value } }) => {
+                                      const searchParams = new URLSearchParams();
+                                      searchParams.set('milestone', value);
+                                      url.search = '?' + searchParams.toString();
+                                      window.location.assign(url.toString());
+                                  };
+
+                            if (milestone > 0) {
+                                buttonList[milestone - 1].classList.replace('btn-outline-secondary', 'btn-secondary');
+                            }
+
+                            buttonList.forEach(b => {
+                                b.addEventListener('click', handleBtnClick);
+                            });
+                        })();
+                    </script>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
     <div>
         <style type="text/css">
             #sortable, sortable2 {
@@ -219,7 +251,7 @@
                 <td align="center">
                     <div class="paginator">
                         <?= $paginator ?>
-                        <span class="text-muted">(<?=$count_members?>)</span>
+                        <span class="text-muted float-right"><?= $count_members ?></span>
                     </div>
                 </td>
             </tr>

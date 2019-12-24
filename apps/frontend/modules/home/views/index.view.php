@@ -1,14 +1,19 @@
 <?php
+
 /**
- * @var array $successful
- * @var array $legendary
- * @var array $perspective
- * @var array $new_faces
- * @var array $boxes
+ * @var array    $successful
+ * @var array    $legendary
+ * @var array    $perspective
+ * @var array    $new_faces
+ * @var array    $boxes
+ * @var callable $photosRow
  */
+
+$photosRow = require __DIR__.'/index/photos_row.php';
+
 ?>
 
-<?php $context = [
+<?= $photosRow([
     'title'          => t('Самые успешные'),
     'href'           => '/people?status=legendary',
     'css'            => 'mt5',
@@ -36,29 +41,25 @@
             },
         ],
     ],
-]; ?>
-<?php include __DIR__.'/index/photos_row.php' ?>
+]) ?>
 
-<?php $context = [
+<?= $photosRow([
     'title'      => t('Успешные'),
     'href'       => '/people?status=successful',
     'collection' => $successful,
-]; ?>
-<?php include __DIR__.'/index/photos_row.php' ?>
+]) ?>
 
-<?php $context = [
+<?= $photosRow([
     'title'      => t('Перспективные'),
     'href'       => '/people?status=perspective',
     'collection' => $perspective,
-]; ?>
-<?php include __DIR__.'/index/photos_row.php' ?>
+]) ?>
 
-<?php $context = [
+<?= $photosRow([
     'title'      => t('Новые лица'),
     'href'       => '/people?status=new-face',
     'collection' => $new_faces,
-]; ?>
-<?php include __DIR__.'/index/photos_row.php' ?>
+]) ?>
 
 <script type="text/javascript">
     $(document).ready(function () {

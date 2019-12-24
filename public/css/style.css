@@ -330,7 +330,7 @@ div.main-page-gallery {
 }
 div.main-page-gallery div.image-box {
     display: grid;
-    grid-template-columns: repeat(11, 82px);
+    grid-template-columns: repeat(12, 80px);
     grid-template-rows: repeat(1, auto);
     justify-content: space-between;
 }
@@ -338,11 +338,9 @@ div.main-page-gallery div.image-box > a {
 
 }
 div.main-page-gallery div.image-box a img {
-    width: 82px;
+    width: 80px;
     /*    height: 110px;*/
 }
-
-.grid-container
 
 div.small-title {
     padding-left: 15px;

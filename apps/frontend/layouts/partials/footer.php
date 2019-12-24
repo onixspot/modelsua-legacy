@@ -3,18 +3,18 @@
         <img src="https://<?=conf::get("server")?>/<?=session::get('language','ru')?>/logo_f.png" class="left" />
     </div>
     <div class="links left">
-			<? foreach($menu_items as $menuItem){ ?>
-				<? if( ! $menuItem["hidden"]){ ?>
+        <?php foreach($menu_items as $menuItem){ ?>
+            <?php if( ! $menuItem["hidden"]){ ?>
 						<a 
 							href="<?=$menuItem["href"]?>"
-							<? if(0 && $menuItem["href"] == $_SERVER["REQUEST_URI"]){ ?>
+                            <?php if(0 && $menuItem["href"] == $_SERVER["REQUEST_URI"]){ ?>
 								class="selected"
-							<? } ?>
+                            <?php } ?>
 							>
 							<?=$menuItem["html"]?>
 						</a>
-				<? } ?>
-			<? } ?>
+            <?php } ?>
+        <?php } ?>
         <a href="/feedback"><?=t('Обратная связь')?></a>
     </div>
 	<div class="clear"></div>

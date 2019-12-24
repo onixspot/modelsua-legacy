@@ -287,7 +287,8 @@
             <!-- END MESSAGES -->
 
             <!-- START CONTACTS -->
-            <?= call_user_func(require 'index_parts/contacts.php', $profile) ?>
+            <?php include 'index_parts/contacts.php' ?>
+            <?//= call_user_func(require 'index_parts/contacts.php', $profile) ?>
             <!-- END CONTACTS -->
 
             <!-- START CARD -->
@@ -660,6 +661,8 @@
     </div>
 
 </div>
+
+<?= AssetsFactory::create()->script('/app/profile.js') ?>
 
 <?php if ($by_code) {
     include 'index_parts/login_by_code_form.php';
