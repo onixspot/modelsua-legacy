@@ -32,7 +32,7 @@
 		    <?=$name?>
 		</a>		
 		<span class="cgray fs11 ml10"><?=date('H:i d.m.Y',$message['created_ts'])?></span>
-		<a href="javascript:;" class="ml10 right" onclick="if(confirm('<?=t('Удалить сообщение')?>?')) { App.delete_message('<?=$mid?>','message_<?=$mid?>') }"><?=t('Удалить')?></a>
+		<a href="javascript:void(0);" class="ml10 right" onclick="if(confirm('<?=t('Удалить сообщение')?>?')) { App.delete_message('<?=$mid?>','message_<?=$mid?>') }"><?=t('Удалить')?></a>
 		<a href="/messages?resend=<?=$mid?>" class="ml10 right"><?=t('Переслать')?></a>
 		<div class="mt5 fs12">
 		   <?=$message['body']?>

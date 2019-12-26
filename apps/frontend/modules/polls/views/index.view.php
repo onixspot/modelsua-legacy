@@ -66,7 +66,7 @@
             </tr>
             <tr>
                 <td class="acenter pt10 fs14" colspan="2">
-                    <span class="votelinks"><i><span style="color: #9CA1AE;"><?=t('Не нравятся обе фотографии')?>,</span> <a href="javascript:;" onClick="vote_for(0)" style="" class="bold"><?=t('пропустить')?></a><br/><br/>
+                    <span class="votelinks"><i><span style="color: #9CA1AE;"><?=t('Не нравятся обе фотографии')?>,</span> <a href="javascript:void(0);" onClick="vote_for(0)" style="" class="bold"><?=t('пропустить')?></a><br/><br/>
 		    <a href="/polls/rating?type=<?=  voting_peer::MODEL_RATING;?>" class="bold"><?=t('Смотреть рейтинг')?></a></i></span>
                 </td>
             </tr>

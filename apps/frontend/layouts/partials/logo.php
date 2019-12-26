@@ -29,7 +29,7 @@
                 </div>
                 <div>
                     <div class="left pt5">
-                        <a href="javascript:;" onclick="$('#restore_form, .login_form').toggleClass('hide');" style="color: #B1B7C5;"><?= t('Забыли пароль') ?>?</a>
+                        <a href="javascript:void(0);" onclick="$('#restore_form, .login_form').toggleClass('hide');" style="color: #B1B7C5;"><?= t('Забыли пароль') ?>?</a>
                     </div>
                     <div class="right pt5">
                         <input type="submit" id="submit" name="submit" value="Войти" class="hide"/>
@@ -166,7 +166,7 @@
                         *<a href="/forum"><?= t('Форум') ?></a><br/>
                     <?php } ?>
 
-                    <a href="javascript:;" id="logout"><?= t('Выйти') ?></a><br/>
+                    <a href="javascript:void(0);" id="logout"><?= t('Выйти') ?></a><br/>
 
                 </div>
             </div>
@@ -212,11 +212,11 @@
                 <input type="text" id="restore_email" name="restore_email" style="width: 100%; color: #B1B7C5;" value="<?= t('Введите е-mail') ?>"/>
             </div>
             <div class="left pt5">
-                <a href="javascript:;" onclick="$('#restore_form, .login_form').toggleClass('hide');" style="color: #B1B7C5;"><?= t('Вход') ?></a>
+                <a href="javascript:void(0);" onclick="$('#restore_form, .login_form').toggleClass('hide');" style="color: #B1B7C5;"><?= t('Вход') ?></a>
             </div>
             <div class="right pt5">
                 <input type="submit" id="restore" name="restore" value="Войти" class="hide"/>
-                <a href="javascript:;" id="restore-1" class="ucase bold" style="color: #000000">Отправить</a>
+                <a href="javascript:void(0);" id="restore-1" class="ucase bold" style="color: #000000">Отправить</a>
             </div>
         </form>
         <script>

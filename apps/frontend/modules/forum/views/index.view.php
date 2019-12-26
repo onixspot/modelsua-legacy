@@ -18,7 +18,7 @@
 				<?if(session::has_credential('admin')) {?>
 				<dd style="float:right;">
 				    <a href="/forum/admin?frame=sections&id=<?=$section_id?>"><img src="/ui/edit.png"/></a>
-				    <a id="section-delete-<?=$section_id?>" href="javascript:;"><img src="/ui/delete.png"/></a>
+				    <a id="section-delete-<?=$section_id?>" href="javascript:void(0);"><img src="/ui/delete.png"/></a>
 				</dd>
 				<? } ?>
 			</dl>
@@ -61,7 +61,7 @@
 				<?if(session::has_credential('admin')) {?>
 				    <dd style="float:right;">
 					<a href="/forum/admin?frame=forums&id=<?=$forum['data']['id']?>"><img src="/ui/edit.png"/></a>
-					<a id="forum-delete-<?=$forum['data']['id']?>" href="javascript:;"><img src="/ui/delete.png"/></a>
+					<a id="forum-delete-<?=$forum['data']['id']?>" href="javascript:void(0);"><img src="/ui/delete.png"/></a>
 				    </dd>
 				<? } ?>	
 		</dl>

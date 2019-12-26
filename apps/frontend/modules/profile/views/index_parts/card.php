@@ -1,5 +1,5 @@
 <div class="square_p pl15 mb10 fs12 ucase bold left">
-        <a class="cblack left" href='javascript:;' onclick="$('#profile-card-shower').toggleClass('hide')"><?=t("Визитка")?></a>
+        <a class="cblack left" href='javascript:void(0);' onclick="$('#profile-card-shower').toggleClass('hide')"><?=t("Визитка")?></a>
         
 </div>
 <?$pid = db::get_cols("SELECT id FROM user_photos WHERE user_id=:uid AND type=:type AND name IN ('ru','en')",array('uid'=>  $user_id, 'type'=>  user_photos_peer::TYPE_CARD));?>
@@ -24,7 +24,7 @@
                 <?if(session::has_credential('admin') || session::get_user_id()==$profile['user_id']) {?>
 		    <div style="width: 100px;">
 			    <a 
-				href="javascript:;" 
+				href="javascript:void(0);"
 				id="card-save-menu-<?=$id?>" 
 				rel="" 
 				style="color: rgb(185, 83, 131);"
@@ -58,7 +58,7 @@
 		    </div>
                     
                     <a href="/profile/edit?id=<?=$profile['user_id']?>&frame=card"><?=t('Редактировать')?></a><br/>
-                    <a href="javascript:;" onClick="deleteCard('<?=$id?>')"><?=t('Удалить')?></a>
+                    <a href="javascript:void(0);" onClick="deleteCard('<?=$id?>')"><?=t('Удалить')?></a>
                 <? } ?>
 	    </td>
             <? } ?>

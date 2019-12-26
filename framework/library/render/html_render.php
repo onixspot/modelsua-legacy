@@ -69,7 +69,7 @@ class html_render extends abstract_render
 		
 		$html =
 		'<div id="web_debug" style="position:absolute; top:' . (int)$_COOKIE['WEB_DEBUG_POS_TOP'] . 'px; left: ' . (int)$_COOKIE['WEB_DEBUG_POS_LEFT'] . 'px; border: 1px solid #DDD; background: #FAFAFA; padding: 5px; font-size: 10px; font-family: Sans Serif;">
-			<div><b>Debug</b> <a href="javascript:;" onclick="$(\'#web_debug\').hide();">[x]</a></div>
+			<div><b>Debug</b> <a href="javascript:void(0);" onclick="$(\'#web_debug\').hide();">[x]</a></div>
 			<div id="web_debug_log">
 				' . $log_html . '
 			</div>

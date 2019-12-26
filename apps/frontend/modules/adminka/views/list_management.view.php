@@ -6,7 +6,7 @@
 	
 	<div>
 		<div class="left mr10">
-			<a href="javascript:;">Создать список</a>
+			<a href="javascript:void(0);">Создать список</a>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -26,8 +26,8 @@
 					<td></td>
 					<td></td>
 					<td align="center">
-						<div><a href="javascript:;">Изменить</a></div>
-						<div><a href="javascript:;">Удалить</a></div>
+						<div><a href="javascript:void(0);">Изменить</a></div>
+						<div><a href="javascript:void(0);">Удалить</a></div>
 					</td>
 				</tr>
 			<? } ?>

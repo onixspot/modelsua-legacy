@@ -2,13 +2,13 @@
     <div class="mt5">
 <!--	<div class="mb5">
                 <div class="left mr20">
-                        <a href="javascript:;" onclick="">Новости</a>
+                        <a href="javascript:void(0);" onclick="">Новости</a>
                 </div>
                 <div class="left mr20">
-                        <a href="javascript:;" onclick="">Публикации</a>
+                        <a href="javascript:void(0);" onclick="">Публикации</a>
                 </div>
                 <div class="left">
-                        <a href="javascript:;" onclick="">Анонсы</a>
+                        <a href="javascript:void(0);" onclick="">Анонсы</a>
                 </div>
         </div>-->
     </div>
@@ -285,14 +285,14 @@ function show_list(resp) {
     template = '<div class="uiTabBar p5" style="height: auto !important">\n\
                     <div class="left" style="width: 180px;">\n\
                         <div class="admin-news-title fs14 bold" style="margin-top: 5px;">\n\
-                            <a href="javascript:;" onClick="get_item_data(%id%)">%title%</a>\n\
+                            <a href="javascript:void(0);" onClick="get_item_data(%id%)">%title%</a>\n\
                         </div>\n\
                         <div class="admin-news-description fs11" style="margin-top: 1px;">\n\
                             %description%\n\
                         </div>\n\
                     </div>\n\
                     <div class="left">\n\
-                        <a href="javascript:;" onClick="delete_news(%id%);">\n\
+                        <a href="javascript:void(0);" onClick="delete_news(%id%);">\n\
                             <img src="https://<?=conf::get('server')?>/ui/delete.png">\n\
                         </a>\n\
                     </div>\n\

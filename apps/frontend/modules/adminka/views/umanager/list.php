@@ -62,22 +62,22 @@
 				<td align="center">
 					<div><a href="/profile/edit?id=<?=$id?>" target="_blank">Изменить</a></div>
 					<? if( ! $item['active'] && ! in_array($filter, array('archive', 'reserv'))){ ?>
-						<div><a id="list-item-invite-<?=$id?>" href="javascript:;">Пригласить (<?= (db_key::i()->exists('invite_nomodels_'.$id)) ? db_key::i()->get('invite_nomodels_'.$id) : 0 ?>)</a></div>
+						<div><a id="list-item-invite-<?=$id?>" href="javascript:void(0);">Пригласить (<?= (db_key::i()->exists('invite_nomodels_'.$id)) ? db_key::i()->get('invite_nomodels_'.$id) : 0 ?>)</a></div>
 					<? } ?>
 					<? if( ! in_array($filter, array('archive', 'reserv'))){ ?>
 						<div>
 							<div style="width: 100px;">
-								<a id="list-item-move-<?=$id?>" href="javascript:;">Переместить</a>
+								<a id="list-item-move-<?=$id?>" href="javascript:void(0);">Переместить</a>
 								<div id="block-list-item-move-<?=$id?>" class="pt5 pb5 hide" style="position: absolute; background: white; border: 1px solid #000000; box-shadow: 0px 1px 3px black; width: 98px;">
-									<div><a id="list-item-movetoarchive-<?=$id?>" href="javascript:;">В архив</a></div>
-									<div><a id="list-item-movetoreserv-<?=$id?>" href="javascript:;">В резерв</a></div>
+									<div><a id="list-item-movetoarchive-<?=$id?>" href="javascript:void(0);">В архив</a></div>
+									<div><a id="list-item-movetoreserv-<?=$id?>" href="javascript:void(0);">В резерв</a></div>
 								</div>
 							</div>
 						</div>
 					<? } else { ?>
-						<div><a id="list-item-recove-<?=$id?>" href="javascript:;">Восстановить</a></div>
+						<div><a id="list-item-recove-<?=$id?>" href="javascript:void(0);">Восстановить</a></div>
 					<? } ?>
-					<div><a id="list-item-remove-<?=$id?>" href="javascript:;">Удалить</a></div>
+					<div><a id="list-item-remove-<?=$id?>" href="javascript:void(0);">Удалить</a></div>
 				</td>
 			</tr>
 		<? } ?>

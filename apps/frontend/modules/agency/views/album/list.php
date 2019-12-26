@@ -13,7 +13,7 @@
 			<div class="p5">
 				<? if($access){ ?>
 					<div class="aright mb5">
-						<a id="photos-list-item-remove-<?=$pid?>" href="javascript:;">
+						<a id="photos-list-item-remove-<?=$pid?>" href="javascript:void(0);">
 							<img src="/ui/delete2.png" style="height: 20px; ">
 						</a>
 					</div>

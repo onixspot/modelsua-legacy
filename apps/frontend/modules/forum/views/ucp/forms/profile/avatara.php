@@ -16,7 +16,7 @@
 			<dt><label>Текущее изображение:</label><br><span>Максимальные размеры в пикселах; ширина: 80, высота: 80, размер файла: 62.50 КБ.</span></dt>
 			<dd>
 			    <img id="avapreview" rel="" alt="" src="/no_image.png" class="left" style="width: 100px;">
-			    <a href="javascript:;" onclick="$.post('/forum/profile', {'act': 'save_profile', 'subaction' : 'delete_preview', 'imagekey' : $('#avapreview').attr('rel') }, function(resp) { $('#avapreview').attr('src','/no_image.png'); $('#FileName').hide(); }, 'json');"><img src="/ui/delete.png"/></a>
+			    <a href="javascript:void(0);" onclick="$.post('/forum/profile', {'act': 'save_profile', 'subaction' : 'delete_preview', 'imagekey' : $('#avapreview').attr('rel') }, function(resp) { $('#avapreview').attr('src','/no_image.png'); $('#FileName').hide(); }, 'json');"><img src="/ui/delete.png"/></a>
 			</dd>
 <!--			<dd><label for="delete"><input type="checkbox" id="delete" name="delete"> Удалить изображение</label></dd>-->
 		</dl>

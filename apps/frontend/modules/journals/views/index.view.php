@@ -12,7 +12,7 @@
 					<div class="cgray">Место нахождения</div>
 				<? } ?>
 				<? if($access){ ?>
-					<div class="fs12 acenter" style="font-weight: normal;"><a id="journal-location-button-edit" href="javascript:;" class="cgray">[<?=t('Редактировать')?>]</a></div>
+					<div class="fs12 acenter" style="font-weight: normal;"><a id="journal-location-button-edit" href="javascript:void(0);" class="cgray">[<?=t('Редактировать')?>]</a></div>
 				<? } ?>
 			</div>
 			<div class="clear"></div>

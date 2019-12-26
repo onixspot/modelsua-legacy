@@ -13,11 +13,11 @@
 					<div class="p5 aright" style="height: 20px;">
 						<? if(session::has_credential('admin') || session::get_user_id() == $uid){ ?>
 							<? if(in_array($category_key, array('covers'))){ ?>
-								<a id="photos-list-item-modify-<?=$pid?>" class="mr5" href="javascript:;">
+								<a id="photos-list-item-modify-<?=$pid?>" class="mr5" href="javascript:void(0);">
 									<img src="/ui/edit2.png" height="12" />
 								</a>
 							<? } ?>
-							<a id="photos-list-item-remove-<?=$pid?>" href="javascript:;">
+							<a id="photos-list-item-remove-<?=$pid?>" href="javascript:void(0);">
 								<img src="/ui/delete2.png" height="20" />
 							</a>
 						<? } ?>

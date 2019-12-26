@@ -28,10 +28,10 @@
 			<div class="right ml10 acenter" style="width: 150px">
 				<!-- ACTIONS BLOCK -->
 				<? if( ! $agency_data["page_active"]){ ?>
-					<a id="agency-create-page-<?=$agency_data["id"]?>" href="javascript:;">Создать стриницу</a>
+					<a id="agency-create-page-<?=$agency_data["id"]?>" href="javascript:void(0);">Создать стриницу</a>
 				<? } ?>
 				<a href="/adminka/agency_manager?act=edit&id=<?=$agency_data["id"]?>">Изменить</a><br />
-				<a href="javascript:;" id="agency-item-remove-<?=$agency_data["id"]?>">Удалить</a>
+				<a href="javascript:void(0);" id="agency-item-remove-<?=$agency_data["id"]?>">Удалить</a>
 			</div>
 			<div class="right ml10 acenter" style="width: 100px; margin-top: -3px;">
 				<input type="checkbox" id="agency-item-public-<?=$agency_data["id"]?>"

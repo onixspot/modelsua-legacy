@@ -7,9 +7,15 @@
 <?php if (session::has_credential('admin')) { ?>
 
     <div class="square_p pl15 mt-2 mb10 fs12 ucase bold">
-        <a class="cblack" href='javascript:;' onclick="$('#profile-admin-shower').toggleClass('hide')"><?= t('Администрирование') ?></a>
+        <a class="cblack" href='javascript:void(0);' onclick="$('#profile-admin-shower').toggleClass('hide')"><?= t('Администрирование') ?></a>
     </div>
-    <div class="p10 hide" id="profile-admin-shower" style="background: #eee; border: 1px solid #ccc">
+    <div class="container hide" id="profile-admin-shower" style="background: #eee; border: 1px solid #ccc">
+        <div class="row">
+            <div class="col">
+
+            </div>
+        </div>
+
         <div class="container p-0">
             <div class="row">
                 <div class="col">
@@ -46,12 +52,6 @@
                                             $profile['show_on_main'] >= user_auth_peer::LEGENDARY
                                         ) ? ' checked' : ' ' ?>><?= t('Самые успешные') ?></label>
                                 </div>
-                            </td>
-                        </tr>
-
-                        <tr>
-                            <td>
-
                             </td>
                         </tr>
 
@@ -172,14 +172,16 @@
 
                     </table>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <div class="row">
                         <div class="col">
-                            <h6><?= t('Этапы взаимодействия') ?>:</h6>
-                            <div aria-label="<?= t('Этапы взаимодействия') ?>" class="btn-group" id="milestone" role="group">
+
+                            <div class="badge text-nowrap"><?= t('Этапы взаимодействия') ?></div>
+
+                            <div aria-label="" class="btn-group" id="milestone" role="group">
                                 <?= implode(PHP_EOL, array_map(static function ($value, $text) {
                                     return sprintf(
-                                        '<button class="btn btn-outline-secondary" type="button" value="%s">%s</button>',
+                                        '<button class="btn btn-sm btn-outline-secondary" type="button" value="%s">%s</button>',
                                         $value,
                                         $text !== null ? $text : $value
                                     );

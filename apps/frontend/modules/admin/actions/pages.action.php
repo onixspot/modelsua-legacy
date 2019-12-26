@@ -11,12 +11,12 @@ class admin_pages_action extends admin_controller {
                                     </div>
                                 </div>
                                 <div style="" class="left pl20">
-                                    <a href="javascript:;" onClick="change_item(%id%,\'move\',{direction: 1})"><img src="/ui/up.png"></a>
-                                    <a href="javascript:;" onClick="change_item(%id%,\'move\',{direction: 0})"><img src="/ui/down.png"></a>
-                                    <a href="javascript:;" onClick="change_item(%id%,\'delete\')"><img src="/ui/delete.png"></a>
-                                    <a href="javascript:;" onClick="print()"><img src="/ui/print.png"></a>
-                                    <a href="javascript:;" onClick="change_item(%id%,\'change_property\',{property: \'on\',value: \'%prop1%\'})"><img src="/ui/on_%prop1%.png"></a>
-                                    <a href="javascript:;" onClick="change_item(%id%,\'change_property\',{property: \'show\',value: \'%prop2%\'})"><img src="/ui/show_%prop2%.png"></a>
+                                    <a href="javascript:void(0);" onClick="change_item(%id%,\'move\',{direction: 1})"><img src="/ui/up.png"></a>
+                                    <a href="javascript:void(0);" onClick="change_item(%id%,\'move\',{direction: 0})"><img src="/ui/down.png"></a>
+                                    <a href="javascript:void(0);" onClick="change_item(%id%,\'delete\')"><img src="/ui/delete.png"></a>
+                                    <a href="javascript:void(0);" onClick="print()"><img src="/ui/print.png"></a>
+                                    <a href="javascript:void(0);" onClick="change_item(%id%,\'change_property\',{property: \'on\',value: \'%prop1%\'})"><img src="/ui/on_%prop1%.png"></a>
+                                    <a href="javascript:void(0);" onClick="change_item(%id%,\'change_property\',{property: \'show\',value: \'%prop2%\'})"><img src="/ui/show_%prop2%.png"></a>
                                     <a href="%link%"><img src="/ui/edit.png"></a>
                                 </div>
                             </div>

@@ -11,7 +11,7 @@
 		</div>
 		<? if($access){ ?>
 			<div class="right">
-				<a id="show-window-add-album" href='javascript:;'><?=t('Создать альбом')?></a>
+				<a id="show-window-add-album" href='javascript:void(0);'><?=t('Создать альбом')?></a>
 			</div>
 		<? } ?>
 		<div class="clear"></div>

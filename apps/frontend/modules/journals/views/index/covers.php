@@ -1,5 +1,5 @@
 <div class="square_p pl15">
-	<div class="left ucase bold"><a href="javascript:;" class="cblack"><?=t("Обложки")?></a></div>
+	<div class="left ucase bold"><a href="javascript:void(0);" class="cblack"><?=t("Обложки")?></a></div>
 	<div class="clear"></div>
 </div>
 <div class="mt10">

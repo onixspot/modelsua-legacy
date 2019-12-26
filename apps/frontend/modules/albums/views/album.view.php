@@ -39,7 +39,7 @@
 			</span>
 		</div>
 		<div class="right">
-			<a href='javascript:;' id="show-album-viewer"><?=t('Смотреть все')?></a>
+			<a href='javascript:void(0);' id="show-album-viewer"><?=t('Смотреть все')?></a>
 		</div>
 		<? if(session::has_credential('admin') || session::get_user_id() == $uid){ ?>
 			<div class="right mr10">

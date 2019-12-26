@@ -1,6 +1,6 @@
 <div class="square_p pl15">
-	<div class="left ucase bold"><a href="javascript:;" class="cblack"><?=t("Последние работы моделей")?></a></div>
-	<!--<div class="right fs10"><a href="javascript:;" class="cgray"><?=t('Редактировать')?></a></div>-->
+	<div class="left ucase bold"><a href="javascript:void(0);" class="cblack"><?=t("Последние работы моделей")?></a></div>
+	<!--<div class="right fs10"><a href="javascript:void(0);" class="cgray"><?=t('Редактировать')?></a></div>-->
 	<div class="clear"></div>
 </div>
 <div id="agency-hronology-list" class="mt5 cgray">
@@ -23,7 +23,7 @@
 		<? $cnt++; ?>
 	<? } ?>
 	<div class="acenter pt10 pb10" style="border-top: 1px solid #eee">
-		<a id="agency-hronology-list-viewmore" href="javascript:;"><?=t('Смотреть ещё')?></a>
+		<a id="agency-hronology-list-viewmore" href="javascript:void(0);"><?=t('Смотреть ещё')?></a>
 	</div>
 </div>
 <div id="block-agency-hronology-empty" class="acenter p10 cgray" style="border: 1px dotted #ccc;"><?=t('Пусто')?></div>

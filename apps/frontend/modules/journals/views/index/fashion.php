@@ -1,5 +1,5 @@
 <div class="square_p pl15">
-	<div class="left ucase bold"><a href="javascript:;" class="cblack"><?=t("Fashion stories")?></a></div>
+	<div class="left ucase bold"><a href="javascript:void(0);" class="cblack"><?=t("Fashion stories")?></a></div>
 	<div class="clear"></div>
 </div>
 <div class="mt10">

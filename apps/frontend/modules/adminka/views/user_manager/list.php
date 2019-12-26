@@ -244,20 +244,20 @@
                         <? if ($profile['application'] && !$profile['application_approve'] && $profile['approve'] == 2) { ?>
                             <? include 'popup/application_approve.php' ?>
                             <? if ($profile['application_approve'] == 0) { ?>
-                                <a href="javascript:;" id="adminka-application-approve-<?= $item_id ?>">
+                                <a href="javascript:void(0);" id="adminka-application-approve-<?= $item_id ?>">
                                     <img src="/ui/show_1.png" alt="Подтвердить" onclick="$('#application-<?= $profile['user_id'] ?>').show();">
                                 </a>
-                                <a href="javascript:;" id="adminka-application-refuse-<?= $item_id ?>">
+                                <a href="javascript:void(0);" id="adminka-application-refuse-<?= $item_id ?>">
                                     <img src="/ui/delete.png" alt="Удалить"/>
                                 </a>
                             <?php } ?>
                             <? if ($profile['application_approve'] == 1) { ?>
-                                <a href="javascript:;" id="adminka-application-send-<?= $item_id ?>">
+                                <a href="javascript:void(0);" id="adminka-application-send-<?= $item_id ?>">
                                     <img src="/ui/send.png" alt="Пригласить"/>
                                 </a>
                             <?php } ?>
                         <?php } elseif ($profile['application'] && $profile['application_approve']) { ?>
-                            <a id="adminka-remove-archive-item-<?= $item_id ?>" href="javascript:;">
+                            <a id="adminka-remove-archive-item-<?= $item_id ?>" href="javascript:void(0);">
                                 <img src="/ui/delete.png" alt="В архив"/>
                             </a>
                         <?php } ?>
@@ -270,7 +270,7 @@
                         <? if ($profile['registrator'] > 0 && $profile['email'] && !$profile['del'] && !$profile['active']) {
                             $icount = (db_key::i()->exists('invitations_byadmin_'.$item_id)) ? db_key::i()->get('invitations_byadmin_'.$item_id)
                                 : 0 ?>
-                            <a id="adminka-send_invitation-<?= $item_id ?>" rel="<?= $icount ?>" href="javascript:;"><img src="/ui/send.png"
+                            <a id="adminka-send_invitation-<?= $item_id ?>" rel="<?= $icount ?>" href="javascript:void(0);"><img src="/ui/send.png"
                                                                                                                           style="height: 16px;"
                                                                                                                           alt="Пригласить"/></a>
                         <?php } ?>
@@ -281,38 +281,38 @@
                                 : 0 ?>
 
                             <? if (request::get('filter') == 'byself-confirmed') { ?>
-                                <a id="adminka-send_invitation_final-<?= $item_id ?>" rel="<?= $icount; ?>" href="javascript:;"><img
+                                <a id="adminka-send_invitation_final-<?= $item_id ?>" rel="<?= $icount; ?>" href="javascript:void(0);"><img
                                             src="/ui/send.png" style="height: 16px;" alt="Пригласить"/></a>
                             <?php } ?>
 
                             <? if (request::get('filter') == 'byself-new') { ?>
-                                <a id="adminka-approve-item-<?= $item_id ?>" href="javascript:;"><img src="/ui/show_1.png" alt="Подтвердить"/></a>
+                                <a id="adminka-approve-item-<?= $item_id ?>" href="javascript:void(0);"><img src="/ui/show_1.png" alt="Подтвердить"/></a>
                             <?php } ?>
 
                             <? if (request::get('filter') == 'byself-confirm' && in_array(session::get_user_id(), [1, 5, 4, 31])) { ?>
-                                <a id="adminka-approvefinal-item-<?= $item_id ?>" href="javascript:;"><img src="/ui/show_1.png"
+                                <a id="adminka-approvefinal-item-<?= $item_id ?>" href="javascript:void(0);"><img src="/ui/show_1.png"
                                                                                                            alt="Подтвердить"/></a>
                             <?php } ?>
                         <?php } ?>
 
                         <a href="/profile/edit?id=<?= $item_id ?>"><img src="/ui/edit.png"/></a>
                         <? if ($catalog_filter) { ?>
-                            <a onclick="changePlace('<?= $item_id ?>', '2')" title="Вверх" href="javascript:;"><img src="/ui/up.png"></a>
-                            <a onclick="changePlace('<?= $item_id ?>', '1')" title="Вниз" href="javascript:;"><img src="/ui/down.png"></a>
+                            <a onclick="changePlace('<?= $item_id ?>', '2')" title="Вверх" href="javascript:void(0);"><img src="/ui/up.png"></a>
+                            <a onclick="changePlace('<?= $item_id ?>', '1')" title="Вниз" href="javascript:void(0);"><img src="/ui/down.png"></a>
                         <?php } ?>
 
                         <? if (!$profile['application']) { ?>
                             <?php if (($profile['del'] || $profile['reserv'])) { ?>
                                 <?php if ($profile['reserv'] > 0) { ?>
-                                    <a id="adminka-remove-archive-item-<?= $item_id ?>" href="javascript:;"><img src="/ui/delete.png" alt="В архив"/></a>
+                                    <a id="adminka-remove-archive-item-<?= $item_id ?>" href="javascript:void(0);"><img src="/ui/delete.png" alt="В архив"/></a>
                                 <?php } else { ?>
-                                    <a id="adminka-remove-remove-item-<?= $item_id ?>" href="javascript:;"><img src="/ui/delete.png"
+                                    <a id="adminka-remove-remove-item-<?= $item_id ?>" href="javascript:void(0);"><img src="/ui/delete.png"
                                                                                                                 alt="Удалить"/></a>
                                 <?php } ?>
-                                <a id="adminka-remove-restore-item-<?= $item_id ?>" href="javascript:;"><img src="/ui/restore.png"
+                                <a id="adminka-remove-restore-item-<?= $item_id ?>" href="javascript:void(0);"><img src="/ui/restore.png"
                                                                                                              alt="Восстановить"/></a>
                             <?php } else { ?>
-                                <a id="adminka-remove-archive-item-<?= $item_id ?>" href="javascript:;"><img src="/ui/delete.png" alt="В архив"/></a>
+                                <a id="adminka-remove-archive-item-<?= $item_id ?>" href="javascript:void(0);"><img src="/ui/delete.png" alt="В архив"/></a>
                             <?php } ?>
                         <?php } ?>
                         <? if (request::get('filter') == 'byself-confirm') { ?>

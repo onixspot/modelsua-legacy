@@ -34,11 +34,11 @@
 					<? if(session::get_user_id() == $uid || session::has_credential('admin')){ ?>
 						<div class="aright">
 							<? if(in_array($category_key, array('covers'))){ ?>
-								<a id="photos-list-item-modify-<?=$pid?>" class="mr5" href="javascript:;">
+								<a id="photos-list-item-modify-<?=$pid?>" class="mr5" href="javascript:void(0);">
 									<img src="/ui/edit2.png" height="12" />
 								</a>
 							<? } ?>
-							<a id="photos-list-item-remove-<?=$pid?>" href="javascript:;">
+							<a id="photos-list-item-remove-<?=$pid?>" href="javascript:void(0);">
 								<img src="/ui/delete2.png" height="20" />
 							</a>
 						</div>
@@ -49,7 +49,7 @@
 						</div>
 						<div class="left aleft" style="width: 189px">
 							<div class="mb5 fs18 bold" style="color: #000000">
-								<a href='javascript:;' onclick="$('#photos-list-item-photo-<?=$pid?>').click()"><?=$photo['name']?></a>
+								<a href='javascript:void(0);' onclick="$('#photos-list-item-photo-<?=$pid?>').click()"><?=$photo['name']?></a>
 							</div>
 							<div>
 								<? if($photo['additional']['photographer'] != '') { ?>

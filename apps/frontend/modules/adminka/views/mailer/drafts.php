@@ -67,7 +67,7 @@
 	</td>
 	<td>
 	    <a href="/adminka/mailer?frame=add&id=<?=$id?>" ><img src="/ui/edit.png"/></a>
-	    <a href="javascript:;" id="delete-draft-link-<?=$id?>"><img src="/ui/delete.png"/></a>
+	    <a href="javascript:void(0);" id="delete-draft-link-<?=$id?>"><img src="/ui/delete.png"/></a>
 	</td>
     </tr>
 	<? } ?>

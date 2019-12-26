@@ -56,7 +56,7 @@
                         
 			<?if($content['print']) {?>
 				<div class="left print_link"  style="background: url('/ui/print_1.png') no-repeat 0 0 scroll transparent; padding-left: 20px;">
-                                        <a href="javascript:;" onClick="App.printPage('print_page_content')" style="line-height: 16px;" class="cgray underline fs12"><?=t('печать')?></a>
+                                        <a href="javascript:void(0);" onClick="App.printPage('print_page_content')" style="line-height: 16px;" class="cgray underline fs12"><?=t('печать')?></a>
                                 </div>
 			<? } ?>
                         <?if(session::has_credential('admin')) {?>

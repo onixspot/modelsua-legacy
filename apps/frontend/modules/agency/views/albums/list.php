@@ -13,10 +13,10 @@
 			<div class="p5">
 				<? if($access){ ?>
 					<div class="aright">
-						<a id="albums-list-item-modify-<?=$aid?>" href="javascript:;" class="mr5">
+						<a id="albums-list-item-modify-<?=$aid?>" href="javascript:void(0);" class="mr5">
 							<img src="/ui/edit2.png" style="height: 12px; ">
 						</a>
-						<a id="albums-list-item-remove-<?=$aid?>" href="javascript:;">
+						<a id="albums-list-item-remove-<?=$aid?>" href="javascript:void(0);">
 							<img src="/ui/delete2.png" style="height: 20px; ">
 						</a>
 					</div>

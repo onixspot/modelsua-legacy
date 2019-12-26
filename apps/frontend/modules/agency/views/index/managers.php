@@ -1,6 +1,6 @@
 <div class="square_p pl15">
-	<div class="left ucase bold"><a href="javascript:;" class="cblack">* <?=t("Менеджеры")?></a></div>
-	<!--<div class="right"><a href="javascript:;" class="cgray">[<?=t('Редактировать')?>]</a></div>-->
+	<div class="left ucase bold"><a href="javascript:void(0);" class="cblack">* <?=t("Менеджеры")?></a></div>
+	<!--<div class="right"><a href="javascript:void(0);" class="cgray">[<?=t('Редактировать')?>]</a></div>-->
 	<div class="clear"></div>
 </div>
 <div id="block-agency-managers" class="mt10">

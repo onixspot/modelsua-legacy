@@ -1,7 +1,7 @@
 <div class="square_p pl15">
-	<div class="left ucase bold"><a href="javascript:;" class="cblack"><?=t("Контакты")?></a></div>
+	<div class="left ucase bold"><a href="javascript:void(0);" class="cblack"><?=t("Контакты")?></a></div>
 	<? if($access){ ?>
-		<div class="right"><a id="journal-contacts-button-edit" href="javascript:;" class="cgray">[<?=t('Редактировать')?>]</a></div>
+		<div class="right"><a id="journal-contacts-button-edit" href="javascript:void(0);" class="cgray">[<?=t('Редактировать')?>]</a></div>
 	<? } ?>
 	<div class="clear"></div>
 </div>

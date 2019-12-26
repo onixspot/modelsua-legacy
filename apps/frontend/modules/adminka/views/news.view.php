@@ -39,11 +39,11 @@
     <div class="left mt10" style="width: 770px;">
         <div class="switcher hide">
             <div class="filters pt5 pb5" style="border: 1px solid #c9c9c9; margin: 0 0 5px 0;">
-                <a href="javascript:;" id="switch_button" onClick="get_item_data(0);$('.filters a').removeClass('selected');$(this).addClass('selected');">Создать контент</a>
-                <a href="javascript:;" onClick="get_news_list(0,'search',';');$('.filters a').removeClass('selected');$(this).addClass('selected');">Все</a>
-                <a href="javascript:;" onClick="get_news_list(0,'type',1);$('.filters a').removeClass('selected');$(this).addClass('selected');">Новости</a>
-                <a href="javascript:;" onClick="get_news_list(0,'type',2);$('.filters a').removeClass('selected');$(this).addClass('selected');">Публикации</a>
-                <a href="javascript:;" onClick="get_news_list(0,'type',3);$('.filters a').removeClass('selected');$(this).addClass('selected');">Анонсы</a>
+                <a href="javascript:void(0);" id="switch_button" onClick="get_item_data(0);$('.filters a').removeClass('selected');$(this).addClass('selected');">Создать контент</a>
+                <a href="javascript:void(0);" onClick="get_news_list(0,'search',';');$('.filters a').removeClass('selected');$(this).addClass('selected');">Все</a>
+                <a href="javascript:void(0);" onClick="get_news_list(0,'type',1);$('.filters a').removeClass('selected');$(this).addClass('selected');">Новости</a>
+                <a href="javascript:void(0);" onClick="get_news_list(0,'type',2);$('.filters a').removeClass('selected');$(this).addClass('selected');">Публикации</a>
+                <a href="javascript:void(0);" onClick="get_news_list(0,'type',3);$('.filters a').removeClass('selected');$(this).addClass('selected');">Анонсы</a>
             </div>
             <div style=""  id="news-list" class="left" >
             </div>
@@ -451,17 +451,17 @@ function show_list(resp) {
                     </td>\n\
                     <td style="width: 525px;">\n\
                         <div class="admin-news-title fs14 bold" style="margin-top: 5px;">\n\
-                            <a href="javascript:;" onClick="preview_page(%id%)">%title%</a>\n\
+                            <a href="javascript:void(0);" onClick="preview_page(%id%)">%title%</a>\n\
                         </div>\n\
                         <div class="admin-news-description fs11" style="margin-top: 1px;">\n\
                             %description%\n\
                         </div>\n\
                     </td>\n\
                     <td>\n\
-                        <a href="javascript:;" onClick="get_item_data(%id%);">\n\
+                        <a href="javascript:void(0);" onClick="get_item_data(%id%);">\n\
                             <img src="https://<?=conf::get('server')?>/ui/edit.png">\n\
                         </a>\n\
-                        <a href="javascript:;" onClick="delete_news(%id%);">\n\
+                        <a href="javascript:void(0);" onClick="delete_news(%id%);">\n\
                             <img src="https://<?=conf::get('server')?>/ui/delete.png">\n\
                         </a>\n\
                     </td>\n\
@@ -478,10 +478,10 @@ function show_list(resp) {
     page_count = resp['pages'];
     var page_html = '';
     if(page_count>1) {
-        page_html = '<div class="paginator"><a href="javascript:;" onClick="get_news_list(0,\''+window.filter_name+'\','+window.filter_value+')">&larr;</a>';
+        page_html = '<div class="paginator"><a href="javascript:void(0);" onClick="get_news_list(0,\''+window.filter_name+'\','+window.filter_value+')">&larr;</a>';
         for(var j=0; j<page_count; j++)
-            page_html += '<a onClick="get_news_list('+j+',\''+window.filter_name+'\',\''+window.filter_value+'\');" class="'+((window.current_page==j) ? 'selected' : ' ')+'" href="javascript:;">'+(j+1)+'</a>';
-        page_html += '<a href="javascript:;" onClick="get_news_list('+(page_count-1)+',\''+window.filter_name+'\',\''+window.filter_value+'\')">&rarr;</a></div>';
+            page_html += '<a onClick="get_news_list('+j+',\''+window.filter_name+'\',\''+window.filter_value+'\');" class="'+((window.current_page==j) ? 'selected' : ' ')+'" href="javascript:void(0);">'+(j+1)+'</a>';
+        page_html += '<a href="javascript:void(0);" onClick="get_news_list('+(page_count-1)+',\''+window.filter_name+'\',\''+window.filter_value+'\')">&rarr;</a></div>';
     }
     
     $('#news-list').html('<table>'+html+"</table>");

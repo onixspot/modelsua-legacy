@@ -1,7 +1,7 @@
 <div id="statements-<?=$profile['user_id']?>" class="p5 hide" style="background: #fff; position: absolute; box-shadow: 0px 0px 5px black">
     <div class="p5 aright fs10">
             <a
-                    href="javascript:;"
+                    href="javascript:void(0);"
                     onclick="
                             $('#statements-<?=$profile['user_id']?>').hide()
                     "

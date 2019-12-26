@@ -15,7 +15,7 @@
 			<li class="icon-register"><a href="/forum/sign?mode=registration">Регистрация</a></li>
 			<li class="icon-logout"><a accesskey="x" title="Вход" href="/forum/sign?mode=login">Вход</a></li>
 			<? } else {?>
-			<li class="icon-logout"><a title="Выход" href="javascript:;" onclick="$.post('/forum/sign', {'act': 'logout'}, function(resp) { if (resp.success) { window.location.reload() } }, 'json');">Выход [<?=$forum_user['login']?>]</a></li>
+			<li class="icon-logout"><a title="Выход" href="javascript:void(0);" onclick="$.post('/forum/sign', {'act': 'logout'}, function(resp) { if (resp.success) { window.location.reload() } }, 'json');">Выход [<?=$forum_user['login']?>]</a></li>
 			<? } ?>
 
 		</ul>

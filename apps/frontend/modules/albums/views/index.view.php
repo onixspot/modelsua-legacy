@@ -25,7 +25,7 @@
 			</span>
 		</div>
 		<div class="right">
-			<a id="show-window-add-album" href='javascript:;'><?=t('Создать альбом')?></a>
+			<a id="show-window-add-album" href='javascript:void(0);'><?=t('Создать альбом')?></a>
 		</div>
 		<div class="clear"></div>
 	</div>
@@ -42,52 +42,52 @@
 			<div id="albums-list-item-1" class="left acenter" style="width: 250px">
 				<div class="mr5" style="background: #eee">
 					<div class="p5 aright">
-						<a href="javascript:;">
+						<a href="javascript:void(0);">
 							<img src="/ui/delete2.png" height="20" />
 						</a>
 					</div>
 					<div style="height: 180px; background: url('/imgserve?pid=863&h=180') no-repeat center"></div>
 					<div class="p5">
-						<a href="javascript:;">Name</a>
+						<a href="javascript:void(0);">Name</a>
 					</div>
 				</div>
 			</div>
 			<div id="albums-list-item-1" class="left acenter" style="width: 250px">
 				<div class="ml5 mr5" style="background: #eee">
 					<div class="p5 aright">
-						<a href="javascript:;">
+						<a href="javascript:void(0);">
 							<img src="/ui/delete2.png" height="20" />
 						</a>
 					</div>
 					<div style="height: 180px; background: url('/imgserve?pid=863&h=180') no-repeat center"></div>
 					<div class="p5">
-						<a href="javascript:;">Name</a>
+						<a href="javascript:void(0);">Name</a>
 					</div>
 				</div>
 			</div>
 			<div id="albums-list-item-1" class="left acenter" style="width: 250px">
 				<div class="ml5 mr5" style="background: #eee">
 					<div class="p5 aright">
-						<a href="javascript:;">
+						<a href="javascript:void(0);">
 							<img src="/ui/delete2.png" height="20" />
 						</a>
 					</div>
 					<div style="height: 180px; background: url('/imgserve?pid=863&h=180') no-repeat center"></div>
 					<div class="p5">
-						<a href="javascript:;">Name</a>
+						<a href="javascript:void(0);">Name</a>
 					</div>
 				</div>
 			</div>
 			<div id="albums-list-item-1" class="left acenter" style="width: 250px">
 				<div class="ml5" style="background: #eee">
 					<div class="p5 aright">
-						<a href="javascript:;">
+						<a href="javascript:void(0);">
 							<img src="/ui/delete2.png" height="20" />
 						</a>
 					</div>
 					<div style="height: 180px; background: url('/imgserve?pid=863&h=180') no-repeat center"></div>
 					<div class="p5">
-						<a href="javascript:;">Name</a>
+						<a href="javascript:void(0);">Name</a>
 					</div>
 				</div>
 			</div>
@@ -98,13 +98,13 @@
 			<div id="albums-list-item-1" class="left acenter" style="width: 250px">
 				<div class="mr5" style="background: #eee">
 					<div class="p5 aright">
-						<a href="javascript:;">
+						<a href="javascript:void(0);">
 							<img src="/ui/delete2.png" height="20" />
 						</a>
 					</div>
 					<div style="height: 180px; background: url('/imgserve?pid=863&h=180') no-repeat center"></div>
 					<div class="p5">
-						<a href="javascript:;">Name</a>
+						<a href="javascript:void(0);">Name</a>
 					</div>
 				</div>
 			</div>
@@ -194,7 +194,7 @@
 									.append(
 										$('<a />').attr({
 											'id': 'albums-list-item-modify-'+data[key].id,
-											'href': 'javascript:;',
+											'href': 'javascript:void(0);',
 											'class': 'mr5'
 										})
 										.click(function(){
@@ -220,7 +220,7 @@
 										$('<a />')
 											.attr({
 												'id': 'albums-list-item-remove-'+data[key].id,
-												'href': 'javascript:;'
+												'href': 'javascript:void(0);'
 											})
 											.click(function(){
 												var id = $(this).attr('id').split('-')[4];

@@ -11,9 +11,9 @@ class adminka_pages_action extends adminka_controller {
                                     </div>
                                 </div>
                                 <div style="" class="left pl20">
-                                    <a href="javascript:;" title="Вверх" onClick="change_item(%id%,\'move\',{direction: 1})"><img src="/ui/up.png"></a>
-                                    <a href="javascript:;" title="Вниз" onClick="change_item(%id%,\'move\',{direction: 0})"><img src="/ui/down.png"></a>
-                                    <a href="javascript:;" title="Удалить" onClick="change_item(%id%,\'delete\')"><img src="/ui/delete.png"></a>
+                                    <a href="javascript:void(0);" title="Вверх" onClick="change_item(%id%,\'move\',{direction: 1})"><img src="/ui/up.png"></a>
+                                    <a href="javascript:void(0);" title="Вниз" onClick="change_item(%id%,\'move\',{direction: 0})"><img src="/ui/down.png"></a>
+                                    <a href="javascript:void(0);" title="Удалить" onClick="change_item(%id%,\'delete\')"><img src="/ui/delete.png"></a>
                                     <a href="/page?link=%link%" title="Просмотреть"><img src="/ui/preview.png" style="width: 16px; height: 16px;"></a>
                                 </div>
                             </div>

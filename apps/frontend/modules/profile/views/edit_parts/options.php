@@ -10,7 +10,7 @@
                 </div>
                 <div class="left pt5 ml5">.<?= conf::get('server') ?></div>
                 <div id="profile-edit-form-options-subdomain-goto" class="left pt5 ml5 hide">
-                    <a href="javascript:;"><?= t('Перейти') ?> &rarr;</a>
+                    <a href="javascript:void(0);"><?= t('Перейти') ?> &rarr;</a>
                 </div>
                 <div class="clear"></div>
             </div>

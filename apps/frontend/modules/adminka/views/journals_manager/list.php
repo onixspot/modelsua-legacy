@@ -24,7 +24,7 @@
 					</td>
 					<td align="center">
 						<div><a href="/adminka/journals_manager?act=edit&id=<?=$id?>">Изменить</a></div>
-						<div><a id="journals-item-remove-<?=$id?>" href="javascript:;">Удалить</a></div>
+						<div><a id="journals-item-remove-<?=$id?>" href="javascript:void(0);">Удалить</a></div>
 					</td>
 				</tr>
 			<? } ?>

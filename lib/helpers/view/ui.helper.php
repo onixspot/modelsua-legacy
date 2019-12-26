@@ -45,6 +45,25 @@ class ui_helper
         return $formated_date;
     }
 
+    public static function get_mounth($id = null)
+    {
+        $months[self::MONTH_ZERO] = '&mdash;';
+        $months[1]                = t('января');
+        $months[2]                = t('февраля');
+        $months[3]                = t('марта');
+        $months[4]                = t('апреля');
+        $months[5]                = t('мая');
+        $months[6]                = t('июня');
+        $months[7]                = t('июля');
+        $months[8]                = t('августа');
+        $months[9]                = t('сентября');
+        $months[10]               = t('октября');
+        $months[11]               = t('ноября');
+        $months[12]               = t('декабря');
+
+        return ($id) ? (isset($months[$id]) ? $months[$id] : false) : $months;
+    }
+
     public static function get_mounth_list($id = null)
     {
         $months = array_merge([self::MONTH_ZERO => '&mdash;'], self::MONTHS);
@@ -60,7 +79,7 @@ class ui_helper
         return $months;
     }
 
-    public static function datefields($name = '', $date = 0, $multiple = false, $options = [], $empty = false, $yearstart = 1930)
+    public static function datefields($name = '', $date = 0, $multiple = false, $options = [], $empty = false, $yearstart = 1970)
     {
         if ($empty) {
             $days[0]   = '&mdash;';
@@ -147,12 +166,14 @@ class ui_helper
                 return 0;
             }
         } else {
-            if (request::get_int($field.'_day') > 0 && request::get_int($field.'_year') > 0) {
+            if (request::get_int($field.'_year') > 0) {
                 return mktime(0, 0, 0, request::get_int($field.'_month'), request::get_int($field.'_day'), request::get_int($field.'_year'));
             } else {
                 return 0;
             }
         }
+
+
     }
 
     public static function photo($user_data, $options = [])
@@ -185,25 +206,6 @@ class ui_helper
 
         return $html;
 
-    }
-
-    public static function get_mounth($id = null)
-    {
-        $months[self::MONTH_ZERO] = '&mdash;';
-        $months[1]                = t('января');
-        $months[2]                = t('февраля');
-        $months[3]                = t('марта');
-        $months[4]                = t('апреля');
-        $months[5]                = t('мая');
-        $months[6]                = t('июня');
-        $months[7]                = t('июля');
-        $months[8]                = t('августа');
-        $months[9]  = t('сентября');
-        $months[10] = t('октября');
-        $months[11] = t('ноября');
-        $months[12] = t('декабря');
-
-        return ($id) ? (isset($months[$id]) ? $months[$id] : false) : $months;
     }
 
 

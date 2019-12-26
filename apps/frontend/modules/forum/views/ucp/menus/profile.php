@@ -1,21 +1,21 @@
 <ul id="ucp-menu-profile" class="<?=(request::get('tab')=='profile' || !request::get('tab')) ? ' ': ' hide'?>">
 	<li id="active-subsection">
-	    <a href="javascript:;" id="ucp-profile-personal">
+	    <a href="javascript:void(0);" id="ucp-profile-personal">
 		<span><?=t('Личные данные')?></span>
 	    </a>
 	</li>
 	<li>
-	    <a href="javascript:;" id="ucp-profile-signature">
+	    <a href="javascript:void(0);" id="ucp-profile-signature">
 		<span><?=t('Подпись')?></span>
 	    </a>
 	</li>
 	<li>
-	    <a href="javascript:;" id="ucp-profile-avatara">
+	    <a href="javascript:void(0);" id="ucp-profile-avatara">
 		<span><?=t('Аватара')?></span>
 	    </a>
 	</li>
 	<li>
-	    <a href="javascript:;" id="ucp-profile-registration">
+	    <a href="javascript:void(0);" id="ucp-profile-registration">
 		<span><?=t('Регистрационные данные')?></span>
 	    </a>
 	</li>

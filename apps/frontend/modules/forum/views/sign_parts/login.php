@@ -15,8 +15,8 @@
 		<dl>
 			<dt style="width: 15em;"><label for="password">Пароль:</label></dt>
 			<dd><input type="password" class="inputbox autowidth" size="25" name="password" id="password" tabindex="2"></dd>
-			<dd class="mt5"><a href="javascript:;">Забыли пароль?</a></dd>
-			<dd><a href="javascript:;">Повторно выслать письмо для активации учётной записи</a></dd>
+			<dd class="mt5"><a href="javascript:void(0);">Забыли пароль?</a></dd>
+			<dd><a href="javascript:void(0);">Повторно выслать письмо для активации учётной записи</a></dd>
 		</dl>
 		
 		<dl>
@@ -43,7 +43,7 @@
 		<div class="content fs14">
 			<h3>Регистрация</h3>
 			<p>Для входа на конференцию вы должны быть зарегистрированы. Регистрация занимает всего несколько минут, но предоставляет вам более широкие возможности. Администратором конференции могут быть установлены также дополнительные привилегии для зарегистрированных пользователей. Прежде чем зарегистрироваться, вам следует ознакомиться с правилами и политикой, принятыми на конференции. Помните, что ваше присутствие на форумах означает согласие со <strong>всеми</strong> правилами.</p>
-			<p><strong><a href="javascript:;">Общие правила</a> | <a href="./ucp.php?mode=privacy">Соглашение о конфиденциальности</a></strong></p>
+			<p><strong><a href="javascript:void(0);">Общие правила</a> | <a href="./ucp.php?mode=privacy">Соглашение о конфиденциальности</a></strong></p>
 			<hr class="dashed">
 			<p><input type="button" value="<?=t('Регистрация')?>" class="mb15" onclick="wondow.location='/forum/sign?mode=registration'"/></p>
 		</div>

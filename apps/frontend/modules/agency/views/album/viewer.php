@@ -1,7 +1,7 @@
 <div id="album-viewer-blind" class="hide" style="position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 999;">
 	<div id="album-viewer" style="margin: 0px auto; margin-top: 24px; width: 800px; background: white; box-shadow: 0 0 5px black">
 		<div class="pl20 pt20 pr20 aright">
-			<a id="album-viewer-a-close" href="javascript:;">Закрыть</a>
+			<a id="album-viewer-a-close" href="javascript:void(0);">Закрыть</a>
 		</div>
 		<div class="pl20 pt20 pr20">
 			<table width="100%" cellpadding="0" cellspacing="0">

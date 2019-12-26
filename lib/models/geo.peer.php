@@ -20,7 +20,7 @@ class geo_peer extends db_peer_postgre
     const ISRAEL      = 1393;
     const ITALIA      = 1786;
     const JAPAN       = 11060;
-    const LEBANON     = 582060;
+    const LEBANON     = 2505884;
     const MALAYSIA    = 277563;
     const NETHERLANDS = 277551;
     const NORWAY      = 2880;
@@ -35,42 +35,45 @@ class geo_peer extends db_peer_postgre
     const UK          = 616;
     const UKRAINE     = 9908;
     const USA         = 5681;
+    const PORTUGAL    = 3141;
 
     const COUNTRY_IDS = [
+        self::USA,
+        self::FRANCE,
+        self::ITALIA,
+        self::CHINA,
+        self::JAPAN,
+        self::SINGAPORE,
+        self::GERMANY,
+        self::SPAIN,
+        self::UK,
+        self::SWITZERLAND,
+        // ---
         self::AUSTRALIA,
         self::AUSTRIA,
         self::BELGIUM,
         self::BRAZIL,
         self::CANADA,
         self::CHILE,
-        self::CHINA,
         self::DENMARK,
-        self::FRANCE,
-        self::GERMANY,
         self::GREECE,
         self::INDONESIA,
         self::ISRAEL,
-        self::ITALIA,
-        self::JAPAN,
         self::LEBANON,
         self::MALAYSIA,
         self::NETHERLANDS,
         self::NORWAY,
-        self::SINGAPORE,
         self::SOUTH_KOREA,
-        self::SPAIN,
         self::SWEDEN,
-        self::SWITZERLAND,
         self::TAIWAN,
         self::TURKEY,
         self::UAE,
-        self::UK,
-        self::USA,
+        self::PORTUGAL,
     ];
 
     const ALLOWED_CITY_IDS_BY_COUNTRY_ID = [
         self::AUSTRALIA   => [49],
-        self::AUSTRIA     => [65],
+        self::AUSTRIA     => [65, 278170],
         self::BELGIUM     => [409, 406],
         self::BRAZIL      => [589],
         self::CANADA      => [2183, 2215, 2287],
@@ -98,6 +101,7 @@ class geo_peer extends db_peer_postgre
         self::UAE         => [2372615, 5000000],
         self::UK          => [740],
         self::USA         => [7992, 279123, 278193, 6788, 6517, 8721, 9085, 9327, 6294],
+        self::PORTUGAL    => [3148],
     ];
 
     protected $table_name = '';
@@ -190,7 +194,9 @@ class geo_peer extends db_peer_postgre
             $cond['hidden'] = 'false';
         }
 
-        return $this->sanitizeRecords($this->get_list($cond, [], ['priority DESC']));
+        $topIds = [1, 4, 2, 3, 24, 10, 6, 9, 5, 99, 80];
+
+        return $this->sanitizeRecords(array_merge($topIds, array_diff($this->get_list($cond, [], ['name_ru ASC']), $topIds)));
     }
 
     public function set_countries($countries)

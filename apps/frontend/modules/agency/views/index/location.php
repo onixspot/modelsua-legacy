@@ -5,7 +5,7 @@
 		<div class="left cgray">Место нахождения</div>
 	<? } ?>
 	<? if($access){ ?>
-		<div class="left ml10"><a id="agency-location-button-edit" href="javascript:;" class="cgray">[<?=t('Редактировать')?>]</a></div>
+		<div class="left ml10"><a id="agency-location-button-edit" href="javascript:void(0);" class="cgray">[<?=t('Редактировать')?>]</a></div>
 	<? } ?>
 	<div class="clear"></div>
 </div>

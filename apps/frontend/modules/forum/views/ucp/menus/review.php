@@ -1,16 +1,16 @@
 <ul id="ucp-menu-review" class="<?=(request::get('tab')=='groups') ? ' ': ' hide'?>">
 	<li id="active-subsection">
-	    <a href="javascript:;" id="ucp-review-front">
+	    <a href="javascript:void(0);" id="ucp-review-front">
 		<span><?=t('Начало')?></span>
 	    </a>
 	</li>
 	<li>
-	    <a href="javascript:;" id="ucp-review-subscribed">
+	    <a href="javascript:void(0);" id="ucp-review-subscribed">
 		<span><?=t('Подписки')?></span>
 	    </a>
 	</li>
 	<li>
-	    <a href="javascript:;" id="ucp-review-drafts">
+	    <a href="javascript:void(0);" id="ucp-review-drafts">
 		<span><?=t('Черновики')?></span>
 	    </a>
 	</li>

@@ -139,7 +139,7 @@ if(request::get('action')=='compose')
 	<?if(request::get('action')=='compose') {?>
 	<div id="smiley-box" class="right fs14">
 		<hr>
-		<a href="javascript:;">BBCode</a> <em>ВКЛЮЧЁН</em><br>
+		<a href="javascript:void(0);">BBCode</a> <em>ВКЛЮЧЁН</em><br>
 		
 			[img] <em>ВКЛЮЧЁН</em><br>
 			[flash] <em>ВЫКЛЮЧЕН</em><br>

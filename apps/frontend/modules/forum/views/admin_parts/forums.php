@@ -9,7 +9,7 @@ var clear_form = function() {
     }
 }
 </script>
-<a href="javascript:;" class="fs13" onclick="clear_form();">Добавить новый форум</a>
+<a href="javascript:void(0);" class="fs13" onclick="clear_form();">Добавить новый форум</a>
 <form id="forum-form" class="mt10 <?=($post_data) ? ' ': ' hide'?>">
     <input type="hidden" name="act" value="save_forum"/>
     <input type="hidden" name="id" id="id" value="<?=$post_data['id']?>"/>
@@ -123,7 +123,7 @@ var clear_form = function() {
 	</td>
 	<td class="acenter">
 	    <a href="/forum/admin?frame=forums&id=<?=$forum['id']?>" id="edit-forum-<?=$forum['id']?>"/><img src="/ui/edit.png"/></a>
-	    <a href="javascript:;" id="delete-forum-<?=$forum['id']?>"/><img src="/ui/delete.png"/></a>
+	    <a href="javascript:void(0);" id="delete-forum-<?=$forum['id']?>"/><img src="/ui/delete.png"/></a>
 	</td>
     </tr>
     <? } ?>

@@ -20,8 +20,8 @@
 		</div>
             <?  if (session::has_credential('admin')) { ?>
             <div class="right">
-                <a onclick="$('#add_photoalbum').show(50);" href="javascript:;"><?=t('Добавить папку')?></a> |
-		<a onclick="$('#add_stuff').show(50);$('#add_file').show(50);" href="javascript:;" class="right">&nbsp;<?=t('Добавить материал')?></a>
+                <a onclick="$('#add_photoalbum').show(50);" href="javascript:void(0);"><?=t('Добавить папку')?></a> |
+		<a onclick="$('#add_stuff').show(50);$('#add_file').show(50);" href="javascript:void(0);" class="right">&nbsp;<?=t('Добавить материал')?></a>
             </div>
 		<div class="clear"></div>
                 <div id="add_photoalbum" class="hide" style="display: none;">

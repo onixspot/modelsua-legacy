@@ -10,7 +10,7 @@
 		<?php foreach ($list as $user_id) { ?>
 			<?php $ud = user_data_peer::instance()->get_item($user_id); ?>
 			<div class="pt5 pb5">
-				<a id="member-link-<?= $user_id ?>" href='javascript:;'>
+				<a id="member-link-<?= $user_id ?>" href='javascript:void(0);'>
 					<?php $name = explode(' ', profile_peer::get_name($ud)); ?>
 					<?= $name[0].' '.mb_strtoupper($name[1] !== '' ? $name[1] : $name[2]) ?>
 				</a>

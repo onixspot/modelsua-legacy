@@ -5,7 +5,7 @@
 			Админ панель
 		</div>
 		<div class="closeButton">
-			<a href="javascript:;">Закрыть</a>
+			<a href="javascript:void(0);">Закрыть</a>
 		</div>
 		<div style="clear: both"></div>
 	</div>
@@ -61,7 +61,7 @@
 									<input type="button" id="submit" value="Сохранить" />
 								</div>
 								<div class="left ml5 mt5">
-									<a href="javascript:;" onclick="$('#um-create_user-div').hide();">Отмена</a>
+									<a href="javascript:void(0);" onclick="$('#um-create_user-div').hide();">Отмена</a>
 								</div>
 								<div class="clear"></div>
 							</div>
@@ -73,67 +73,67 @@
 					
 					<div class="mb5">
 						<div class="left mr20">
-							<a href="javascript:;" onclick="$(this).parent().parent().find('a').css('font-weight', 'normal'); $(this).css('font-weight', 'bold'); $('div[id*=um-menu]').hide(); $('#um-create_user-div').show();">Создать участника</a>
+							<a href="javascript:void(0);" onclick="$(this).parent().parent().find('a').css('font-weight', 'normal'); $(this).css('font-weight', 'bold'); $('div[id*=um-menu]').hide(); $('#um-create_user-div').show();">Создать участника</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="$(this).parent().parent().find('a').css('font-weight', 'normal'); $(this).css('font-weight', 'bold'); $('div[id*=um-menu]').hide(); $('#um-menu-all').show(); upTable('all');">Все</a>
+							<a href="javascript:void(0);" onclick="$(this).parent().parent().find('a').css('font-weight', 'normal'); $(this).css('font-weight', 'bold'); $('div[id*=um-menu]').hide(); $('#um-menu-all').show(); upTable('all');">Все</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="$(this).parent().parent().find('a').css('font-weight', 'normal'); $(this).css('font-weight', 'bold'); $('div[id*=um-menu]').hide(); $('#um-menu-admin').show(); upTable('admin');">Созданные администратором</a>
+							<a href="javascript:void(0);" onclick="$(this).parent().parent().find('a').css('font-weight', 'normal'); $(this).css('font-weight', 'bold'); $('div[id*=um-menu]').hide(); $('#um-menu-admin').show(); upTable('admin');">Созданные администратором</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="$(this).parent().parent().find('a').css('font-weight', 'normal'); $(this).css('font-weight', 'bold'); $('div[id*=um-menu]').hide(); $('#um-menu-self').show(); upTable('self');">Самозарегистрированные</a>
+							<a href="javascript:void(0);" onclick="$(this).parent().parent().find('a').css('font-weight', 'normal'); $(this).css('font-weight', 'bold'); $('div[id*=um-menu]').hide(); $('#um-menu-self').show(); upTable('self');">Самозарегистрированные</a>
 						</div>
 						<div class="clear"></div>
 					</div>
 					<div id="um-menu-all" class="hide mb5 p5" style="box-shadow: inset 0px 0px 2px black; background: #ddd; border-radius: 2px;">
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('all-active');">Активные</a>
+							<a href="javascript:void(0);" onclick="upTable('all-active');">Активные</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('all-noactive');">Неактивные</a>
+							<a href="javascript:void(0);" onclick="upTable('all-noactive');">Неактивные</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('all-nomail');">Без e-mail</a>
+							<a href="javascript:void(0);" onclick="upTable('all-nomail');">Без e-mail</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('all-hidden');">Спрятанные</a>
+							<a href="javascript:void(0);" onclick="upTable('all-hidden');">Спрятанные</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('all-invited');">Все приглашенные</a>
+							<a href="javascript:void(0);" onclick="upTable('all-invited');">Все приглашенные</a>
 						</div>
 						<div class="clear"></div>
 					</div>
 					<div id="um-menu-admin" class="hide mb5 p5" style="box-shadow: inset 0px 0px 2px black; background: #ddd; border-radius: 2px;">
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('admin-active');">Активные</a>
+							<a href="javascript:void(0);" onclick="upTable('admin-active');">Активные</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('admin-noactive');">Неактивные</a>
+							<a href="javascript:void(0);" onclick="upTable('admin-noactive');">Неактивные</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('admin-nomail');">Без e-mail</a>
+							<a href="javascript:void(0);" onclick="upTable('admin-nomail');">Без e-mail</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('admin-hidden');">Спрятанные</a>
+							<a href="javascript:void(0);" onclick="upTable('admin-hidden');">Спрятанные</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('admin-invited');">Приглашенные</a>
+							<a href="javascript:void(0);" onclick="upTable('admin-invited');">Приглашенные</a>
 						</div>
 						<div class="clear"></div>
 					</div>
 					<div id="um-menu-self" class="hide mb5 p5" style="box-shadow: inset 0px 0px 2px black; background: #ddd; border-radius: 2px;">
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('self-new');">Новые</a>
+							<a href="javascript:void(0);" onclick="upTable('self-new');">Новые</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('self-confirm');">На подтверждение</a>
+							<a href="javascript:void(0);" onclick="upTable('self-confirm');">На подтверждение</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('self-active');">Активные</a>
+							<a href="javascript:void(0);" onclick="upTable('self-active');">Активные</a>
 						</div>
 						<div class="left mr20">
-							<a href="javascript:;" onclick="upTable('self-noactive');">Неактивные</a>
+							<a href="javascript:void(0);" onclick="upTable('self-noactive');">Неактивные</a>
 						</div>
 						<div class="clear"></div>
 					</div>
@@ -238,7 +238,7 @@
 									.append($("<br />"))
 									.append(
 										$("<a />")
-											.attr("href", "javascript:;")
+											.attr("href", "javascript:void(0);")
 											.attr("rel", data[i].user_id)
 											.click(function(){
 												if(confirm("Точно удалить?")){

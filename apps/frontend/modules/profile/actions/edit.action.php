@@ -309,11 +309,11 @@ class profile_edit_action extends profile_controller
                 'value'  => request::get('instagram'),
                 'access' => request::get_int('instagram-access'),
             ],
-            'twitter' => [
+            'twitter'   => [
                 'value'  => request::get('twitter'),
                 'access' => request::get_int('twitter-access'),
             ],
-            'wiki' => [
+            'wiki'      => [
                 'value'  => request::get('wiki'),
                 'access' => request::get_int('wiki-access'),
             ],

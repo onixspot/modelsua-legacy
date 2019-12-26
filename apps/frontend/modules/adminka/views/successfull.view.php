@@ -33,13 +33,13 @@
                     <a href="/profile?id=<?=$uid?>"><?=$uinfo['first_name'].' <b>'.mb_strtoupper($uinfo['last_name']).'</b>'?></a>
                 </td>
                 <td class="acenter">
-                    <a href="javascript:;" onClick="changePlace('<?=$uid?>',2)">
+                    <a href="javascript:void(0);" onClick="changePlace('<?=$uid?>',2)">
                         <img src="/ui/up.png">
-                    </a><a href="javascript:;" onClick="changePlace('<?=$uid?>',1)">
+                    </a><a href="javascript:void(0);" onClick="changePlace('<?=$uid?>',1)">
                         <img src="/ui/down.png">
                     </a>
                     
-                    <a href="javascript:;" onClick="deleteItem('<?=$uid?>')">
+                    <a href="javascript:void(0);" onClick="deleteItem('<?=$uid?>')">
                         <img src="/ui/delete.png">
                     </a>
                     

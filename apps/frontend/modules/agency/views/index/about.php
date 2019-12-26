@@ -1,7 +1,7 @@
 <div class="square_p pl15">
-	<div class="left ucase bold"><a href="javascript:;" class="cblack"><?=t("Об агентстве")?></a></div>
+	<div class="left ucase bold"><a href="javascript:void(0);" class="cblack"><?=t("Об агентстве")?></a></div>
 	<? if($access){ ?>
-		<div class="right"><a href="javascript:;" id="agency-about-button-edit" class="cgray">[<?=t('Редактировать')?>]</a></div>
+		<div class="right"><a href="javascript:void(0);" id="agency-about-button-edit" class="cgray">[<?=t('Редактировать')?>]</a></div>
 	<? } ?>
 	<div class="clear"></div>
 </div>

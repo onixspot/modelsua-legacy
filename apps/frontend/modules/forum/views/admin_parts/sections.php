@@ -1,4 +1,4 @@
-<a href="javascript:;" class="fs13" onclick="if($('#section-form').hasClass('hide')) $('#section-form').toggleClass('hide'); else { $('#section_name').val(''); $('#id').val(0); }">Добавить новый раздел</a>
+<a href="javascript:void(0);" class="fs13" onclick="if($('#section-form').hasClass('hide')) $('#section-form').toggleClass('hide'); else { $('#section_name').val(''); $('#id').val(0); }">Добавить новый раздел</a>
 <form id="section-form" class="mt10 <?=($post_data) ? ' ': ' hide'?>">
     <input type="hidden" name="act" value="save_section"/>
     <input type="hidden" name="id" id="id" value="<?=$post_data['id']?>"/>
@@ -43,7 +43,7 @@
 	</td>
 	<td class="acenter">
 	    <a href="/forum/admin?frame=sections&id=<?=$section['id']?>" id="edit-section-<?=$section['id']?>"/><img src="/ui/edit.png"/></a>
-	    <a href="javascript:;" id="edit-delete-<?=$section['id']?>"/><img src="/ui/delete.png"/></a>
+	    <a href="javascript:void(0);" id="edit-delete-<?=$section['id']?>"/><img src="/ui/delete.png"/></a>
 	</td>
     </tr>
     <? } ?>

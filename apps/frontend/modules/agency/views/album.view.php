@@ -13,11 +13,11 @@
 			<span><?=$agency_album['additional']['name']?></span>
 		</div>
 		<div class="right">
-			<a id="show-album-viewer" href="javascript:;"><?=t('Смотреть все')?></a>
+			<a id="show-album-viewer" href="javascript:void(0);"><?=t('Смотреть все')?></a>
 		</div>
 		<? if($access){ ?>
 			<div class="right mr10">
-				<a id="show-window-add-photo" href="javascript:;"><?=t('Загрузить фото')?></a>
+				<a id="show-window-add-photo" href="javascript:void(0);"><?=t('Загрузить фото')?></a>
 			</div>
 			<div class="right mr10">
 				<a href="/agency/albums?id=<?=$agency_id?>&show=edit_album_<?=$agency_album['id']?>"><?=t('Редактировать')?></a>

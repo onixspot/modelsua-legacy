@@ -57,11 +57,18 @@ $assets = AssetsFactory::create();
     <?= $assets->script('/main.js') ?>
     <?= $assets->script('/erlte.js') ?>
 
-    <link href="https://f.<?= conf::get('server') ?>/public/css/flag-icon.min.css" rel="stylesheet"/>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://f.<?= conf::get('server') ?>/public/css/flag-icon.min.css"
+          rel="stylesheet">
+    <link crossorigin="anonymous"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+          rel="stylesheet">
 
-    <?=$assets->stylesheet('/main.css')?>
-    <?=$assets->stylesheet('/erlte.css')?>
+
+    <?= $assets->stylesheet('/main.css') ?>
+    <?= $assets->stylesheet('/erlte.css') ?>
     <?php include __DIR__.'/_js_static.php' ?>
     <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
 </head>

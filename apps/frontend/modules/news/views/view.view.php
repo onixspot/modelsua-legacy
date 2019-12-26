@@ -67,7 +67,7 @@
             <a href="https://twitter.com/share" class="twitter-share-button" data-lang="ru">Твитнуть</a>
         </div>
         <div class="left print_link"  style="background: url('/ui/print_1.png') no-repeat 0 0 scroll transparent; padding-left: 20px;">
-			<a href="javascript:;" onClick="App.printPage('news-container')" style="line-height: 16px;" class="cgray underline fs12"><?=t('печать')?></a>
+			<a href="javascript:void(0);" onClick="App.printPage('news-container')" style="line-height: 16px;" class="cgray underline fs12"><?=t('печать')?></a>
         </div>
         <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 		<?if(session::has_credential('admin')) {?>

@@ -33,9 +33,9 @@
 
 <div id="messages-title">
 <div class="mb5 right mt15">
-    <a href="javascript:;" class="dotted fs11 ml5" id="select_all"><?=t('Выбрать все')?></a>
-    <a class="dotted fs11 ml10" onclick="m.deleteMessages()" href="javascript:;"><?=t('Удалить')?></a>
-    <a class="dotted fs11 ml10" onclick="m.markViewed()" href="javascript:;"><?=t('Отметить прочитанными')?></a>
+    <a href="javascript:void(0);" class="dotted fs11 ml5" id="select_all"><?=t('Выбрать все')?></a>
+    <a class="dotted fs11 ml10" onclick="m.deleteMessages()" href="javascript:void(0);"><?=t('Удалить')?></a>
+    <a class="dotted fs11 ml10" onclick="m.markViewed()" href="javascript:void(0);"><?=t('Отметить прочитанными')?></a>
 </div>
 <div class="mb5 left mt15 " style="text-transform: uppercase;">
     <a href="/messages?selector=all<?=(request::get('type') ? '&type='.request::get('type') : '')?>" class="fs11 ml5"><?=t('Все')?></a>
@@ -119,7 +119,7 @@ if($list) {
 		<div class="right cgray fs11">
                         <?=date('H:i d.m.Y',$message['created_ts'])?><br>
                         <div id="controls_message_<?=$mid?>" class="fs11 quiet hidden mt10" style="display: none;">
-                            <a onclick="if(confirm('<?=t('Удалить сообщение')?>?')) { App.delete_message('<?=$mid?>','message_<?=$mid?>') }" href="javascript:;"><?=t('Удалить')?></a><br/>
+                            <a onclick="if(confirm('<?=t('Удалить сообщение')?>?')) { App.delete_message('<?=$mid?>','message_<?=$mid?>') }" href="javascript:void(0);"><?=t('Удалить')?></a><br/>
 			    <a onclick='$("#compose_form").css("display","block");$("textarea[id=&apos;body&apos;]").html("<?=t('Пересланое сообщение')?>:\n\n"+$.trim($("#body_<?=$mid?>").html()));' href="#logout"><?=t('Переслать')?></a>
                         </div>
                 </div>

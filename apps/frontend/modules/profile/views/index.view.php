@@ -1,5 +1,4 @@
-<div class="profile mt-3 mb-3 container">
-
+<div class="profile mt-3 container p-0">
     <div class="row">
         <div class="col-6">
             <!-- START NAME AND SURNAME -->
@@ -15,7 +14,7 @@
             </div>
             <?php if ($profile['reserv'] > 0 && session::has_credential('admin')) { ?>
                 <div class="p5 mb10 fs12" style="color: #999; background: #eee; border-top: 1px solid #ccc; border-bottom: 1px solid #ccc;">
-                    <?= t('В резерве'); ?> :: <a id="profile-from_reserv" href="javascript:;">Восстановить</a>
+                    <?= t('В резерве'); ?> :: <a id="profile-from_reserv" href="javascript:void(0);">Восстановить</a>
                 </div>
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -52,9 +51,9 @@
             <?php $attr_key_width = 200 ?>
             <?php $attr_val_width = 200 ?>
 
-            <div>
+            <div class="row">
 
-                <div class="left">
+                <div class="col">
                     <!-- START STATUS -->
                     <div class="fs12 mb10 bold">
                         <?= profile_peer::instance()
@@ -81,11 +80,10 @@
                             <?= $status ?>
                         </div>
                         <div class="clear"></div>
-
                     </div>
                     <!-- END STATUS -->
 
-                    <?php if ($profile['type'] != 4) { ?>
+                    <?php if ((int) $profile['type'] !== 4) { ?>
                         <!-- START BIRTHDAY AND BIRTHPLACE -->
                         <?php if ((int) profile_peer::get_age($profile['birthday']) > 1) { // && session::has_credential('admin') ?>
                             <div class="fs12">
@@ -97,29 +95,8 @@
                                 <div class="clear"></div>
                             </div>
                         <?php } ?>
-                    <?php } ?>
 
-                    <?php $user_params = profile_peer::instance()->get_params($profile['user_id']); ?>
-                    <?php if (
-                        $user_params['growth'] ||
-                        $user_params['weigth'] ||
-                        (
-                            $user_params['breast'] &&
-                            $user_params['waist'] &&
-                            $user_params['hip']
-                        )
-                    ) { ?>
-                        <div class="mt10">
-                            <!--<div class="left cgray" style="width: <?= $attr_key_width ?>px;">
-								<?php if ($user_params['growth']) { ?>Рост<?php } ?><?php if ($user_params['weigth']) { ?><?php if ($user_params['growth']) { ?> / <?php } ?>Вес<?php } ?><?php if ($user_params['breast'] && $user_params['waist'] && $user_params['hip']) { ?><?php if ($user_params['growth'] || $user_params['weigth']) { ?> / <?php } ?>Объемы<?php } ?>:
-							</div>-->
-                            <div class="left fs11" style="width: <?= $attr_val_width ?>px;">
-                                <?php if ($user_params['growth']) { ?><?= $user_params['growth'].' '.t('см') ?><?php } ?><?php if ($user_params['weigth']) { ?><?php if ($user_params['growth']) { ?> / <?php } ?><?= $user_params['weigth'].' '.t(
-                                    'кг'
-                                ) ?><?php } ?><?php if ($user_params['breast'] && $user_params['waist'] && $user_params['hip']) { ?><?php if ($user_params['growth'] || $user_params['weigth']) { ?> / <?php } ?><?= $user_params['breast'] ?>-<?= $user_params['waist'] ?>-<?= $user_params['hip'] ?><?php } ?>
-                            </div>
-                            <div class="clear"></div>
-                        </div>
+                        <?php include __DIR__.'/index_parts/parameters.php' ?>
                     <?php } ?>
 
                     <?php if ($profile['type'] != 4) { ?>
@@ -141,11 +118,11 @@
                     <!-- START STATUS -->
                 </div>
                 <?php if (session::has_credential('admin') || session::get_user_id() == $user_id) { ?>
-                    <div class="right aright fs10">
+                    <div class="col-3 fs10 text-right">
                         <?php if ($profile['type'] == 2) { ?>
                             <?php if ($profile['registrator'] > 0 && !$profile['del'] && !$profile['active'] && filter_var($profile['email'], FILTER_VALIDATE_EMAIL)) { ?>
                                 <div>
-                                    <a class="cgray" href="javascript:;" onclick="$.post('/adminka/user_manager',{'act':'send_invitation', 'user_id': <?= $profile['user_id'] ?>}, function(resp){if(resp.success) $('#invcount').html('('+resp.inv_count+')') },'json');"><?= t('Пригласить') ?></a>
+                                    <a class="cgray" href="javascript:void(0);" onclick="$.post('/adminka/user_manager',{'act':'send_invitation', 'user_id': <?= $profile['user_id'] ?>}, function(resp){if(resp.success) $('#invcount').html('('+resp.inv_count+')') },'json');"><?= t('Пригласить') ?></a>
                                     <span id="invcount" class="cgray">
 										<?= (db_key::i()->exists('invitations_byadmin_'.$profile['user_id'])) ? '('.db_key::i()->get('invitations_byadmin_'.$profile['user_id']).')' : '(0)' ?>
 									</span>
@@ -153,7 +130,7 @@
                             <?php } ?>
                             <?php if (!$profile['del'] && !$profile['active'] && filter_var($profile['email'], FILTER_VALIDATE_EMAIL) && $profile['approve'] == 2) { ?>
                                 <div>
-                                    <a class="cgray" href="javascript:;" onclick="$.post('/adminka/user_manager',{'act':'send_invitation_final', 'user_id': <?= $profile['user_id'] ?>}, function(resp){if(resp.success) $('#invcount').html('('+resp.inv_count+')') },'json');"><?= t('Пригласить') ?></a>
+                                    <a class="cgray" href="javascript:void(0);" onclick="$.post('/adminka/user_manager',{'act':'send_invitation_final', 'user_id': <?= $profile['user_id'] ?>}, function(resp){if(resp.success) $('#invcount').html('('+resp.inv_count+')') },'json');"><?= t('Пригласить') ?></a>
                                     <span id="invcount" class="cgray">
 										<?= (db_key::i()->exists('invitations_registred_'.$profile['user_id'])) ? '('.db_key::i()->get('invitations_registred_'.$profile['user_id']).')' : '(0)' ?>
 									</span>
@@ -161,7 +138,7 @@
                             <?php } ?>
                             <?php if (!$profile['del'] && !$profile['active'] && filter_var($profile['email'], FILTER_VALIDATE_EMAIL) && $profile['approve'] == 1) { ?>
                                 <div>
-                                    <a class="cgray" href="javascript:;" onclick="$.post('/adminka/user_manager',{'act':'invite_in_work_model', 'user_id': <?= $profile['user_id'] ?>}, function(resp){if(resp.success) $('#invcount').html('('+resp.inv_count+')') },'json');"><?= t('Пригласить') ?></a>
+                                    <a class="cgray" href="javascript:void(0);" onclick="$.post('/adminka/user_manager',{'act':'invite_in_work_model', 'user_id': <?= $profile['user_id'] ?>}, function(resp){if(resp.success) $('#invcount').html('('+resp.inv_count+')') },'json');"><?= t('Пригласить') ?></a>
                                     <span id="invcount" class="cgray">
 										<?= (db_key::i()->exists('invite_in_work_model_'.$profile['user_id'])) ? '('.db_key::i()->get('invite_in_work_model_'.$profile['user_id']).')' : '(0)' ?>
 									</span>
@@ -170,7 +147,7 @@
                         <?php } else { ?>
                             <?php if ($profile['registrator'] > 0 && !$profile['del'] && !$profile['active'] && filter_var($profile['email'], FILTER_VALIDATE_EMAIL)) { ?>
                                 <div>
-                                    <a class="cgray" href="javascript:;" onclick="$.post('/adminka/umanager', {'act': 'send_mail', 'alias': 'invite_nomodels', 'uid': <?= $profile['user_id'] ?>}, function(response){ if(response.success){ $('#invcount').html('('+response.invcount+')') } }, 'json');">Пригласить</a>
+                                    <a class="cgray" href="javascript:void(0);" onclick="$.post('/adminka/umanager', {'act': 'send_mail', 'alias': 'invite_nomodels', 'uid': <?= $profile['user_id'] ?>}, function(response){ if(response.success){ $('#invcount').html('('+response.invcount+')') } }, 'json');">Пригласить</a>
                                     <span id="invcount" class="cgray">
 										(<?= (db_key::i()->exists('invite_nomodels_'.$profile['user_id'])) ? db_key::i()->get('invite_nomodels_'.$profile['user_id']) : 0 ?>)
 									</span>
@@ -190,11 +167,11 @@
                         <?php } ?>
                         <?php if (session::has_credential('admin')) { ?>
                             <?php if ($profile['del']) { ?>
-                            <a class="cgray" id="adminka-remove-remove-item-<?= $profile['user_id'] ?>" href="javascript:;">*<?= t('Удалить безвозвратно') ?></a><br/>
-                            <a class="cgray" id="adminka-remove-restore-item-<?= $profile['user_id'] ?>" href="javascript:;">*<?= t('Восстановить') ?></a>
+                            <a class="cgray" id="adminka-remove-remove-item-<?= $profile['user_id'] ?>" href="javascript:void(0);">*<?= t('Удалить безвозвратно') ?></a><br/>
+                            <a class="cgray" id="adminka-remove-restore-item-<?= $profile['user_id'] ?>" href="javascript:void(0);">*<?= t('Восстановить') ?></a>
                         <?php } else { ?>
-                            <a class="cgray" id="adminka-remove-archive-item-<?= $profile['user_id'] ?>" href="javascript:;">*<?= t('В архив') ?></a><br/>
-                            <a class="cgray" id="adminka-reserv" href="javascript:;">*<?= t('В резерв') ?></a>
+                            <a class="cgray" id="adminka-remove-archive-item-<?= $profile['user_id'] ?>" href="javascript:void(0);">*<?= t('В архив') ?></a><br/>
+                            <a class="cgray" id="adminka-reserv" href="javascript:void(0);">*<?= t('В резерв') ?></a>
                             <span>  <?php if ($profile['active']) { ?><br/><b>Активная</b><?php } ?>
                                 <?php if ($profile['activated_ts'] > 0) { ?><?= date('d.m.Y', $profile['activated_ts']) ?><?php } ?>
                                                                 </span><br/>
@@ -231,7 +208,6 @@
                         <?php } ?>
                     </div>
                 <?php } ?>
-                <div class="clear"></div>
             </div>
 
             <?php if ($profile['type'] != 4) { ?>
@@ -288,7 +264,7 @@
 
             <!-- START CONTACTS -->
             <?php include 'index_parts/contacts.php' ?>
-            <?//= call_user_func(require 'index_parts/contacts.php', $profile) ?>
+            <? //= call_user_func(require 'index_parts/contacts.php', $profile) ?>
             <!-- END CONTACTS -->
 
             <!-- START CARD -->
@@ -329,7 +305,7 @@
 
             <?php if (profile_peer::get_type_by_user($profile['user_id']) == 2) { ?>
                 <div class="mt10">
-                    <div class="aleft square_p pl15 mb10">
+                    <div class="aleft fs12 square_p pl15 mb10">
                         <div class="left ucase bold">
                             <a class="cblack" href="/albums/album?aid=<?= $albums['portfolio'][0]['id'] ?>&uid=<?= $user_id ?>"><?= t('Портфолио') ?></a>
                         </div>
@@ -406,7 +382,7 @@
                                 <div>
                                     <a
                                             class="underline cgray"
-                                            href="javascript:;"
+                                            href="javascript:void(0);"
                                             onmouseover="$(this).css('color', 'black')" onmouseout="$(this).css('color', 'gray')"
                                             onclick="
 											if($('#window-categories').is(':visible'))

@@ -40,6 +40,8 @@ class agency_list_action extends agency_controller
         geo_peer::BRAZIL,
         geo_peer::CHILE,
         geo_peer::NORWAY,
+        geo_peer::AUSTRALIA,
+        geo_peer::PORTUGAL,
     ];
 
     public function execute()

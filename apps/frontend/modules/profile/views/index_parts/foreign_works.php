@@ -89,13 +89,13 @@
 	
 	<div>
 		<div class="left square_p pl15 mb10 fs12 ucase bold">
-			<a class="cblack" href='javascript:;'><?=t('Работа за границей')?></a>
+			<a class="cblack" href='javascript:void(0);'><?=t('Работа за границей')?></a>
 		</div>
 		<? if(session::has_credential('admin') || session::get_user_id() == $user_id){ ?>
 			<div class="right">
 				<a
 					class="underline cgray"
-					href="javascript:;"
+					href="javascript:void(0);"
 					onclick="
 						$('#window-foreign_work').show();
 					"
@@ -111,7 +111,7 @@
 			<div id="foreign_work-<?=$foreignWork['id']?>" class="pt10 pb5" style="<? if($cnt > 0){ ?>border-top: 1px solid #eee<? } ?>">
 				<? if(session::has_credential('admin') || session::get_user_id() == $user_id){ ?>
 					<div class="fs10 aright pb5">
-						<a id="remove-foreign_work-<?=$foreignWork['id']?>" class="fs10" href="javascript:;"><?=t('Удалить')?></a>
+						<a id="remove-foreign_work-<?=$foreignWork['id']?>" class="fs10" href="javascript:void(0);"><?=t('Удалить')?></a>
 					</div>
 				<? } ?>
 				<div>

@@ -20,7 +20,7 @@ var Autocomplete = function(objId, options) {
 					 '<img src="%src%" style="width: 30px;"/>'+
 				      '</td>'+
 				      '<td style="vertical-align: middle;">'+
-					  '<a class="fs14 user_name_class" href="javascript:;">%name%</a>'+
+					  '<a class="fs14 user_name_class" href="javascript:void(0);">%name%</a>'+
 				      '</td>'+
 				'</tr>';
     }

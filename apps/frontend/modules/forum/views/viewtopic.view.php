@@ -44,12 +44,12 @@
 				    </a>
 				</li>
 				<li class="delete-icon">
-				    <a title="Удалить сообщение" href="javascript:;"  onclick="$.post('/forum/view', {'forum_id': <?=$topic['id']?>,'act': 'delete_forum'}, function(resp) {if(resp.success) window.location='/forum/view';}, 'json')">
+				    <a title="Удалить сообщение" href="javascript:void(0);"  onclick="$.post('/forum/view', {'forum_id': <?=$topic['id']?>,'act': 'delete_forum'}, function(resp) {if(resp.success) window.location='/forum/view';}, 'json')">
 					<span>Удалить сообщение</span>
 				    </a>
 				</li>
 				<li class="report-icon">
-				    <a title="Пожаловаться на это сообщение" href="javascript:;">
+				    <a title="Пожаловаться на это сообщение" href="javascript:void(0);">
 					<span>Пожаловаться на это сообщение</span>
 				    </a>
 				</li>
@@ -111,7 +111,7 @@
 				    </a>
 				</li>
 				<li class="delete-icon">
-				    <a title="Удалить сообщение" href="javascript:;"  onclick="$.post('/forum/viewtopic', {'post_id': <?=$post_data['id']?>,'act': 'delete_post'}, function(resp) {if(resp.success) $('#post<?=$post_data['id']?>').remove();}, 'json')">
+				    <a title="Удалить сообщение" href="javascript:void(0);"  onclick="$.post('/forum/viewtopic', {'post_id': <?=$post_data['id']?>,'act': 'delete_post'}, function(resp) {if(resp.success) $('#post<?=$post_data['id']?>').remove();}, 'json')">
 					<span>Удалить сообщение</span>
 				    </a>
 				</li>
