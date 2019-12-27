@@ -40,7 +40,7 @@ class tag_helper
 		return $server . $src;
 	}
 
-	public static function select( $name, $data, $options = array(), $bold = array() )
+	public static function select($name, $data, $options = array(), $bold = array() )
 	{
 		$options['name'] = $name;
 

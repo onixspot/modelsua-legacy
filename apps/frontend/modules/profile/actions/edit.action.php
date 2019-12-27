@@ -246,12 +246,24 @@ class profile_edit_action extends profile_controller
             'first_name_en' => trim(request::get('first_name_en')),
             'middle_name'   => trim(request::get('middle_name')),
             'sex'           => request::get_bool('male') ? 0 : 1,
-            'birthday'      => ui_helper::dateval('birthday'),
             'country'       => request::get_int('country'),
             'region'        => request::get_int('region'),
             'city'          => request::get_int('city'),
             'another_city'  => request::get('another_city'),
         ];
+
+        $birthday = [];
+        foreach (['month', 'day', 'year'] as $token) {
+            $attr        = sprintf('dob_%s', $token);
+            $value       = request::get_int($attr);
+            $data[$attr] = $value > 0 ? $value : null;
+
+            if ($value > 0) {
+                $birthday[] = $value;
+            }
+        }
+
+        $data['birthday'] = count($birthday) === 3 ? mktime(0, 0, 0, $birthday[0], $birthday[1], $birthday[2]) : null;
 
         profile_peer::instance()->update($data, $data['user_id']);
     }

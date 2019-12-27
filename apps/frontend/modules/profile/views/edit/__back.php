@@ -385,7 +385,7 @@
 				<div class="clear"></div>
 			</div>
 			<div class="mb10">
-				<div class="left pt5 mr5 aright" style="width: 200px">Наличие визы:</div>
+				<div class="left pt5 mr5 aright" style="width: 200px">Наличие виз:</div>
 				<div class="left">
 					<textarea id="visa" style="width: 300px;"><?=$user_data["visa"]?></textarea>
 				</div>

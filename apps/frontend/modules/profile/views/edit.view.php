@@ -14,12 +14,12 @@
             <!--<div id="profile-edit-tab-locality" class="left p5">
                 Текущее место проживания
             </div>-->
-            <? if (profile_peer::get_type_by_user($profile['user_id']) == 2 || session::get_user_id() == 1) { ?>
+            <?php if (profile_peer::get_type_by_user($profile['user_id']) == 2 || session::get_user_id() == 1) { ?>
                 <div id="profile-edit-tab-params" class="left p5">
                     <?= t('Параметры') ?>
                 </div>
             <? } ?>
-            <? if (profile_peer::get_type_by_user($profile['user_id']) == 2 || session::get_user_id() == 1) { ?>
+            <?php if (profile_peer::get_type_by_user($profile['user_id']) == 2 || session::get_user_id() == 1) { ?>
                 <div id="profile-edit-tab-agency" class="left p5">
                     <?= t('Агентство') ?>
                 </div>
@@ -45,28 +45,28 @@
         </div>
 
         <div id="profile-edit-frames">
-            <? include 'edit_parts/general.php' ?>
-            <? // include "edit_parts/locality.php" ?>
+            <? include 'edit/general.php' ?>
+            <? // include "edit/locality.php" ?>
 
             <? if (profile_peer::get_type_by_user($profile['user_id']) == 2 || session::get_user_id() == 1) { ?>
-                <? include 'edit_parts/params.php' ?>
+                <? include 'edit/params.php' ?>
             <? } ?>
 
             <? if (profile_peer::get_type_by_user($profile['user_id']) == 2 || session::get_user_id() == 1) { ?>
-                <? include 'edit_parts/agency.php' ?>
+                <? include 'edit/agency.php' ?>
             <? } ?>
 
-            <? include 'edit_parts/additional.php' ?>
+            <? include 'edit/additional.php' ?>
 
-            <? include 'edit_parts/contacts.php' ?>
+            <? include 'edit/contacts.php' ?>
 
-            <? include 'edit_parts/photo.php' ?>
+            <? include 'edit/photo.php' ?>
 
             <? if (profile_peer::get_type_by_user($profile['user_id']) == 2 || session::get_user_id() == 1) { ?>
-                <? include 'edit_parts/card.php' ?>
+                <? include 'edit/card.php' ?>
             <? } ?>
 
-            <? include 'edit_parts/options.php' ?>
+            <? include 'edit/options.php' ?>
         </div>
 
     </div>
@@ -208,9 +208,9 @@
                         for (var key in imgAreas) {
                             if (pos !== -1) {
                                 if (key == pos) $("#" + imgAreas[key] + "_avatar").imgAreaSelect(eval("(" + imgAreas[key] + '_opt' + ")"));
-                                else $("#" + imgAreas[key] + "_avatar").imgAreaSelect({remove: 1});
+                                else $("#" + imgAreas[key] + "_avatar").imgAreaSelect({ remove: 1 });
                             } else {
-                                $("#" + imgAreas[key] + "_avatar").imgAreaSelect({remove: 1});
+                                $("#" + imgAreas[key] + "_avatar").imgAreaSelect({ remove: 1 });
                             }
                         }
 

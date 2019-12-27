@@ -124,7 +124,6 @@ HEREDOC;
 select ua.id
 from user_auth as ua
 where ua.del = :del
-  and ua.hidden = :hidden
   and ua.reserv = :reserv
   and ua.milestone = :milestone;
 SQL;
@@ -132,7 +131,7 @@ SQL;
         if ($milestone !== null) {
             return db::get_cols($sql, [
                 'del'       => 0,
-                'hidden'    => false,
+                // 'hidden'    => false,
                 'reserv'    => 0,
                 'milestone' => $milestone,
             ]);

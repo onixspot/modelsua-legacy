@@ -83,24 +83,23 @@
                     </div>
                     <!-- END STATUS -->
 
-                    <?php if ((int) $profile['type'] !== 4) { ?>
+                    <?php if (($age = profile_peer::getAge($profile)) !== null) { ?>
                         <!-- START BIRTHDAY AND BIRTHPLACE -->
-                        <?php if ((int) profile_peer::get_age($profile['birthday']) > 1) { // && session::has_credential('admin') ?>
-                            <div class="fs12">
-                                <div class="left aright mr5 cgray"></div>
-                                <div class="left">
-                                    <span class="bold"><?= profile_peer::get_age($profile['birthday']) ?></span>
-                                    <span class="cgray">(<?= profile_peer::get_birthday($profile['birthday']) ?>)</span>
-                                </div>
-                                <div class="clear"></div>
+                        <div class="fs12">
+                            <div class="left aright mr5 cgray"></div>
+                            <div class="left">
+                                <span class="bold"><?= $age ?></span>
+                                <?php if (($birthday = profile_peer::getBirthday($profile)) !== null) { ?>
+                                    <span class="cgray">(<?= $birthday ?>)</span>
+                                <?php } ?>
                             </div>
-                        <?php } ?>
-
-                        <?php include __DIR__.'/index_parts/parameters.php' ?>
+                            <div class="clear"></div>
+                        </div>
+                        <?php call_user_func(require __DIR__.'/index/parameters.php', $profile) ?>
                     <?php } ?>
 
                     <?php if ($profile['type'] != 4) { ?>
-                        <?php include 'index_parts/location.php' ?>
+                        <?php include 'index/location.php' ?>
                     <?php } else { ?>
                         <?php $user_additional_id = user_additional_peer::instance()->get_list(['user_id' => $profile['user_id']]); ?>
                         <?php $user_additional = user_additional_peer::instance()->get_item($user_additional_id[0]); ?>
@@ -212,13 +211,13 @@
 
             <?php if ($profile['type'] != 4) { ?>
                 <!-- START RATING -->
-                <?php include 'index_parts/rating.php' ?>
+                <?php include 'index/rating.php' ?>
                 <!-- END RATING -->
             <?php } ?>
 
             <?php // if($profile['type'] != 4){ ?>
             <!-- START SHORT INFORMATION -->
-            <?php include 'index_parts/info.php' ?>
+            <?php include 'index/info.php' ?>
             <!-- END SHORT INFORMATION -->
             <?php // } ?>
 
@@ -258,49 +257,49 @@
             <!-- START MESSAGES -->
 
             <?php if ($profile['can_write'] && $profile['user_id'] == session::get_user_id()) { ?>
-                <?php include 'index_parts/messages.php'; ?>
+                <?php include 'index/messages.php'; ?>
             <?php } ?>
             <!-- END MESSAGES -->
 
             <!-- START CONTACTS -->
-            <?php include 'index_parts/contacts.php' ?>
-            <? //= call_user_func(require 'index_parts/contacts.php', $profile) ?>
+            <?php include 'index/contacts.php' ?>
+            <? //= call_user_func(require 'index/contacts.php', $profile) ?>
             <!-- END CONTACTS -->
 
             <!-- START CARD -->
             <?php if (session::has_credential('admin')) { //  || session::get_user_id()==$profile['user_id'] ?>
                 <?php if (profile_peer::get_type_by_user($profile['user_id']) == 2) { ?>
-                    <?php // include 'index_parts/card.php'; ?>
+                    <?php // include 'index/card.php'; ?>
                 <?php } ?>
             <?php } ?>
             <!-- END CARD -->
 
             <!-- ADMIN BLOCK -->
-            <?php include 'index_parts/admin_block.php'; ?>
+            <?php include 'index/admin_block.php'; ?>
             <!-- END CONTACTS -->
 
             <?php if (profile_peer::get_type_by_user($profile['user_id']) == 2) { ?>
                 <!-- START HRONOLOGY -->
-                <?php include 'index_parts/hronology.php'; ?>
+                <?php include 'index/hronology.php'; ?>
                 <!-- END HRONOLOGY -->
             <?php } ?>
 
             <?php if (profile_peer::get_type_by_user($profile['user_id']) == 2) { ?>
                 <!-- START FOREIGN WORKS -->
-                <?php include 'index_parts/foreign_works.php'; ?>
+                <?php include 'index/foreign_works.php'; ?>
                 <!-- END FOREIGN WORKS -->
             <?php } ?>
 
             <?php if (profile_peer::get_type_by_user($profile['user_id']) == 2) { ?>
                 <!-- START SMI -->
-                <?php include 'index_parts/smi.php' ?>
+                <?php include 'index/smi.php' ?>
                 <!-- END SMI -->
             <?php } ?>
         </div>
 
         <div class="col-6">
             <!-- START PHOTO -->
-            <?php include 'index_parts/photo.php'; ?>
+            <?php include 'index/photo.php'; ?>
             <!-- END PHOTO -->
 
             <?php if (profile_peer::get_type_by_user($profile['user_id']) == 2) { ?>
@@ -641,7 +640,7 @@
 <?= AssetsFactory::create()->script('/app/profile.js') ?>
 
 <?php if ($by_code) {
-    include 'index_parts/login_by_code_form.php';
+    include 'index/login_by_code_form.php';
 } ?>
 
 

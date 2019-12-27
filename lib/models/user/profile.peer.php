@@ -279,6 +279,9 @@ class profile_peer extends db_peer_postgre
                 'application_approve',
                 'manager_agency_id',
                 'can_write',
+                'dob_day',
+                'dob_month',
+                'dob_year',
             ];
         }
 
@@ -444,11 +447,11 @@ class profile_peer extends db_peer_postgre
 
     public function get_item($user_id)
     {
-        if (!$user_auth = user_auth_peer::instance()->get_item($user_id)) {
+        if (!$user_auth = user_auth_peer::instance()->get_item($user_id, true)) {
             $user_auth = [];
         }
 
-        if (!$user_data = user_data_peer::instance()->get_item($user_id)) {
+        if (!$user_data = user_data_peer::instance()->get_item($user_id, true)) {
             $user_data = [];
         }
 
@@ -528,6 +531,13 @@ class profile_peer extends db_peer_postgre
         return $location;
     }
 
+    /**
+     * @param        $user_birthday
+     * @param string $format
+     *
+     * @return bool|false|string
+     * @deprecated use self::getBirthday($profile)
+     */
     public static function get_birthday($user_birthday, $format = 'd.m.Y')
     {
         if (is_null($user_birthday)) {
@@ -539,9 +549,14 @@ class profile_peer extends db_peer_postgre
         return date($format, $time);
     }
 
+    /**
+     * @param string $user_birthday
+     *
+     * @return bool|string
+     * @deprecated use self::getAge($profile)
+     */
     public static function get_age($user_birthday)
     {
-
         if ($user_birthday === '1970-01-01 00:00:00') {
             return '';
         }
@@ -579,6 +594,52 @@ class profile_peer extends db_peer_postgre
         }
 
         return $age.' '.$age_words[$w_index];
+    }
+
+    public static function getBirthday($profile)
+    {
+        return $profile['birthday'] !== null
+            ? DateTime::createFromFormat('Y-m-d H:i:s', $profile['birthday'])->format('d.m.Y')
+            : null;
+    }
+
+    public static function getAge($profile)
+    {
+        $day   = (int) $profile['dob_day'];
+        $month = (int) $profile['dob_month'];
+        $year  = (int) $profile['dob_year'];
+
+        if (!$year) {
+            return null;
+        }
+
+        $today = new DateTime('today');
+        $dob   = new DateTime(sprintf('%s-%s-%s', $year, $month, $day));
+        $age   = $dob->diff($today)->y;
+
+        return sprintf('%s %s', $age, self::numToWord($age, ['год', 'года', 'лет']));
+    }
+
+    public static function numToWord($num, $words)
+    {
+        $num %= 100;
+
+        if ($num > 19) {
+            $num %= 10;
+        }
+
+        switch ($num) {
+            case 1:
+                return ($words[0]);
+
+            case 2:
+            case 3:
+            case 4:
+                return ($words[1]);
+
+            default:
+                return ($words[2]);
+        }
     }
 
     public static function get_types_list()

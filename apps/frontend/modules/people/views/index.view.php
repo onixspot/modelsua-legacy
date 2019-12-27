@@ -123,9 +123,9 @@
                              style="position: absolute; background: black; color: white; border-radius: 5px;">
                             <?= profile_peer::get_name($profile) ?><br/>
                             <!--<span class="fs10"><?= profile_peer::get_location($profile) ?></span>
-							<?php if ((int) profile_peer::get_age($profile['birthday']) > 1) { ?>
+							<?php if (($age = profile_peer::getAge($profile)) !== null) { ?>
 								<br />
-								<span class="fs10"><?= profile_peer::get_age($profile['birthday']) ?></span>
+								<span class="fs10"><?= $age ?></span>
 							<?php } ?>-->
                         </div>
                     </li>
@@ -233,9 +233,9 @@
                                      style="position: absolute; background: black; color: white; border-radius: 5px;">
                                     <?= profile_peer::get_name($profile) ?><br/>
                                     <!--<span class="fs10"><?= profile_peer::get_location($profile) ?></span>
-									<?php if (intval(profile_peer::get_age($profile['birthday'])) > 1) { ?>
+									<?php if (($age = profile_peer::getAge($profile)) !== null) { ?>
 										<br />
-										<span class="fs10"><?= profile_peer::get_age($profile['birthday']) ?></span>
+										<span class="fs10"><?= $age ?></span>
 									<?php } ?>-->
                                 </div>
                             </li>

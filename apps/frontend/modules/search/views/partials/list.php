@@ -15,7 +15,7 @@
             echo $name[0].' <span style="text-transform: uppercase; font-weight: bold;">'.strtoupper($name[1])."</span>";
         ?></a></span><br>
         <div style="line-height: 10px;" class="mt0">
-        <?if($profile['birthday']) {?><span class="fs10"><?=profile_peer::get_age($profile['birthday'])?></span><br><? } ?>
+        <?if($profile['birthday']) {?><span class="fs10"><?= profile_peer::getAge($profile) ?></span><br><? } ?>
         <?if($profile['country']) {?><span class="fs10"><?=geo_peer::instance()->get_country($profile['country'])?></span><? } ?>
         <?if($profile['city']) {?><span class="fs10">
                 <? if($profile['city'] > 0){ ?>

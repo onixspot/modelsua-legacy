@@ -101,12 +101,12 @@
                         </div>
                         <br/>
                         <!-- START BIRTHDAY AND BIRTHPLACE -->
-                        <?php if (intval(profile_peer::get_age($profile["birthday"])) > 1 && !$show) { ?>
+                        <?php if (!$show) { ?>
                             <div class="fs11">
                                 <div class="left aright mr5 cgray"></div>
                                 <div class="left">
-                                    <span class="bold"><?= profile_peer::get_age($profile["birthday"]) ?></span>
-                                    <span class="cgray">(<?= profile_peer::get_birthday($profile["birthday"]) ?>)</span>
+                                    <span class="bold"><?= profile_peer::getAge($profile) ?></span>
+                                    <span class="cgray">(<?= profile_peer::getBirthday($profile) ?>)</span>
                                 </div>
                                 <div class="clear"></div>
                             </div>

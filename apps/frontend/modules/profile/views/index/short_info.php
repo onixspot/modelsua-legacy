@@ -1,7 +1,7 @@
 <div class="mt20 black fs12">
 	<div>
-		<span class="bold"><?=profile_peer::get_age($profile["birthday"])?></span>&nbsp;
-		<span style="color: #aeb7c9">(<?=profile_peer::get_birthday($profile["birthday"])?>)</span>
+		<span class="bold"><?=profile_peer::getAge($profile)?></span>&nbsp;
+		<span style="color: #aeb7c9">(<?=profile_peer::getBirthday($profile)?>)</span>
 	</div>
 	<? $country = geo_peer::instance()->get_countries(array("country_id" => $profile["country"])) ?>
 	<? $city = geo_peer::instance()->get_cities(array("city_id" => $profile["city"])) ?>

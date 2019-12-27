@@ -47,7 +47,6 @@
             <div class="clear"></div>
         </div>
 
-
         <div class="mb10">
             <div class="left pt5 mr5 aright" style="width: 200px;"><?= t('Пол') ?>:</div>
             <div class="left">
@@ -58,15 +57,10 @@
             </div>
             <div class="clear"></div>
         </div>
-        <div class="mb10">
-            <div class="left pt5 mr5 aright" style="width: 200px"><?= t('Дата рождения') ?>:</div>
-            <div class="left">
-                <?= ui_helper::datefields('birthday', $profile['birthday'] !== null ? strtotime($profile['birthday']) : 0, false, [], true) ?>
-            </div>
-            <div class="clear"></div>
-        </div>
 
-        <div class="mb10">
+        <?= call_user_func_array(require __DIR__.'/general/dob.php', [$profile, ['class' => 'mt-2']]) ?>
+
+        <div class="mb10 mt-2">
             <div class="left pt5 mr5 aright" style="width: 200px"><?= t('Страна') ?>:</div>
             <div class="left">
                 <select id="country" style="width: 256px;">

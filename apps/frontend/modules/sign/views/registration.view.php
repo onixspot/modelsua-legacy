@@ -18,11 +18,11 @@
                 <div class="left mr5 aright" style="width: 128px">&nbsp;</div>
                 <div class="left" style="width: 512px">
                     <div class="left"><input type="radio" id="model" name="statement_type[]"
-                                             <?php if (request::get('set') != 'asso'){ ?>checked<?php } ?> /></div>
+                                             <?php if (request::get('set') !== 'asso'){ ?>checked<?php } ?> /></div>
                     <div class="left ml5" style="width: 480px"><label for="model"><?= t('включить меня в Каталог моделей Украины') ?></label></div>
                     <div class="clear"></div>
                     <div class="left"><input type="radio" id="association_member" name="statement_type[]"
-                                             <?php if (request::get('set') == 'asso'){ ?>checked<?php } ?> /></div>
+                                             <?php if (request::get('set') === 'asso'){ ?>checked<?php } ?> /></div>
                     <div class="left ml5" style="width: 480px"><label
                                 for="association_member"><?= t('включить меня в Каталог моделей Украины и принять в Ассоциацию моделей Украины') ?></label>
                     </div>
@@ -39,25 +39,17 @@
                 <div class="left mr5 aright" style="width: 128px">&nbsp;</div>
                 <div class="left" style="width: 512px">
                     <div>
-                        <div class="left"><input type="radio" id="iwantbemodel" name="iwant[]"/></div>
+                        <div class="left">
+                            <input type="radio" id="iwantbemember" name="iwant[]"/>
+                        </div>
                         <div class="left ml5" style="width: 480px">
-                            <label for="iwantbemodel"><?= t('Хочу стать моделью') ?></label><br/><a
-                                    href="/page?link=parameters"><?= t('Ознакомьтесь с требованиями модельной внешности') ?></a>
+                            <label for="iwantbemember">
+                                <span class="bold"><?= t('Хочу попасть в Каталог моделей Украины') ?></span> (я уже модель)
+                            </label>
                         </div>
                         <div class="clear"></div>
                     </div>
-                    <div id="block-whydoyouwantbemodel">
-                        <div class="hide"><?= t('Почему хотите стать моделью?') ?></div>
-                        <div class="mt5 hide"><textarea id="whydoyouwantbemodel" style="width: 400px; height: 100px"></textarea></div>
-                    </div>
-                    <div class="mt10">
-                        <div class="left"><input type="radio" id="iwantbemember" name="iwant[]"/></div>
-                        <div class="left ml5" style="width: 480px"><label
-                                    for="iwantbemember"><?= t('Хочу попасть в Каталог моделей Украины, т.к. я уже модель') // , т.к. я уже модель            ?></label>
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div id="block-whydoyouwantbemember" class="mt10 mb10 pl30">
+                    <div id="block-whydoyouwantbemember" class="mt-1 pl30">
                         <div class="mb5">
                             <div class="left pt5" style="width: 200px"><?= t('Опыт работы моделью') ?>:</div>
                             <div class="left mt5">
@@ -75,7 +67,32 @@
                             <div class="clear"></div>
                         </div>
                         <div><?= t('С какими агенствами работали или работаете сейчас?') ?></div>
-                        <div class="mt5"><textarea id="workedwith" style="width: 400px; height: 100px"></textarea></div>
+                        <div class="mt5">
+                            <textarea id="workedwith" style="width: 400px; height: 100px"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-1">
+                        <div class="left">
+                            <input type="radio" id="iwantbemodel" name="iwant[]"/>
+                        </div>
+                        <div class="left ml5" style="width: 480px">
+                            <label for="iwantbemodel" class="bold mr-3"><?= t('Хочу стать моделью') ?> </label>
+                            <a href="/page?link=parameters" class="btn-link"><?= t('Ознакомьтесь с требованиями модельной внешности') ?></a>
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div id="block-whydoyouwantbemodel">
+                        <div class="hide"><?= t('Почему хотите стать моделью?') ?></div>
+                        <div class="mt5 hide">
+                            <textarea id="whydoyouwantbemodel" style="width: 400px; height: 100px"></textarea>
+                        </div>
+                    </div>
+                    <div class="mt-1">
+                        <div class="left">
+                            <input type="radio" id="nothing" name="iwant[]"/>
+                        </div>
+                        <div class="left ml5">&mdash;</div>
+                        <div class="clear"></div>
                     </div>
                 </div>
                 <div class="clear"></div>
@@ -91,15 +108,24 @@
                             $('#block-whydoyouwantbemember').show();
                         });
 
-                        <?php if(request::get('set') != 'member'){ ?>
-                        $('#iwantbemodel')
+                        $('#nothing').click(() => {
+                            $('#block-whydoyouwantbemodel').hide();
+                            $('#block-whydoyouwantbemember').hide();
+                        });
+
+                        $('#nothing')
                             .attr('checked', true)
                             .click();
-                        <?php } else { ?>
-                        $('#iwantbemember')
-                            .attr('checked', true)
-                            .click();
-                        <?php } ?>
+
+                        <?php //if(request::get('set') != 'member'){ ?>
+                        //$('#iwantbemodel')
+                        //    .attr('checked', true)
+                        //    .click();
+                        <?php //} else { ?>
+                        //$('#iwantbemember')
+                        //    .attr('checked', true)
+                        //    .click();
+                        <?php //} ?>
                     });
                 </script>
             </div>
@@ -152,70 +178,6 @@
                            placeholder="<?= t('Фамилия') ?>"
                            value=""
                            class="form-control"/>
-                </label>
-            </div>
-
-            <div class="form-group row">
-                <label class="col offset-2">
-                    <select class="datefield form-control" id="birthday_day" name="birthday_day" value="0">
-                        <option value="0" selected="">—</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                        <option value="11">11</option>
-                        <option value="12">12</option>
-                        <option value="13">13</option>
-                        <option value="14">14</option>
-                        <option value="15">15</option>
-                        <option value="16">16</option>
-                        <option value="17">17</option>
-                        <option value="18">18</option>
-                        <option value="19">19</option>
-                        <option value="20">20</option>
-                        <option value="21">21</option>
-                        <option value="22">22</option>
-                        <option value="23">23</option>
-                        <option value="24">24</option>
-                        <option value="25">25</option>
-                        <option value="26">26</option>
-                        <option value="27">27</option>
-                        <option value="28">28</option>
-                        <option value="29">29</option>
-                        <option value="30">30</option>
-                        <option value="31">31</option>
-                    </select>
-                </label>
-                <label class="col">
-                    <select class="datefield form-control" id="birthday_month" name="birthday_month" onclick="Calendar.checkdate(this)" use_values="" value="0">
-                        <option value="0" selected="">—</option>
-                        <option value="1">января</option>
-                        <option value="2">февраля</option>
-                        <option value="3">марта</option>
-                        <option value="4">апреля</option>
-                        <option value="5">мая</option>
-                        <option value="6">июня</option>
-                        <option value="7">июля</option>
-                        <option value="8">августа</option>
-                        <option value="9">сентября</option>
-                        <option value="10">октября</option>
-                        <option value="11">ноября</option>
-                        <option value="12">декабря</option>
-                    </select>
-                </label>
-                <label class="col">
-                    <select class="datefield form-control" id="birthday_year" name="birthday_year" onclick="Calendar.checkdate(this)" value="0">
-                        <option value="0" selected="selected">—</option>
-                        <?php for ($i = date('Y'); $i > date('Y') - 50; $i--) { ?>
-                            <option value="<?= $i ?>"><?= $i ?></option>
-                        <?php } ?>
-                    </select>
                 </label>
             </div>
 
